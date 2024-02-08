@@ -21,20 +21,20 @@ https://www.youtube.com/watch?v=PCpnRqKCWCQ
 !!examtopics.com
 !!FAZER AWS CERTIFICATES
 !!Docker & kubernetes
-!!Wazuh -> Security for the machines
-!!Metasploit
-!!Circleci -> CI/CD thingy
-!!PagerDuty -> emails stuff?
 !!Grafana -> Usado para fazer baseline. Usar prometheus com grafana(não sei o que faz tbh lmao)
+!!Metasploit
+!!PagerDuty -> emails stuff?
+!!Wazuh -> Security for the machines
+!!Circleci -> CI/CD thingy
 lettcode
 Terraform -> Programming Language para gerar infrastructure de VPCs de AWS
 Ansible -> Automação de instalação de programas e sudo apt updates n shit
-kismet (https://www.kismetwireless.net/)
 Low orbit ion cannon -> dos tool
 https://hash-file.online/ <- hashing checksum website
 TOR browser
 whois.domaintools.com -> 
 vulnerability database
+kismet (https://www.kismetwireless.net/)
 indeed.com -> Procurar trabalho/Estágio
 stepstone.com -> Procurar trabalho/Estágio
 totaljobs.com -> Procurar trabalho/Estágio
@@ -615,8 +615,3 @@ no shutdown
 ip default-gateway "router ip"
 
 do wr
-
-
----------------------------
-DHCP4 Relay
-ip helper-address x.x.x.x (enables the request of ips from a remote dhcp server)
