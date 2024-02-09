@@ -28,6 +28,8 @@ https://www.youtube.com/watch?v=PCpnRqKCWCQ
 !!PagerDuty -> emails stuff?
 !!Wazuh -> Security for the machines
 !!Circleci -> CI/CD thingy
+splunk
+datadog
 lettcode
 Terraform -> Programming Language para gerar infrastructure de VPCs de AWS
 Ansible -> Automação de instalação de programas e sudo apt updates n shit
