@@ -27,11 +27,11 @@ https://www.youtube.com/watch?v=PCpnRqKCWCQ
 !!Metasploit
 !!PagerDuty -> emails stuff?
 !!Wazuh -> Security for the machines
-!!Circleci -> CI/CD thingy
+!!Terraform -> Programming Language para gerar infrastructure de VPCs de AWS
+Circleci -> CI/CD thingy
 splunk
 datadog
 lettcode
-Terraform -> Programming Language para gerar infrastructure de VPCs de AWS
 Ansible -> Automação de instalação de programas e sudo apt updates n shit
 Puppet -> same as ansible I believe
 Low orbit ion cannon -> dos tool
