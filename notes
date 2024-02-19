@@ -708,7 +708,7 @@ aDkJyA2BK8hGhzVqLmymPag1lMPB5CdSVCtNisjd6pGToCcAdoaE
 nano update_all.yml                                                                                        
 ---
 - name: Update packages and reboot if a new kernel is installed
-  hosts: production_servers
+  hosts: servers
   become: true
   tasks:
     - name: Update package cache
@@ -732,3 +732,8 @@ nano update_all.yml
 
 
 ansible all -i hosts -m ping (to ping all hosts in the 'hosts' file | the hosts file can't have white spaces around the '=')
+
+nano print_hostname.yml -> meter o que está lá
+ansible-playbook -i hosts print_hostname.yml
+ansible-playbook -i hosts update_all.yml
+
