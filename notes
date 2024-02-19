@@ -23,15 +23,14 @@ python para fazer apis
 FAZER A RECUPERAÇÃO DE SWITCH CONFIG(remover o secret se esquecer-me and shit)
 Fazer a recuperação do router tb
 https://www.youtube.com/watch?v=PCpnRqKCWCQ 
-!!Jeremy's IT lab
-!!examtopics.com
-!!FAZER AWS CERTIFICATES
+!!Terraform -> Programming Language para gerar infrastructure de VPCs de AWS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!Docker & kubernetes
-!!Grafana -> Usado para fazer baseline. Usar prometheus com grafana(não sei o que faz tbh lmao)
-!!Metasploit
-!!PagerDuty -> emails stuff?
-!!Wazuh -> Security for the machines
-!!Terraform -> Programming Language para gerar infrastructure de VPCs de AWS
+!!FAZER AWS CERTIFICATES
+!Grafana -> Usado para fazer baseline. Usar prometheus com grafana(não sei o que faz tbh lmao)
+!Metasploit
+!PagerDuty -> emails stuff?
+!Wazuh -> Security for the machines
+
 Circleci -> CI/CD thingy
 splunk
 datadog
@@ -624,3 +623,33 @@ no shutdown
 ip default-gateway "router ip"
 
 do wr
+
+
+
+Linux controller with terraform&ansible to create machines in AWS:
+
+sudo apt update && sudo apt upgrade -y
+sudo apt install net-tools
+
+install terraform
+install ansible
+install aws cli : https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+
+aws configure(only enter the values. the values change with account)
+	- aws_access_key_id:ASIAU6GDWVFN6OXR4QX7
+	- aws_secret_access_key=M13hLiG21mrS5ValHbSf6us/ztMeqabVou+0QLKH
+	
+sudo apt install zip
+cd .aws/
+nano credentials
+	-aws_session_token=FwoGZXIvYXdzEDsaDD5yheaveKPBeoZEYCK+AZCLG7svfrZVUv4YS/JkVATusAc76nLoephNjWYAI/igXnTDEciyunJSF0ORDoP4YA20ZGxct8sv9OC7E7V0+tkqTk2JCqjvXYMeOFctLKTC7NBVzXSCVn7HQOy4mo2XKga155X4PPA4lDTjkljkyCCVQXw0niihidwcI80sMnhDZpwJpCw83F71HZFvDtITVm6rNde5LLvv2gCCEsRaxzBkU2pqXeF8gUkjoFv4AheIeyK2Bvg3dYIxOPrfw8Qo/sHMrgYyLf8iSWa5epeDz0uc/u5PMXfU2CRlCFDTxT7HCcCj7HMS1HzSYwXTGI1cUMJX0g==
+
+mkdir terraform
+cd terraform
+nano provider.tf -> meter as credentials do aws como está no existente(isso liga o terraform á tua aws)
+
+.
+.nano main.tf
+.
+terrafrom plan(o que vai fazer quando correr)
+terraform apply -> yes (isso vai criar a instance baseada no terraform plan)
