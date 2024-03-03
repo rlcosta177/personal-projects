@@ -16,6 +16,48 @@ ec2-user
 Passw0rd
 
 --------------------------------------------- Furutre Studies(Udemy&Stuff) --------------------------
+https://www.youtube.com/watch?v=tZbayqSJISU -> show interfaces input errors possible causes
+
+_______________________________________________________________________________________________________________________________________________
+
+1041 -> Layer2 Etherchannel
+1043 -> static routes IPv4&IPv6
+1052 -> NAT, NTP, DHCP and SSH
+1054 -> vlan config & cdp
+1058 -> IPv4&IPv6 subnetting and assign the ips to intefaces
+1059 -> vlan configuration
+1060 -> access lists
+1061 -> access lists
+1072 -> static IPv4 routing
+1134 -> dynamic routing(ospf)
+1175 -> vlan config and disable cdp in two interfaces
+1178 -> static routing
+1182 -> IPv4&IPv6 subnetting and assign the ips to intefaces
+1216 -> static routing
+1258 -> configure vlans and lldp/cdp
+1260 -> configure vlans and lldp/cdp
+1266 -> vlan config & etherchannel(LACP i think)
+1285 -> vlan config
+1295 -> IPv4&IPv6 subnetting and assign the ips to interfaces
+1310 -> vlan configuration && etherchannel
+
+
+------------------------- Teacher questions/ Termius questions -----------------------------
+
+1057 -> switchport port-security mac-address abcd.abcd.abcd vlan 4 ???
+1157 -> wlc question
+1210 -> ipv6 subnetting
+1229 -> A or C?
+1224 -> A or D?
+1095 -> A or C?
+1099 -> why not broadcast storm? how many broadcasts is too many?
+1064 -> i went with D, the others don't make sense
+1245 -> B or C, is this too many broadcasts?
+
+Q: quando escolhemos o router-id(R1) em ospf(ex: 4.4.4.4), mesmo que algum outro dispositivo(R2)
+   SEM router-id definido, mas com uma interface com ip tipo 192.168.1.1, qual delas é priorizada?
+_____________________________________________________________________________________________________________________________
+
 Association Response é wireless 802.11 frame? ver no jeremy it labs wireless stuff
 FAZER A RECUPERAÇÃO DE SWITCH CONFIG(remover o secret se esquecer-me and shit)
 https://www.youtube.com/watch?v=PCpnRqKCWCQ 
