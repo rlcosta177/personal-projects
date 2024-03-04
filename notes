@@ -44,18 +44,12 @@ ________________________________________________________________________________
 
 ------------------------- Teacher questions/ Termius questions -----------------------------
 
-1057 -> switchport port-security mac-address abcd.abcd.abcd vlan 4 ???
-1157 -> wlc question
-1210 -> ipv6 subnetting
-1229 -> A or C?
-1224 -> A or D?
-1095 -> A or C?
-1099 -> why not broadcast storm? how many broadcasts is too many?
-1064 -> i went with D, the others don't make sense
-1245 -> B or C, is this too many broadcasts?
+q 212 -> AE or [DE]
+q 216 -> [AD] or DE    https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst3560/software/release/12-2_52_se/configuration/guide/3560scg/swvtp.html#wp1107364   ctrl+f -> but they do not need to run the same VTP version
+q 275 
+q 282
 
-Q: quando escolhemos o router-id(R1) em ospf(ex: 4.4.4.4), mesmo que algum outro dispositivo(R2)
-   SEM router-id definido, mas com uma interface com ip tipo 192.168.1.1, qual delas é priorizada?
+
 _____________________________________________________________________________________________________________________________
 
 Association Response é wireless 802.11 frame? ver no jeremy it labs wireless stuff
