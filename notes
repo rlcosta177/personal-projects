@@ -41,13 +41,6 @@ ________________________________________________________________________________
 1295 -> IPv4&IPv6 subnetting and assign the ips to interfaces
 1310 -> vlan configuration && etherchannel
 
-
-------------------------- Teacher questions/ Termius questions -----------------------------
-
-q 212 -> AE or [DE]
-q 216 -> [AD] or DE    https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst3560/software/release/12-2_52_se/configuration/guide/3560scg/swvtp.html#wp1107364   ctrl+f -> but they do not need to run the same VTP version
-
-
 _____________________________________________________________________________________________________________________________
 
 Association Response é wireless 802.11 frame? ver no jeremy it labs wireless stuff
