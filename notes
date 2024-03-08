@@ -20,10 +20,10 @@ https://www.youtube.com/watch?v=tZbayqSJISU -> show interfaces input errors poss
 
 _______________________________________________________________________________________________________________________________________________
 
-1041 -> Layer2 Etherchannel
-1043 -> static routes IPv4&IPv6
-1052 -> NAT, NTP, DHCP and SSH
-1054 -> vlan config & cdp
+1041 -> Layer2 Etherchannel -> DONE
+1043 -> static routes IPv4&IPv6 -> DONE
+1052 -> NAT, NTP, DHCP and SSH -> DOING
+1054 -> vlan config & cdp -> DONE
 1058 -> IPv4&IPv6 subnetting and assign the ips to intefaces
 1059 -> vlan configuration
 1060 -> access lists
@@ -41,15 +41,6 @@ ________________________________________________________________________________
 1295 -> IPv4&IPv6 subnetting and assign the ips to interfaces
 1310 -> vlan configuration && etherchannel
 
-
-
-848
-823
-866
-860
-938
-952
-957
 883 -> search tomorrow
 
 _____________________________________________________________________________________________________________________________
