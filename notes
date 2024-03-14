@@ -17,44 +17,25 @@ Passw0rd
 
 --------------------------------------------- Furutre Studies(Udemy&Stuff) --------------------------
 https://www.youtube.com/watch?v=tZbayqSJISU -> show interfaces input errors possible causes
-
-_______________________________________________________________________________________________________________________________________________
-
-1041 -> Layer2 Etherchannel -> DONE
-1043 -> static routes IPv4&IPv6 -> DONE
-1052 -> NAT, NTP, DHCP and SSH -> DOING
-1054 -> vlan config & cdp -> DONE
-1058 -> IPv4&IPv6 subnetting and assign the ips to intefaces
-1059 -> vlan configuration
-1060 -> access lists
-1061 -> access lists
-1072 -> static IPv4 routing
-1134 -> dynamic routing(ospf)
-1175 -> vlan config and disable cdp in two interfaces
-1178 -> static routing
-1182 -> IPv4&IPv6 subnetting and assign the ips to intefaces
-1216 -> static routing
-1258 -> configure vlans and lldp/cdp
-1260 -> configure vlans and lldp/cdp
-1266 -> vlan config & etherchannel(LACP i think)
-1285 -> vlan config
-1295 -> IPv4&IPv6 subnetting and assign the ips to interfaces
-1310 -> vlan configuration && etherchannel
-
 _____________________________________________________________________________________________________________________________
-
-Association Response é wireless 802.11 frame? ver no jeremy it labs wireless stuff
 FAZER A RECUPERAÇÃO DE SWITCH CONFIG(remover o secret se esquecer-me and shit)
 https://www.youtube.com/watch?v=PCpnRqKCWCQ 
-!!Terraform -> Programming Language para gerar infrastructure de VPCs de AWS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+FAZER AWS CERTIFICATES
+
+!!Terraform -> Programming Language para gerar infrastructure de VPCs de AWS
 !!Docker & kubernetes
-!!FAZER AWS CERTIFICATES
 !Grafana -> Usado para fazer baseline. Usar prometheus com grafana(não sei o que faz tbh lmao)
 !Metasploit
 !PagerDuty -> emails stuff?
 !Wazuh -> Security for the machines
-
 Circleci -> CI/CD thingy
+New Relic
+!!Kali Linux
+REMnux
+Jenkins (ci?)
+travis ci
+gitlab ci
+
 splunk
 datadog
 lettcode
@@ -201,28 +182,12 @@ DMZ: A physical or logical subnet that separates a local area network (LAN) from
 Wildcard: 255.255.255.255 - mask(xxx.xxx.xxx.xxx): A mask of bits that indicates which parts of an IP address are available for examination
 GRE: Protocol for encapsulating data packets that use one routing protocol inside the packets of another protocol
 
-RFC1918: Gama de IPs privados(10.0.0.0, 172.16.0.0, 192.168.0.0)
+RFC1918: Gama de IPs privados(10.0.0.0, 172.16.0.0-172.31.255.255, 192.168.0.0)
 IPs especiais:
   0.0.0.0
   127.0.0.0/8 -> Localhost ou Loopback
   169.254.0.0/16 -> APIPA
-  192.0.2.0/24 -> 
-
-Switch:
-  Em trunk links(marca as vlans enquanto enviam pacotes and shit)
-     VLAN1: É sempre a default vlan (default = 1)
-     Native: Essa vlan não vai marcada. Quando passa por um trunk link, ela não vai marcada, ao contrario das outras que estão marcadas com o numero da vlan(ex: preto mac dest, mac origem | vermelho mac dest, mac origem, vlan 1)
-   
-  Em Access Link:
-     
-
-Trunk Port: Carries traffic between switches and maintains the VLAN information | Num trunk link, todas as vlans passam(dentro do bradcast domain) | Agregates the connections for a spechific port/connections
-  - Usa 802.1Q
-
- HDLC: A group of protocols or rules for transmitting data between network points | é usado por default só em routers da cisco | é usado para comunicar(layer1 encoding i think) entre dois routers numa coneção 
-
-Routed Protocol:
-Routing Protocl:
+  192.0.2.0/24 -> TEST-NET / used for documentation purpouses 
 
 ISN(Inicial sequence number): É relativo | Determinado no establecimento da sessão(no triple way handshake)
 Window Size: Quantidade de bytes que um cliente consegue receber até ao servidor perguntar se recebeu(o cliente envia a sua window size no establecimento da coneção(triple way handshake))
