@@ -22,8 +22,10 @@ FAZER A RECUPERAÇÃO DE SWITCH CONFIG(remover o secret se esquecer-me and shit)
 https://www.youtube.com/watch?v=PCpnRqKCWCQ 
 FAZER AWS CERTIFICATES
 
-!!Terraform -> Programming Language para gerar infrastructure de VPCs de AWS
-!!Docker & kubernetes
+1) Terraform -> Programming Language para gerar infrastructure de VPCs de AWS
+2) Docker
+3) Kubernetes
+
 !Grafana -> Usado para fazer baseline. Usar prometheus com grafana(não sei o que faz tbh lmao)
 !Metasploit
 !PagerDuty -> emails stuff?
