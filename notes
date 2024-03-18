@@ -22,9 +22,17 @@ FAZER A RECUPERAÇÃO DE SWITCH CONFIG(remover o secret se esquecer-me and shit)
 https://www.youtube.com/watch?v=PCpnRqKCWCQ 
 FAZER AWS CERTIFICATES
 
+vmware workstation
+virtual box
+
 1) Terraform -> Programming Language para gerar infrastructure de VPCs de AWS
 2) Docker
 3) Kubernetes
+
+nessus
+netcat
+awk linux command
+grep linux command
 
 !Grafana -> Usado para fazer baseline. Usar prometheus com grafana(não sei o que faz tbh lmao)
 !Metasploit
