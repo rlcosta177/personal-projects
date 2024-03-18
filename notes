@@ -524,97 +524,7 @@ usei: 172.31.121.101 | 255.255.255.0 | 172.31.16.100 | 172.31.121.100
 
  !!!(Se não foi feito antes no ponto 10)Aceder remotamente ao Windows11-A a partir da maquina original (IP ex: 172.31.96.101) PARA PERMITIR ACESSO A NOVOS USERS
 
-
------------------------------------------------------ PACKET TRACER BASIC CONFIGURATION --------------------------
-Router:
-
-conf terminal
-hostname "name"
-enable secret "pass"
-service password-encryption
-banner motd "banner"
-security passwords min-length 10
-login block-for "seconds" attempts "nº attempts" within "seconds"
-
-no ip domain-lookup
-ip domain-name "name"
-crypto key generate rsa
-1024
-
-ip ssh version 2
-ip ssh time-out 0-120
-username "user" secret "secret"
-
-line console 0
-password "pass"
-login local or login
-logging synchronous
-exec-timeout 60
-exit
-
-line vty 0 4
-password "pass"
-transport input ssh
-login local or login
-logging synchronous
-exec-timeout 60
-exit
-
-line aux 0
-password "pass"
-login local or login
-logging synchronous
-exec-timeout 60
-exit
-
-interface g0/0
-description "description"
-ip address "ip" "mask"
-ipv6 address "ipv6"
-ipv6 address fe80::1 link-local
-no shutdown
-
-interface g0/1
-description "description"
-ip address "ip" "mask"
-ipv6 address "ipv6"
-ipv6 address fe80::1 link-local
-no shutdown
-
-ipv6 unicast-routing
-do wr
-
-------------------------------------------
-Switch:
-conf terminal
-enable secret "pass"
-service password-encryption
-banner motd "banner"
-no ip domain-lookup
-
-line console 0
-password "pass"
-login
-logging synchronous
-exec-timeout 60
-exit
-
-line vty 0 15
-password "pass"
-login
-logging synchronous
-exec-timeout 60
-exit
-
-interface vlan 1
-ip address "ip" "mask"
-no shutdown
-
-ip default-gateway "router ip"
-
-do wr
-
-
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Linux controller with terraform&ansible to create machines in AWS(tudo no terraform_controller):
 
@@ -727,3 +637,48 @@ nano print_hostname.yml -> meter o que está lá
 ansible-playbook -i hosts print_hostname.yml
 ansible-playbook -i hosts update_all.yml
 
+
+
+
+
+
+--------------------------------------------------------------------------------------------
+
+terraform to create aws:
+
+install aws via curl
+
+change the aws config and credentials:
+ 1) ./aws -> nano config:
+[default]
+region = us-east-1
+output = json
+
+[profile vocareum] -> este profile é criado 
+region = us-east-1
+output = json
+source_profile = default
+		
+ 2) ./aws -> nano credentials:
+[default]
+aws_access_key_id=ASIAU6GDWVFNZNBAHGYL
+aws_secret_access_key=HRWy4ojia/hYUH/A5vNtmUjFXtzOQ8dmlUN4C+Lg
+aws_session_token=FwoGZXIvYXdzEJP//////////wEaDKrgyaHVBywkqwIgSSK+Af52dQmPAmrnD7dUG/zPBYMM4PCpbl7c20jxa/Qm2SHLaLJfz2SumDFD/vqYLr8Uf>
+
+[vocareum]
+aws_access_key_id=ASIAU6GDWVFNZNBAHGYL
+aws_secret_access_key=HRWy4ojia/hYUH/A5vNtmUjFXtzOQ8dmlUN4C+Lg
+aws_session_token=FwoGZXIvYXdzEJP//////////wEaDKrgyaHVBywkqwIgSSK+Af52dQmPAmrnD7dUG/zPBYMM4PCpbl7c20jxa/Qm2SHLaLJfz2SumDFD/vqYLr8Uf>
+
+
+
+install terraform and do -> cp terraform /usr/local/bin
+
+dentro da pasta do security_onion_jackdaniels/cybersecurity no terminal(pode ser o intelij ou terminal normal):
+  1)terraform init
+  2)terraform plan -> pass que eu quizer para as maquinas
+  3)terraform apply -> inserir as passwords criadas no terraform plan (o professor percisa de ter partilhado as AMIs primeiro)
+
+
+!! criar uma key (ciberops.pub) e meter a chave ssh no ficheiro:
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCogjyCjjcfbBEwMS6EvJwjHu4PRScWnFzEWi1THN1+5NczlRCsqsAk/ZPSOjsVSbbkkSKVKkfC9wjihoJZntaNPgHMIpGPOomvRatpEsDffbIGWY8YTJMoZsiWKkFYDnYL1CzGJ5aUc8H/gQNV5mlxHYY+oTQr259XjADtrmRpRyQw5tpDUf1CfU8gR8r1H+1KJbzczLV8DWa9gkz/1bEEYV8EEocicd9+gMWhAx0mwDUFwtYmTowBTOvN6Dl1OEsk3qMemtuzPU4CuX3qBuaPTxQiplHhaIl3O5oYJqyTuTU6TTAbimACpbXdtMpIJcIPS4g5skC//+EXEJO7qWTX ciberseguranca@nexus-desktop
