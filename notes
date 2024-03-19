@@ -29,17 +29,19 @@ virtual box
 2) Docker
 3) Kubernetes
 
+!Wazuh -> Security for the machines
+New Relic
+toggle track org para dar track das tasks que faço no dia para n me lixar no trabalho
 nessus
 netcat
 awk linux command
 grep linux command
 
+
 !Grafana -> Usado para fazer baseline. Usar prometheus com grafana(não sei o que faz tbh lmao)
 !Metasploit
 !PagerDuty -> emails stuff?
-!Wazuh -> Security for the machines
 Circleci -> CI/CD thingy
-New Relic
 !!Kali Linux
 REMnux
 Jenkins (ci?)
