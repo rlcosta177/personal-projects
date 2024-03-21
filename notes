@@ -18,6 +18,8 @@ Passw0rd
 --------------------------------------------- Furutre Studies(Udemy&Stuff) --------------------------
 https://www.youtube.com/watch?v=tZbayqSJISU -> show interfaces input errors possible causes
 _____________________________________________________________________________________________________________________________
+retomar daqui -> cryptsetup luksFormat --hash=sha512 --key-size=512 --cipher=aes-xts-plain64 --verify-passphrase /dev/md0
+
 FAZER A RECUPERAÇÃO DE SWITCH CONFIG(remover o secret se esquecer-me and shit)
 https://www.youtube.com/watch?v=PCpnRqKCWCQ 
 FAZER AWS CERTIFICATES
