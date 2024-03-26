@@ -18,21 +18,22 @@ Passw0rd
 --------------------------------------------- Furutre Studies(Udemy&Stuff) --------------------------
 https://www.youtube.com/watch?v=tZbayqSJISU -> show interfaces input errors possible causes
 _____________________________________________________________________________________________________________________________
-retomar daqui -> cryptsetup luksFormat --hash=sha512 --key-size=512 --cipher=aes-xts-plain64 --verify-passphrase /dev/md0
-
 FAZER A RECUPERAÇÃO DE SWITCH CONFIG(remover o secret se esquecer-me and shit)
 https://www.youtube.com/watch?v=PCpnRqKCWCQ 
 FAZER AWS CERTIFICATES
 
-vmware workstation
-virtual box
-
-1) Terraform -> Programming Language para gerar infrastructure de VPCs de AWS
+1) Terraform [Have some knowlage already]
 2) Docker
 3) Kubernetes
+4) Wazuh [To Do easter]
+5) New Relic
+6) Assembly [To Do easter]
+7) NMAP [To Do easter]
+8) Metasploit [To Do easter]
+9) Kali Linux
+10) PagerDuty -> emails stuff?
+11) Mess around with bluetooth devices
 
-!Wazuh -> Security for the machines
-New Relic
 toggle track org para dar track das tasks que faço no dia para n me lixar no trabalho
 nessus
 netcat
@@ -42,9 +43,8 @@ grep linux command
 
 !Grafana -> Usado para fazer baseline. Usar prometheus com grafana(não sei o que faz tbh lmao)
 !Metasploit
-!PagerDuty -> emails stuff?
 Circleci -> CI/CD thingy
-!!Kali Linux
+
 REMnux
 Jenkins (ci?)
 travis ci
@@ -67,7 +67,6 @@ totaljobs.com -> Procurar trabalho/Estágio
 Goteleport -> 
 Ostinato -> Hacking tool and stuff
 Travis yml -> 
-New Relic
 teleport
 nvd vulnerability
 default password lists(routers n shit)
