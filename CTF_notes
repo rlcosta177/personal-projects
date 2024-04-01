@@ -1,4 +1,19 @@
 # general steps when starting a CTF #
 
-1) NMAP to scan the open ports as well as the OS and service versions
-    -p-
+1) Scan Ports and Versions (NMAP)
+    - Create a file to store the nmap scan
+    - Create a file to store the notes about the scan, so as to map the network or possible attack paths on the machine(s)
+    //OPTIONS (you can scan a whole network as well)
+        -p == filter which ports to scan: ex -p 1000-1500 | -p- to scan all ports
+        -sO (test it, john hammond uses it)
+        -sV == service/version info
+        -sC (test it, john uses it too)
+        -O == OS version detection
+        -oN [output filename] == sends the scan info into a file we specify with a normal output(I could choose XML)
+        -A == LOUD&AGRESSIVE, all in one: OS detection, Version detection, Script scanning and Traceroute 
+        -v OR -vv == HUUUGE info, use -vv to display even private ssh keys & encryption methods: verbose
+        --script= to specify a script from the nmap library
+        -T5 == increases speed of scan: 5 threads(0 - 5)
+        --min-rate 1000(+) == increases speed of scan (not sure of the difference between t4 and min-rate)
+
+
