@@ -22,3 +22,100 @@
         --badsum == used to potentially scan for firewall/IDS in the network/host
 
 
+
+    Attacking an SMB server
+        - use enum4linux to scan the server: ex enum4linux -a [IP]
+        - this will give us information about the SMB server: shares, domain/workgroup name, username, OS version, etc...
+        - try to connect to the interesting shares: ex smbclient //10.10.10.2/profiles -U [name] -p [port]
+            - use "Anonymous" as username and a blank password to try to connect, it might be enabled by default
+        - once inside a share, use cd, get, put, pwd, mget and mput to navigate and download/upload files
+        
+
+
+
+    Getting a private ssh key of the target(you could add your own pub key, but that generaly doesn't work)
+        - allways use chmod 600 [key_name], otherwise it can be seen by scans and you won't be able to use it to connect to a machine via ssh
+        - ssh -i [username]@[path_to_key] [IP]
+            - if no password is needed, it should work
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
