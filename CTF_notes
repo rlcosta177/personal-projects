@@ -7,7 +7,7 @@
         -p == filter which ports to scan: ex -p 1000-1500 | -p- to scan all ports
         -sO (test it, john hammond uses it)
         -sV == service/version info
-        -sC (test it, john uses it too)
+        -sC == default script? not sure what it does tbh
         -O == OS version detection
         -oN [output filename] == sends the scan info into a file we specify with a normal output(I could choose XML)
         -A == LOUD&AGRESSIVE, all in one: OS detection, Version detection, Script scanning and Traceroute 
@@ -15,5 +15,10 @@
         --script= to specify a script from the nmap library
         -T5 == increases speed of scan: 5 threads(0 - 5)
         --min-rate 1000(+) == increases speed of scan (not sure of the difference between t4 and min-rate)
+        -sn [ip range] == used to sweep the network for alive hosts
+        --script=[option] == used to scan for a specific thing (vuln, safe, intrusive, exploit, auth, brute, discovery) | http-put to upload files to a web server with api
+        -Pn == scans every host, even if they have icmp disabled. TAKES A TON OF TIME THO
+        -f == fragments the packets, making it harder to be detected
+        --badsum == used to potentially scan for firewall/IDS in the network/host
 
 
