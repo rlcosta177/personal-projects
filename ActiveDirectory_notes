@@ -1,4 +1,11 @@
-------------------------------------------- DNS, Sites(IIS), FTP, User Management, VPC, Routing and Remote Access -----------------------------------------------
+# general guide for AD #
+
+## references ----------------------------------------------------------------------
+
+reference.1) https://www.youtube.com/watch?v=Q4I2lKHboDw&list=WL&index=3
+
+
+## DNS, Sites(IIS), FTP, User Management, Routing and Remote Access -----------
 
  Aplicações:
     - Server Manager
@@ -20,19 +27,19 @@
 2.3 Remote connection para entrar no Windows11 A com ec2-user(connect from Windows Server):
 	- Usar o IP privado do win11 A
 
-2.6 Alterar o nome dos Windows11:
+2.4 Alterar o nome dos Windows11:
 	- This PC -> Propriedades -> Alterar o nome -> Reiniciar
 
-2.7 Instalar o servidor de DHCP, Remote Access e Web Server IIS no Server Manager:
-     FTP Server -> Next -> Routing -> Next -> Install
-     Complete DHCP configuration -> next -> commit
+2.5 Instalar o servidor de DHCP, Remote Access e Web Server IIS no Server Manager:
+	- FTP Server -> Next -> Routing -> Next -> Install
+	- Complete DHCP configuration -> next -> commit
 
-2.9 Adicionar as maquinas ao Dominio(ex: ciber.com):
-     - Propriedades de This PC -> Advanced settings -> Change -> ciber.com
+2.6 Adicionar as maquinas ao Dominio(in ipv4 configs, the dns preference has to be the private ipv4 of the windows server):
+	- Propriedades de This PC -> Advanced settings -> Change -> [domain.extension]
 
 3 configuração de DHCP server(Windows Server):
-       Botão direito em IPv4 -> New Scope -> Nome qualquer(ex: Windows Private Network) -> Start e End IP addr são á nossa escolha (ex:172.31.96.128 - 172.31.96.191) ->
-       mask á escolha(ex: /20 ou 255.255.240.0) -> next -> next -> next -> Private IP do Elastic IP do Windows Server(Dar ADD) -> next.....
+	- Botão direito em IPv4 -> New Scope -> Nome qualquer(ex: Windows Private Network) -> Start e End IP addr são á nossa escolha (ex:172.31.96.128 - 172.31.96.191) ->
+	- mask á escolha(ex: /20 ou 255.255.240.0) -> next -> next -> next -> Private IP do Elastic IP do Windows Server(Dar ADD) -> next.....
 
 3.5 Alterar IP fixo do windows11 A:
     Ir ao IPv4(advanced network settings) -> Propriedades -> IPv4:
