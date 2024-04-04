@@ -41,6 +41,10 @@
                 -vV == verbosity lvl over 9000
         - if the password was cracked, nice shit! you can now fuck em up and escalate privilege if the account isn't good enough
 
+    Attacking an NFS server
+        - use nmap to check details, classic
+        - use showmount to find public nfs shares of the target: 
+
 
     Getting a private ssh key of the target(you could add your own pub key, but that generaly doesn't work)
         - allways use chmod 600 [key_name], otherwise it can be seen by scans and you won't be able to use it to connect to a machine via ssh
