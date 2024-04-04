@@ -43,10 +43,20 @@
 
     Attacking an NFS server
         - use nmap to check details, classic
-        - use showmount to find public nfs shares of the target: 
+        - use showmount to find public nfs shares of the target: showmount -e [IP]
+        - if shares were found, use: sudo mount -t nfs [IP]:[share_name] [path_you_choose(your machine)] -nolock
+        - now you should have mounted file the chosen path in your local machine
+            - with the folder mounted, any file you create within the mounted folder(in your local machine) will appear in the target's folder,
+              meaning that you can preform reverse shells and all
+            1) ON YOUR LOCAL MACHINE: copy any reverse shell malware you can find to the mounted folder
+            2) chown root & chmod +x and +s on the file(it will probably be marked in red, which is good)
+            3) now, if you can ssh to the target, execute the code there, otherwise, you can try an RFI/LFI attack if they have a vulnerable web server 
+                - if you can run the shell through an ssh connection, then use this: ./[shell_file] -p
+                -p == the permissions pressist, so, because you used 'chown root [file]' to change the permissions to ONLY root, then, once you execute the file,
+                      you will be logged in as root :D
 
 
-    Getting a private ssh key of the target(you could add your own pub key, but that generaly doesn't work)
+    Getting a private ssh key of the target(you could add your own pub key to the authorized_keys file, but that generaly doesn't work)
         - allways use chmod 600 [key_name], otherwise it can be seen by scans and you won't be able to use it to connect to a machine via ssh
         - ssh -i [username]@[path_to_key] [IP]
             - if no password is needed, it should work
@@ -75,7 +85,7 @@
 
 
 
-
+#probably useless, i think the .help and .run is part of a script, sadge#
 
     Connected to a TELNET/?SSH? session on the target and not able to use any commands:
         - make your local machine to listen to icmp traffic with tcpdump
