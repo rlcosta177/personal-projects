@@ -34,8 +34,8 @@
         - use nmap to check details. use the --script=ftp-anon to check if you can login with the user Anonymous(blank password)
         - if anon_login==true, log into the ftp server and look around 
         - once a possible username has been found, use hydra to bruteforce the password
-            - ex hydra -t 4 -l mike -P /usr/share/wordlists/rockyou.txt -vV [target_IP] ftp
-                -t 4 == parallel connections per target
+            - ex hydra -t 16 -l mike -P /usr/share/wordlists/rockyou.txt -vV [target_IP] ftp
+                -t 16 == parallel connections per target(0-64)
                 -l == user
                 -P == path to wordlist directory
                 -vV == verbosity lvl over 9000
@@ -54,6 +54,9 @@
                 - if you can run the shell through an ssh connection, then use this: ./[shell_file] -p
                 -p == the permissions pressist, so, because you used 'chown root [file]' to change the permissions to ONLY root, then, once you execute the file,
                       you will be logged in as root :D
+
+    Attacking an SMTP server
+    
 
 
     Getting a private ssh key of the target(you could add your own pub key to the authorized_keys file, but that generaly doesn't work)
