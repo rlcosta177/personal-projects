@@ -15,9 +15,13 @@ credenciais remmina:
 ec2-user
 Passw0rd
 
+
+onion-manager	ami-06bd8c92f42244910
+onion-forward	ami-0f17512c5ecb48bab
+kali-cloud-2024	ami-0820eca5060908d9f
+onion-search	ami-03a8f105a62a41fe7
+
 --------------------------------------------- Furutre Studies(Udemy&Stuff) --------------------------
-https://www.youtube.com/watch?v=tZbayqSJISU -> show interfaces input errors possible causes
-_____________________________________________________________________________________________________________________________
 FAZER A RECUPERAÇÃO DE SWITCH CONFIG(remover o secret se esquecer-me and shit)
 https://www.youtube.com/watch?v=PCpnRqKCWCQ 
 FAZER AWS CERTIFICATES
