@@ -16,10 +16,11 @@ ec2-user
 Passw0rd
 
 
-onion-manager	ami-06bd8c92f42244910
-onion-forward	ami-0f17512c5ecb48bab
-kali-cloud-2024	ami-0820eca5060908d9f
-onion-search	ami-03a8f105a62a41fe7
+aws ec2-instance-connect send-serial-console-ssh-public-key \
+    --instance-id i-0caea2bf6687d5bd1 \
+    --serial-port 0 \
+    --ssh-public-key file://DanMed2219.pub \
+    --region us-east-1 --profile vocareum
 
 --------------------------------------------- Furutre Studies(Udemy&Stuff) --------------------------
 FAZER A RECUPERAÇÃO DE SWITCH CONFIG(remover o secret se esquecer-me and shit)
