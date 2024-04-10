@@ -131,7 +131,7 @@ find . | grep vlan
 ipv4.conf.ens33.proxy_arp_pvlan=1
 </details>
 
-instalar bind9, bind9-utils bind9-dns..., bind9-doc
+no srv instalar bind9, bind9-utils bind9-dns..., bind9-doc
 no srv cd /etc/bind -> nano named.conf.options:
     forwarders {
             8.8.8.8;
