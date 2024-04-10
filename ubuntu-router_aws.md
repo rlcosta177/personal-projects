@@ -130,3 +130,123 @@ cd /proc
 find . | grep vlan
 ipv4.conf.ens33.proxy_arp_pvlan=1
 </details>
+
+instalar bind9, bind9-utils bind9-dns..., bind9-doc
+no srv cd /etc/bind -> nano named.conf.options:
+    forwarders {
+            8.8.8.8;
+    };
+
+    //========================================================================
+    // If BIND logs error messages about the root key being expired,
+    // you will need to update your keys.  See https://www.isc.org/bind-keys
+    //========================================================================
+    dnssec-validation no;
+    auth-nxdomain no;
+    allow-recursion { any; };
+    listen-on-v6 { any; };
+
+ir ao cliente cd /etc/netplan/ -> nano 50-cloud-init.yaml
+            dhcp4-overrides:
+            use-routes: false
+            use-dns: false
+            nameservers:
+                addresses: [ip of the interface of the router connected to this client] (com parenteses retos)
+            routes:
+            - to: 0.0.0.0/0
+              via: ip of the interface of the router connected to this client (sem parenteses retos)
+              metric: 100
+              on-link: true    
+
+sudo netplan try -> ENTER
+
+<details>
+  <summary>reference for the netplan</summary>
+ <br>
+   root@fw:/etc/netplan# cat 50-cloud-init.yaml 
+# This file is generated from information provided by the datasource.  Changes
+# to it will not persist across an instance reboot.  To disable cloud-init's
+# network configuration capabilities, write a file
+# /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:
+# network: {config: disabled}
+network:
+    ethernets:
+        eth0:
+            dhcp4: true
+            dhcp4-overrides:
+                route-metric: 100
+            dhcp6: false
+            match:
+                macaddress: 0a:0f:ec:f2:19:5b
+            set-name: eth0
+        eth1:
+            dhcp4: true
+            dhcp4-overrides:
+                route-metric: 200
+            dhcp6: false
+            match:
+                macaddress: 0a:19:88:8e:0d:d7
+            set-name: eth1
+        eth2:
+            dhcp4: true
+            dhcp4-overrides:
+                route-metric: 300
+            dhcp6: false
+            match:
+                macaddress: 0a:c9:85:69:e1:d3
+            set-name: eth2
+    version: 2
+#---------------------------------------------
+ubuntu@west:~$ cat /etc/netplan/50-cloud-init.yaml 
+# This file is generated from information provided by the datasource.  Changes
+# to it will not persist across an instance reboot.  To disable cloud-init's
+# network configuration capabilities, write a file
+# /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:
+# network: {config: disabled}
+network:
+    ethernets:
+        eth0:
+            dhcp4: true
+            dhcp6: false
+            dhcp4-overrides:
+                use-routes: false
+                use-dns: false
+            nameservers:
+                addresses: [8.8.8.8]
+            routes:
+            - to: 0.0.0.0/0
+              via: 192.168.0.40
+              metric: 100
+              on-link: true
+            match:
+                macaddress: 0a:23:28:98:bb:e9
+            set-name: eth0
+    version: 2
+ubuntu@west:~$ 
+
+ubuntu@east:~$ cat /etc/netplan/50-cloud-init.yaml 
+# This file is generated from information provided by the datasource.  Changes
+# to it will not persist across an instance reboot.  To disable cloud-init's
+# network configuration capabilities, write a file
+# /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:
+# network: {config: disabled}
+network:
+    ethernets:
+        eth0:
+            dhcp4: true
+            dhcp6: false
+            dhcp4-overrides:
+                use-routes: false
+                use-dns: false
+            nameservers:
+                addresses: [8.8.8.8]
+            routes:
+            - to: 0.0.0.0/0
+              via: 192.168.0.80
+              metric: 100
+              on-link: true
+            match:
+                macaddress: 0a:d6:96:d7:8f:e9
+            set-name: eth0
+    version: 2
+</details>
