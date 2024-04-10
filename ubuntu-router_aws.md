@@ -7,11 +7,11 @@ nano /etc/sysctl.conf -> uncomment: net.ipv4.ip_forward=1
 <details>
   <summary>reference for prerouting, input, forward, output, postrouting: https://www.digitalocean.com/community/tutorials/a-deep-dive-into-iptables-and-netfilter-architecture</summary>
   <br>
-  > - prerouting: NAT -> change ip of the packet before entering the router
-  > - postrouting: NAT -> change ip of the packet after entering the router | e.g client wants to access http server on the internet, the source ip changes to the public ip of the router
-  > - input: FILTER(like acl) -> filters packets(IP can be public or private i think) that are going to enter any of the router's ports/IPs
-  > - output: FILTER(like acl) -> filters packets(IP can be public or private i think) that are now located in the router, and are destined to an IP that is not router's
-  > - forward: FILTER(like acl) -> like an extended acl? idk
+  > prerouting: NAT -> change ip of the packet before entering the router
+  > postrouting: NAT -> change ip of the packet after entering the router | e.g client wants to access http server on the internet, the source ip changes to the public ip of the router
+  > input: FILTER(like acl) -> filters packets(IP can be public or private i think) that are going to enter any of the router's ports/IPs
+  > output: FILTER(like acl) -> filters packets(IP can be public or private i think) that are now located in the router, and are destined to an IP that is not router's
+  > forward: FILTER(like acl) -> like an extended acl? idk
 </details>
 
 
