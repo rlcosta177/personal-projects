@@ -250,3 +250,8 @@ network:
             set-name: eth0
     version: 2
 </details>
+
+
+https://gist.githubusercontent.com/jdmedeiros/32bbb759d74860d1de92c6a2c34f96f1/raw/23069f5f1819098ce1fb59ada939b6a0fc272be2/Ubuntu%2520Desktop%2520on%2520EC2
+iptables -A PREROUTING -t nat -i ens5 -p tcp -m multiport --dports 3389 -j DNAT --to-destination 172.31.112.102
+netfilter-persistent save 
