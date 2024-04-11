@@ -14,3 +14,5 @@
     var/ossec/etc/ossec.conf <- if you used the wrong server address for the wazuh agent to connect to
     /var/ossec/logs/ossec.log <- check what is wrong with the configuration
 8) reboot the linux instances after everything is done so it gets added as an agent
+
+9) to change the password: https://documentation.wazuh.com/current/user-manual/user-administration/password-management.html
