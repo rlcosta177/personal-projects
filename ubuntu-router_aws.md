@@ -19,10 +19,10 @@ LUX-INSIDE: 172.31.112.102
 
     <details>
       <summary>reference for the NAT and FILTER tables(jdaniel email)</summary>
-      practical examples:
+      practical examples(substituir os tracos('-'), esses nao funcionam):
         https://pastebin.com/7D90FwF5
 
-      specific examples:
+      specific examples(substituir os tracos('-'), esses nao funcionam):
          https://pastebin.com/dLYVkAaS
 
       
