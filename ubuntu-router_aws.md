@@ -9,14 +9,12 @@ TOPOLOGIA: 1 Server(serve de router), 1 Dmz(serve de website host(80&443)), 2 Cl
 
     <details>
       <summary>reference for prerouting, input, forward, output, postrouting: https://www.digitalocean.com/community/tutorials/a-deep-dive-into-iptables-and-netfilter-architecture</summary>
-      <br>
         https://pastebin.com/SxhJmhrm
     </details>
 
 
     <details>
       <summary>reference for the NAT and FILTER tables(jdaniel email)</summary>
-      <br>
       practical examples:
         https://pastebin.com/7D90FwF5
 
