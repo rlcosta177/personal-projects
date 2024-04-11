@@ -7,11 +7,7 @@ nano /etc/sysctl.conf -> uncomment: net.ipv4.ip_forward=1
 <details>
   <summary>reference for prerouting, input, forward, output, postrouting: https://www.digitalocean.com/community/tutorials/a-deep-dive-into-iptables-and-netfilter-architecture</summary>
   <br>
-  + prerouting: NAT -> change ip of the packet before entering the router
-  + postrouting: NAT -> change ip of the packet after entering the router | e.g client wants to access http server on the internet, the source ip changes to the public ip of the router
-  + input: FILTER(like acl) -> filters packets(IP can be public or private i think) that are going to enter any of the router's ports/IPs
-  + output: FILTER(like acl) -> filters packets(IP can be public or private i think) that are now located in the router, and are destined to an IP that is not router's
-  + forward: FILTER(like acl) -> like an extended acl? idk
+    https://pastebin.com/SxhJmhrm
 </details>
 
 
@@ -146,7 +142,7 @@ no srv cd /etc/bind -> nano named.conf.options:
     allow-recursion { any; };
     listen-on-v6 { any; };
 
-ir ao cliente(fazer isto em todos os clientes que tiveres) cd /etc/netplan/ -> nano 50-cloud-init.yaml
+ir aos clientes(fazer isto em todos os clientes que tiveres) cd /etc/netplan/ -> nano 50-cloud-init.yaml
             dhcp4-overrides:
             use-routes: false
             use-dns: false
@@ -163,92 +159,7 @@ sudo netplan try -> ENTER
 <details>
   <summary>reference for the netplan</summary>
  <br>
-   root@fw:/etc/netplan# cat 50-cloud-init.yaml 
-# This file is generated from information provided by the datasource.  Changes
-# to it will not persist across an instance reboot.  To disable cloud-init's
-# network configuration capabilities, write a file
-# /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:
-# network: {config: disabled}
-network:
-    ethernets:
-        eth0:
-            dhcp4: true
-            dhcp4-overrides:
-                route-metric: 100
-            dhcp6: false
-            match:
-                macaddress: 0a:0f:ec:f2:19:5b
-            set-name: eth0
-        eth1:
-            dhcp4: true
-            dhcp4-overrides:
-                route-metric: 200
-            dhcp6: false
-            match:
-                macaddress: 0a:19:88:8e:0d:d7
-            set-name: eth1
-        eth2:
-            dhcp4: true
-            dhcp4-overrides:
-                route-metric: 300
-            dhcp6: false
-            match:
-                macaddress: 0a:c9:85:69:e1:d3
-            set-name: eth2
-    version: 2
-#---------------------------------------------
-ubuntu@west:~$ cat /etc/netplan/50-cloud-init.yaml 
-# This file is generated from information provided by the datasource.  Changes
-# to it will not persist across an instance reboot.  To disable cloud-init's
-# network configuration capabilities, write a file
-# /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:
-# network: {config: disabled}
-network:
-    ethernets:
-        eth0:
-            dhcp4: true
-            dhcp6: false
-            dhcp4-overrides:
-                use-routes: false
-                use-dns: false
-            nameservers:
-                addresses: [8.8.8.8]
-            routes:
-            - to: 0.0.0.0/0
-              via: 192.168.0.40
-              metric: 100
-              on-link: true
-            match:
-                macaddress: 0a:23:28:98:bb:e9
-            set-name: eth0
-    version: 2
-ubuntu@west:~$ 
-
-ubuntu@east:~$ cat /etc/netplan/50-cloud-init.yaml 
-# This file is generated from information provided by the datasource.  Changes
-# to it will not persist across an instance reboot.  To disable cloud-init's
-# network configuration capabilities, write a file
-# /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:
-# network: {config: disabled}
-network:
-    ethernets:
-        eth0:
-            dhcp4: true
-            dhcp6: false
-            dhcp4-overrides:
-                use-routes: false
-                use-dns: false
-            nameservers:
-                addresses: [8.8.8.8]
-            routes:
-            - to: 0.0.0.0/0
-              via: 192.168.0.80
-              metric: 100
-              on-link: true
-            match:
-                macaddress: 0a:d6:96:d7:8f:e9
-            set-name: eth0
-    version: 2
+  https://pastebin.com/uxBEM3mg
 </details>
 
 Para poder dar rdp da maquina fisica para o win-inside, tenho que dar rdp a partir do lux-inside(172.31.112.102) para o win-inside(172.31.112.101) e colocar o ip, mask, gateway e dns no win-inside
