@@ -50,7 +50,6 @@ TOPOLOGIA: 1 Server(serve de router), 1 Dmz(serve de website host(80&443)), 2 Cl
 
     <details>
       <summary>reference for the netplan</summary>
-     <br>
       https://pastebin.com/uxBEM3mg
     </details>
 
