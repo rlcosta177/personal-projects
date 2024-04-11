@@ -1,3 +1,5 @@
+TOPOLOGIA: 1 Server(serve de router), 1 Dmz(serve de website host(80&443)), 2 Clientes(para testar o rdp de maquina fisica para os clientes(routing done on the SERVER))
+
 na aws -> click the server -> actions -> networking -> Change source/destination check -> check the box 'stop'
 
 sudo apt update && sudo apt upgrade -y
@@ -128,31 +130,11 @@ ipv4.conf.ens33.proxy_arp_pvlan=1
 </details>
 
 no srv instalar bind9, bind9-utils bind9-dns..., bind9-doc
-no srv cd /etc/bind -> nano named.conf.options:
-    forwarders {
-            8.8.8.8;
-    };
+no srv cd /etc/bind -> nano named.conf.options: https://pastebin.com/W4ibnbVW
+    
 
-    //========================================================================
-    // If BIND logs error messages about the root key being expired,
-    // you will need to update your keys.  See https://www.isc.org/bind-keys
-    //========================================================================
-    dnssec-validation no;
-    auth-nxdomain no;
-    allow-recursion { any; };
-    listen-on-v6 { any; };
+ir aos clientes(fazer isto em todos os clientes que tiveres) cd /etc/netplan/ -> nano 50-cloud-init.yaml -> https://pastebin.com/2NTHPumB
 
-ir aos clientes(fazer isto em todos os clientes que tiveres) cd /etc/netplan/ -> nano 50-cloud-init.yaml
-            dhcp4-overrides:
-            use-routes: false
-            use-dns: false
-            nameservers:
-                addresses: [ip of the interface of the router connected to this client] (com parenteses retos)
-            routes:
-            - to: 0.0.0.0/0
-              via: ip of the interface of the router connected to this client (sem parenteses retos)
-              metric: 100
-              on-link: true    
 
 sudo netplan try -> ENTER
 
