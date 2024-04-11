@@ -8,3 +8,5 @@
     - if on linux, use sudo su before pasting the commands
 
 6) if the agents aren't recognized, check if you are accepting the public/private IPs of the agents onto the security group ofthe wazuh server
+
+7) reboot the instance after all is done so it gets added as an agent?????
