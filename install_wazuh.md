@@ -7,6 +7,10 @@
     - if on windows, run terminal as administrator
     - if on linux, use sudo su before pasting the commands
 
-6) if the agents aren't recognized, check if you are accepting the public/private IPs of the agents onto the security group ofthe wazuh server
 
-7) reboot the instance after all is done so it gets added as an agent?????
+
+6) if the agents aren't recognized, check if you are accepting the public/private IPs of the agents onto the security group ofthe wazuh server
+7) if an agent doesn't get added(ON THE AGENTS):
+    var/ossec/etc/ossec.conf <- if you used the wrong server address for the wazuh agent to connect to
+    /var/ossec/logs/ossec.log <- check what is wrong with the configuration
+8) reboot the linux instances after everything is done so it gets added as an agent
