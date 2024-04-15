@@ -22,7 +22,7 @@ aws ec2-instance-connect send-serial-console-ssh-public-key \
     --ssh-public-key file://DanMed2219.pub \
     --region us-east-1 --profile vocareum
 
-
+SCHOOL-KEY:
 -----BEGIN RSA PRIVATE KEY-----
 MIIEpQIBAAKCAQEAn6WbcI4xr2o45qMzEM41Nm34VaeehlCsFdDhW6f/lU8mthNb
 5tln1YhIQ2pvYcoThm5cs0ULwM8EhYG78dQsMCn+g0TsHb6o2Z9wk4659Dmp15Bd
@@ -51,6 +51,35 @@ hmgsBnrFhCjyQp7dc3XG34KPWe1spCRnqDOysorzLZEdRUs0KUg0SQzFOFFBBzVL
 CpAV2xeIlMPGKztUlyLAfEsbv/9RJIVgVOKmQS2QhvnSwbHshr9ppsg=
 -----END RSA PRIVATE KEY-----
 
+VOKEY:
+-----BEGIN RSA PRIVATE KEY-----
+MIIEowIBAAKCAQEAqACc270ng6+N3bfkh62eG4cDbp6DjLeVAFifykq5DAEaw36S
+Wkygkt25WdyU7nG2/mTk0gocv2qKMgm3J8Ivg1FNU6DCu2RmxsMSr38zDH7Sh1eY
+CUw/8wdG6O5CIkPNUX/+n4SkDeB/qV2GHIuk5Nf/0atTj35O4goi6R33gp25FX+Q
+zrWSmnyjDNKCKaLTYyXBh/TveOUIgr0+wCIorUsKQYEr6cgcQ5u1JtI9Ydu/UOt6
+8+4w27LG6XehYuFXcHfkLOtK4HpEkjl7+LyYLd3A+LUuumGDU10sFpHRpA12PqsW
+fEmc1v+F3L9P55pLiZbXaU3UVNHfb3gEkP8UAwIDAQABAoIBAFOr+nN2QbfUN1O1
+wpvQXG5ZT9xIFjx/MjZ57RtTG9ZetnWnFDzk7RQ4WZfnxET9XaZVmaECaE7tQOaq
+8A1dKUy9sUV1S4cI+icEAMpnD4WppDDD73SyBSeE+EwKXeWy3w84MBhCd3Jx3SL8
+8U5GPlm7Oi2ypmtQ/PiXE8wGoL7r/lnVJa/+JVeoMx/mgmzeJa3nx8Cho/oy83Ks
+qVypbY8GLWDC89qCFNNf5OgV7YZo+8+xRi0isOQZAYckS+zzfcJP8sJyIJE02Jvr
+zRgb7pgFrkRYpjOmY8w4S/LqMNLMY+jIebQeLWK/TW2jUyOtiYQ5R507z7THJ/zl
+MEyIaAECgYEA7Okk4zCITsXWiuiJu0F/SY9QSg+b/zNLotu7sm7TRXLK7S7O2mco
+xQuXlyhMiClHMqv0sbuGfsBfahU+tktyX5IW4q/Vvul2DXU//HTzfHng+Gy79GVA
+FVzefgBAWCzrrrr4bhtWyOo9eyacV5eDDuKmUmnMTrY46l242Fd9ifkCgYEAtYoR
+ZUuS/uQadvLkHZgSU4VsItLgrsxyY1lzxnjQ0LcVOWEgFgw9Fkwu2Ci6Pok4K9LK
+cSOBD2sPTYSdqbOMP7qh2C79rhJ01BhsIByP1QVlpNQzn6HU8pXl5PbFpinaEmQ6
+ayqMqsG9pfeC1qBmMTf7+MZBa6NwEqc6TPbNbNsCgYAag/Gb9+eZoWzkuSgJLEh5
+zC95Sov0ISKbBKraSqscv79UkoOWUCtw+l4qDdma97u/QR2u8sUX1KIZNm2Ba6pO
+ZgRntLRgnLKYyQGzWMeTq/Rw+YKD1P06Jt3EDnUlKUnrkYOSlz68V/MvoF+pMgz6
+EoX4/VxfhueR25F/rTMgyQKBgAdpn9Q3BcWKotoAiPf8YaMva37whWQdzP3phSSx
+gjVDhIZXROwhi80BR1hkMVakW7rOXJ3KCVcL1BAiPh3TywI/KKSfJpSZBFQ0uxWE
+lQrpsYDNeV4nSX6uSDjVKrTiOJlPpmMB1cSTLJ8+QAVrf0C7PHqn/bvbbJQWZ/cE
+jNbJAoGBAIXlxkt0pEKMsCa/AXkjwQtKGTEvz0kA75mAdkTHtuGnnnhmBc3PQ8ey
+RDTbucXHoMdVrML957L4obNwpdqq6lkvnwPwToKz3DKwCPB4IHj1UPLCrCn6fZdI
+iaIayBUQcvpmlIfgqiv5vYs9JiyEkGtP6xzPSaZEqYwd7i4AhuuU
+-----END RSA PRIVATE KEY-----
+
 --------------------------------------------- Furutre Studies(Udemy&Stuff) --------------------------
 FAZER A RECUPERAÇÃO DE SWITCH CONFIG(remover o secret se esquecer-me and shit)
 https://www.youtube.com/watch?v=PCpnRqKCWCQ 
@@ -59,7 +88,7 @@ FAZER AWS CERTIFICATES
 1) Terraform [Have some knowlage already]
 2) Docker
 3) Kubernetes
-4) Wazuh [To Do easter]
+4) Wazuh [D]
 5) New Relic
 6) Assembly [To Do easter]
 7) NMAP [To Do easter]
