@@ -15,20 +15,13 @@ credenciais remmina:
 ec2-user
 Passw0rd
 
-
+Connect to the serial port of an aws instance:
 aws ec2-instance-connect send-serial-console-ssh-public-key \
     --instance-id i-0caea2bf6687d5bd1 \
     --serial-port 0 \
     --ssh-public-key file://DanMed2219.pub \
     --region us-east-1 --profile vocareum
 
-nessus:
-282D-SSH8-L9GL-HR7M
-rlcosta177
-
-wazuh:
-admin
-a+*pwdaQ?tcjQBa26tzzCuQIOSLAIkRx
 
 -----BEGIN RSA PRIVATE KEY-----
 MIIEpQIBAAKCAQEAn6WbcI4xr2o45qMzEM41Nm34VaeehlCsFdDhW6f/lU8mthNb
