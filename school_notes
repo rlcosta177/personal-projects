@@ -110,8 +110,14 @@ fXbOdJiu0GGhYkGiFNr8Ujs3hEMzMpiEyXXhdIyDsj0p2VG/0U+qV/h0Svue3hFy
 pp3eDZyC6kf61o1El0loIcyqrF097NEuw8SIE7By3DMT/7NtPbPHPw==
 -----END RSA PRIVATE KEY-----
 
+dhcp4-overrides:
+                use-routes: false
+            routes:
+            - to: 0.0.0.0/0
+              via: 172.31.96.100
+              metric: 100
+              on-link: true
 
-ssh -i "us-west-2-key.pem" ubuntu@ec2-44-238-243-22.us-west-2.compute.amazonaws.com
 
 --------------------------------------------- Furutre Studies(Udemy&Stuff) --------------------------
 FAZER A RECUPERAÇÃO DE SWITCH CONFIG(remover o secret se esquecer-me and shit)
