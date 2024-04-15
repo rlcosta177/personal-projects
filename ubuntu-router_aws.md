@@ -60,4 +60,12 @@ LUX-INSIDE: 172.31.112.102
           IP              MASK          GATEWAY          DNS
     (172.31.112.101, 255.255.240.0, 172.31.112.100, 172.31.112.100)
 
-6) no server(criar as nat policies): https://pastebin.com/MWLpsXu8
+
+
+6) if connectivity to the internet isn't working on the client:
+       - use route -n to see where the traffic goes through
+       - if the gateway is not the one we want, use this command:
+            - sudo route del default gw 172.31.112.1(wrong gateway)
+            - sudo route add default gw 172.31.112.100(gateway we want)
+
+8) no server(criar as nat policies): https://pastebin.com/MWLpsXu8
