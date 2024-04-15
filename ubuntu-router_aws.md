@@ -68,4 +68,14 @@ LUX-INSIDE: 172.31.112.102
             - sudo route del default gw 172.31.112.1(wrong gateway)
             - sudo route add default gw 172.31.112.100(gateway we want)
 
+
+!FILES E COMANDOS IMPORTANTES
+    no cliente, linux amazon  /etc/sysconfig/network-scripts/ (ifcfg-eth0 && route-eth0)
+    no cliente, ubuntu /etc/netplan/50-cloud-init.yaml
+    no servidor, ubuntu&linux amazon /etc/sysctl.conf (descomentar net.ipv4.ip_forward=1)
+    no servidor, usar sysctl -p depois de alterar /etc/sysctl.conf
+    no servidor iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE <- necessary if u want a client attached to an interface of the server
+    netfilter-persistent save OR reload <- dps de fazer alguma alteracao de iptables
+    route -n to see the routing table, useful if having problems accessing the internet with the client
+
 8) no server(criar as nat policies): https://pastebin.com/MWLpsXu8
