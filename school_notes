@@ -15,6 +15,8 @@ credenciais remmina:
 ec2-user
 Passw0rd
 
+https://gist.githubusercontent.com/jdmedeiros/0148fcfc648b3759c16fb3167f0321bb/raw/2885baf0755d0b4921f3f28979dd41183a64dd83/netplan
+
 Connect to the serial port of an aws instance:
 aws ec2-instance-connect send-serial-console-ssh-public-key \
     --instance-id i-0caea2bf6687d5bd1 \
