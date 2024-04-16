@@ -78,4 +78,25 @@ LUX-INSIDE: 172.31.112.102
     netfilter-persistent save OR reload <- dps de fazer alguma alteracao de iptables
     route -n to see the routing table, useful if having problems accessing the internet with the client
 
+no cliente(aws amazon linux) 
+https://gist.github.com/jdmedeiros/0b6208d6e0a7cf35d31f5749be47d8a2
+
 8) no server(criar as nat policies): https://pastebin.com/MWLpsXu8
+
+--------------- opvenvpn
+
+nos dois servers:
+    sudo apt install openvpn easy-rsa -y
+    cd /etc/openvpn/
+    cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf .
+    cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf .
+    cd /etc/
+    cp -R /usr/share/easy-rsa . 
+    cd /etc/easy-rsa
+    cp vars.example vars
+    nano vars
+    descomentar a cena de US, California, e alterar as cenas
+    descomentar uma linha a cima e meter org em vez de o que tinha entre parenteses
+    ./easyrsa e seguir a guide de comandos la(e.g ./easy-rsa init-pki
+
+
