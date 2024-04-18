@@ -1,19 +1,7 @@
 ----------------------------------------- Passwords & Contas --------------------------------
-eMail pass:
-Super@Passw0rd |ou| Passw0rd
-
-aws login:
-rodrigolimacosta@enta.pt
-
-wifi pass:
-ENTAWiFi
-
-adm pass:
-&9va@ENTA
-
-credenciais remmina:
-ec2-user
-Passw0rd
+aws: rodrigolimacosta@enta.pt
+wifi pass: ENTAWiFi
+adm pass: &9va@ENTA
 
 https://gist.githubusercontent.com/jdmedeiros/0148fcfc648b3759c16fb3167f0321bb/raw/2885baf0755d0b4921f3f28979dd41183a64dd83/netplan
 
@@ -33,6 +21,7 @@ do aws certificate
 10) PagerDuty -> emails stuff?
 11) Mess around with bluetooth devices
 12) uptimerobot -> monitors website uptime for free
+13) snort -> network analyzer
 
 usb wifi adapter-> buy
 GFI LanGuard -> scan public ips
