@@ -3,9 +3,9 @@ aws: rodrigolimacosta@enta.pt
 wifi pass: ENTAWiFi
 adm pass: &9va@ENTA
 
-https://gist.githubusercontent.com/jdmedeiros/0148fcfc648b3759c16fb3167f0321bb/raw/2885baf0755d0b4921f3f28979dd41183a64dd83/netplan
-
 --------------------------------------------- Furutre Studies(Udemy&Stuff) --------------------------
+
+https://gist.githubusercontent.com/jdmedeiros/0148fcfc648b3759c16fb3167f0321bb/raw/2885baf0755d0b4921f3f28979dd41183a64dd83/netplan
 FAZER A RECUPERAÇÃO DE SWITCH CONFIG(remover o secret se esquecer-me and shit)
 https://www.youtube.com/watch?v=PCpnRqKCWCQ 
 do aws certificate
