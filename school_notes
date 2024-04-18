@@ -10,20 +10,20 @@ FAZER A RECUPERAÇÃO DE SWITCH CONFIG(remover o secret se esquecer-me and shit)
 https://www.youtube.com/watch?v=PCpnRqKCWCQ 
 do aws certificate
 
-1) Terraform [Have some knowlage already]
-2) Docker
-3) Kubernetes
-4) Wazuh [D]
-5) New Relic
-6) Assembly [To Do easter]
-7) kistmet&&aricrack-ng -> wifihacking
-8) Metasploit [To Do easter]
-10) PagerDuty -> emails stuff?
-11) Mess around with bluetooth devices
-12) uptimerobot -> monitors website uptime for free
-13) snort -> network analyzer
-14) manageengine
-15) datadog
+- Docker
+- Kubernetes
+- kistmet&&aricrack-ng -> wifihacking
+- Terraform [Have some basic knowlage]
+- Wazuh [Have some basic knowlage]
+- New Relic
+- Assembly [To Do easter]
+- Metasploit [To Do easter]
+- PagerDuty -> emails stuff?
+- Mess around with bluetooth devices
+- uptimerobot -> monitors website uptime for free
+- snort -> network analyzer
+- manageengine
+- datadog
 
 usb wifi adapter-> buy
 GFI LanGuard -> scan public ips
