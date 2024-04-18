@@ -17,36 +17,29 @@ Passw0rd
 
 https://gist.githubusercontent.com/jdmedeiros/0148fcfc648b3759c16fb3167f0321bb/raw/2885baf0755d0b4921f3f28979dd41183a64dd83/netplan
 
-Connect to the serial port of an aws instance:
-aws ec2-instance-connect send-serial-console-ssh-public-key \
-    --instance-id i-0caea2bf6687d5bd1 \
-    --serial-port 0 \
-    --ssh-public-key file://DanMed2219.pub \
-    --region us-east-1 --profile vocareum
-
-
 --------------------------------------------- Furutre Studies(Udemy&Stuff) --------------------------
 FAZER A RECUPERAÇÃO DE SWITCH CONFIG(remover o secret se esquecer-me and shit)
 https://www.youtube.com/watch?v=PCpnRqKCWCQ 
-FAZER AWS CERTIFICATES
+do aws certificate
 
-usb wifi adapter
-GFI LanGuard -> scan public ips
-tryhackme wireless hacking -> walk around the city to learn :)
-irssi -> test some chats
-socat
 1) Terraform [Have some knowlage already]
 2) Docker
 3) Kubernetes
 4) Wazuh [D]
 5) New Relic
 6) Assembly [To Do easter]
-7) NMAP [To Do easter]
+7) kistmet&&aricrack-ng -> wifihacking
 8) Metasploit [To Do easter]
-9) Kali Linux
 10) PagerDuty -> emails stuff?
 11) Mess around with bluetooth devices
 12) uptimerobot -> monitors website uptime for free
+
+usb wifi adapter-> buy
+GFI LanGuard -> scan public ips
+irssi -> test some chats
+socat
+port forwarding linux terminal(using ssh) - https://www.tecmint.com/create-ssh-tunneling-port-forwarding-in-linux/
+busybox
 
 toggle track org para dar track das tasks que faço no dia para n me lixar no trabalho
 nessus
@@ -56,7 +49,6 @@ grep linux command
 
 
 !Grafana -> Usado para fazer baseline. Usar prometheus com grafana(não sei o que faz tbh lmao)
-!Metasploit
 Circleci -> CI/CD thingy
 
 REMnux
@@ -66,320 +58,29 @@ gitlab ci
 
 splunk
 datadog
-lettcode
+leetcode
 Ansible -> Automação de instalação de programas e sudo apt updates n shit
 Puppet -> same as ansible I believe
-Low orbit ion cannon -> dos tool
 https://hash-file.online/ <- hashing checksum website
-TOR browser
-whois.domaintools.com -> 
-vulnerability database
-kismet (https://www.kismetwireless.net/)
 indeed.com -> Procurar trabalho/Estágio
 stepstone.com -> Procurar trabalho/Estágio
 totaljobs.com -> Procurar trabalho/Estágio
 Goteleport -> 
-Ostinato -> Hacking tool and stuff
-Travis yml -> 
 teleport
 nvd vulnerability
 default password lists(routers n shit)
 assinar documento digital -> https://www.autenticacao.gov.pt/cmd-assinatura
 como verificar uma assinatura digital
 chave digital na riac
-git lab actions
 https://www.manageengine.com/products/netflow/nbar-monitor.html
--------------------------------------------- Termius -----------------------------------------
-
-Connect to Linux Server with Termius:
-Settings -> Keychain -> Key(com icon) -> Meter a private key(no awsacademy.instrucutre.com -> AWS Details)
-Hosts -> New Host -> Name -> address(public address ipv4 da maquina escolhida) -> Set Key -> Launch
-
- ------------------------------------------------- STUDY -------------------------------------
-
------ Emails -----
-MUA(Mail User Agent): Dá-se nos pcs dos clientes | Quando o utilizador acede ao seu email(?)
-MTA(Mail Transfer Agent): Dá-se no transporte de informação entre emails diferentes(differentes enderessos) | Altera de servidor de envio (ex: maria@enta.pt -> pedro@inva.pt (os enderessos mudam))
-MDA(Mail Delivery Agent): Deposita o email na caixa de correio(envia para a 'database' e só quando o utilizador acede ao email é que a informação poderá ser vista e transferida)
-
-(entre emails na mesma rede)       MUA -> MTA -> MDA -> MUA: User1 -> Envia para o enderesso do User1 -> Envia para o servidor de email do User2(que por sua vez está no mesmo servidor que o email do User1) -> User2 acede ao email
-(entre emails em redes diferentes) MUA -> MTA -> MTA -> MDA -> MUA: User1 -> Envia para o enderesso do User1 -> Envia para o enderesso do User2 depois de verificar que não estão no mesmo enderesso(servidor) ->   
-                                                                               Envia para o servidor de email do User2(que está num enderesso(servidor) diferente do User1) -> User2 acede ao email
-
---------- Protocols ---------
-- Well Known Ports: 0-1023 HTTP, HTTPS, TELLNET, etc...(ports communemente usadas por web servers(sites))
-- ICMP: Echo & Echo-Reply | É um protocolo que os dispositivos de uma rede usam para comunicar problemas com a transmissão de dados.
-- Network unreachable: No route for the destination network could be found in the routing table on the reporting router
-- Service unreachable: A network client (such as a computer or mobile device) is unable to establish a connection to the server
-- Host unreachable: The host that you are trying to ping is down or is not operating on the network
-- Source quench: Allows the router (or the destination system) to inform the sending device that the network is congested, and to please stop sending so much data.
-- TTL: Não é infinito. Quando chega a 0, o pacote vai ou para o dono, ou para o lixo (icmp é opcional) | The amount of time or “hops” that a packet is set to exist inside a network before being discarded by a router
-- FTPS: Is an extension of the popular File Transfer Protocol that supports Transport Layer Security (TLS) and the new defunct Secure Sockets Layer (SSL).
-- SSH: A method for securely sending commands to a computer over an unsecured network. SSH uses cryptography to authenticate and encrypt connections between devices.
-- FTP(porta 20,21): A standard network protocol used for the transfer of files from one host to another over a TCP-based network, such as the Internet. Usa TCP para enviar os packages/envelopes
-- TCP: Usa frame check sequence | Acknowlagement/Delayed Acknowlagement | Permite controle de fluxo(Window Size) 
-- UDP: Source Port, Destination Port, Length e Check Sum(tcp tambem tem esse quatro campos) (Protocolo mais leve que TCP. Porque ocupa menos espaço no package/envelope)
-- TLS: Encrypts data sent over the Internet to ensure that eavesdroppers and hackers are unable to see what you transmit.
-- IP: The identifier that allows information to be sent between devices on a network
-- Checksum: Protocolo para identificar se a package/envelope tem os mesmos detalhes/credenciais de quando foi enviado(ver Check Sum a baixo) 
-- CRC: A method to ensure data has not been altered after being sent through a communication channel | A CRC which is short for a Cyclic Redundancy Code is a powerful type of a checksum
-- FCS - Frame Check Sequence: A part of the frame put in place to verify that the information each frame contains is not damaged during transmission
-- NTP: An internet protocol used to synchronize with computer clock time sources in a network.
-- DHCP(Port 67, 68)(usa só UDP. Para o cliente pedir um IP ao DHCP Server (O cliente não tem IP então não pode usar TCP porque TCP establece comunicação entre os dois, e como o cliente não tem IP não funciona)): É um protocolo de cliente/servidor que fornece endereçamento a maquinas de forma automatica numa rede -> como a máscara, default gateway, IP, DNS...
-
-- Porta 445: usada para partilhar ficheiros | Não pode ser partilhado para a internet.
-- Porta 20 & 21: Usadas para transferir informação entre cliente e servidor
-- Port 80: HTTP é o protocolo que faz www funcionar
-- Port 443: HTTPS é um HTTP mas mais seguro
-- Port 53: DNS identifica o IP do site introduzido pelo utilizador ou vice-versa
-- Port 3389: RDP usado para aceder a uma maquina remotamente 
-- Port 3390: 
-- 127.0.0.1(Localhost & LoopBack). Todos os computadores têm o mesmo localhost IP, podendo ser acedido apenas pelo proprio pc. Ou seja, nenhum pc ou rede externa consegue aceder ao meu localhost IP
-- 192.0. 2.0/24 - This block is assigned as "TEST-NET" for use in documentation and example code
-
---------  --------
-- DHCP -> Discover, Offer, Request(Formalização), ACKNOWLAGE/NACK
-    - Triple way handshake: SYN, SYN-ACK, ACK | Positive acknowlagement receit(PAR)
- 
- - OUI(Organizational Unique Identifier): The part of the MAC address that identifies the vendor(fornecedor) of the network adapter(os 3 primeiros bytes (em hexadecimal))
-
- - ADSL: asimetrico - mais download menos upload ou vice versa
- - SDSL: simetrico - mesmo download e upload
- - XDSL: custom - download e upload costumizavel
-
-Fontes de informação para criar a tabela de roteamento do router: O que o Router sabe, O que o administrador disse, o que os outros Routers disseram(Routing protocols)
-   - RIP: Metric para escolher a rota é o "hop count" | Max de 15 hops | hop 16 é uma msg de hop limit reached
-   - EIGRP: By default uses bandwidth and delay values to choose the route | 
-   - OSPF: Uses "cost" as a metric which is based on the cumulative bandwidth from source to destination
-   - Static route
 
 
-- Bandwidth: The capacity at which a network can transmit data.
-- Throughput: The amount of information a system can process in a given amount of time, measured in bits, bytes, or data packets per second
-- Goodput: Measures how fast and accurately useful data travels the network and arrives at its desired location
-
-RoutED protocols:
-RoutING protocols: encapsulam dados relativamente a rotas -> EIGRP, RIP, OSPF...?não sei se é o de cima.
-
-access list standard - defesa no ultimo momento possivel | 1-99
-access list extended - defesa no primeiro momento possivel | 100-199
-
-Pairity Bit: 0 para par | 1 para impar | 00101000 0 -> aceita | 11010000 0 -> não aceita
-
-startup config tá na nvram e é loaded na ram on boot(depois é transformada em running config acho eu?)
-iso está no flash e é loaded na ram on boot
-Running Cnfig está na ram | é implementado pelo IOS | é guardado no nvram em caso do device se apagar de repente
-
-Application - HTTP, HTTPS, DNS, SMTP, IMAP, POP3, FTP, SSH, TELNET, DHCP, SNMP:
-   DHCP: UDP(servidor: 67 | cliente: 68)
-   TELNET: Coneção de telnet não é encriptada
-   SSH: TCP, é o mesmo que TELNET mas os dados estão encriptados(acesso remoto encriptado | porta: 22)
-   FTP: Serve para transferir ficheiros(porta: 20(ftp data: response) - transferencia de dados | 21(ftp control: request) - request de dados)
-
-         |Clear| SSL |StartTLS
-    SMTP | 25  | 465 | 587 -> smtp recebe o email do cliente e se for do seu servidor(ex: @enta.pt) guarda-o na sua storage. Se for de outro servidor de email(ex: @inova.com) manda-o para esse servidor e esse servidor(inova) guarda-o na sua storage se for seu.
-    POP3 | 110 | 995 | 110
-    IMAP | 143 | 993 | 143
-
-   SNMP(Simple network managemente protocol): UDP(portas: 161, 162), Serve para o equipamento de rede dizer tudo ao servidor
-   TFTP(UDP port 69): back up para um router(sort of)
-
-Spanning tree protocol: evita que haja loops infinitos na camada 2(switch layer)
-
-HSRP: Num caso em que existem duas ligações para 2 routers diferentes a partir de um cliente, este protocolo escolhe um dos dois
-VRRP: Num caso em que existem duas ligações para 2 routers diferentes a partir de um cliente, este protocolo escolhe um dos dois
-GLBP: load balance | estando ambas as ligações a ser utilizadas, usa as duas. Se uma falhar, vai pela outra ligação.
-
-IDS: detetar intrusão | faz copias dos packets e alerta 
-IPS: prevenir a intrusão | os packets param no ips, logo é mais lento, interrompe o fluxo de dados
-
-Boot Field(default é 0x2102):
- 0000 -> Rom monitor
- 0010 -> Flash
- 0001 -> Verifica a config para ver se o administrador o configurou
-
- FHRP: Protects the default gateway used on a subnetwork by allowing two or more routers to provide backup for that address
- GLBP: Protects data traffic from a failed router or circuit | provides virtual Mac addresses to all the other routers operating GLBP of the same group
-       The remaining routers are Actual Virtual Forwarder (AVF). When an ARP request comes from subnet device to know the Mac address of the virtual IP address,
-       one of the virtual Mac addresses is provided by the AVG.
-       AVG(Actual Virtual Forwarder): These are actually responsible for forwarding the data after they are assigned by the AVG for the task.
-				      If in case AVG goes down, one of the AVFs can become the AVG.
-
-DMZ: A physical or logical subnet that separates a local area network (LAN) from other untrusted networks
-Wildcard: 255.255.255.255 - mask(xxx.xxx.xxx.xxx): A mask of bits that indicates which parts of an IP address are available for examination
-GRE: Protocol for encapsulating data packets that use one routing protocol inside the packets of another protocol
-
-RFC1918: Gama de IPs privados(10.0.0.0, 172.16.0.0-172.31.255.255, 192.168.0.0)
-IPs especiais:
-  0.0.0.0
-  127.0.0.0/8 -> Localhost ou Loopback
-  169.254.0.0/16 -> APIPA
-  192.0.2.0/24 -> TEST-NET / used for documentation purpouses 
-
-ISN(Inicial sequence number): É relativo | Determinado no establecimento da sessão(no triple way handshake)
-Window Size: Quantidade de bytes que um cliente consegue receber até ao servidor perguntar se recebeu(o cliente envia a sua window size no establecimento da coneção(triple way handshake))
-Congestion Window Reduced(CWR):
-CI/CD: A software development approach that aims to improve the speed, efficiency, and reliability of software delivery.
-MAC: utilizado apenas numa rede local(?)
-Access Layer: 
-Distibution Layer: 
-Core Layer: 
-Ether Channel: 
-Breach Table:
-CAM Table:
-Dominio de colisão: todas as pernas do router são colisões, todas as pernas dos switches são dominios de colisão
-Switch e Breach(Camada 2)
-Broadcast está delimitado pela camada 3
-Reverse ARP: Tenho o MAC e quero o IP
-Até onde chega a eletricidade?: Chega á colisão
-Dominio de broadcast: Dá-se quando um broadcast é enviado pela network e para no router (ex: 7.4.1ou2)
-Line Coding:  
-  - 4B5B encoding: Frequencia em que a informação é enviada(a velocidade é a mesma não imiporta o que, porque o tamanho do cabo é o mesmo) | 100BASE-T
-  - 8B10B encoding(quando a velocidade aumenta): Frequencia em que a informação é enviada(a velocidade é a mesma não imiporta o que, porque o tamanho do cabo é o mesmo) | 1000BASE-TX
-
-Recursive Lookup: Quando não recebe a porta e sim um IP na routing table, olha para a routing table outravez para descobrir a porta da gama de IPs do IP dado        
-Dynamic Routing: É usado para definir a melhor rota para o router usar para enviar informação(frames) para o IP/Maquina de destino. ex: OSPF ad de 110, IGRP ad de 100. O path vai usar IGRP
-   AD(Administrative Distance):
-      C(Diretamente conectado) -> 0
-      S(Static Route) -> 1
-      EIGRP Sumarizada(AD de 5):
-      BGP External(AD de 20):
-      EIGRP(AD de 90): Bandwith, Occupation, Jumbs between devices to reach the destination, ..., ..., ... | Broadcast(? não sei se é igrp ou eigrp)
-      IGRP(AD de 100): 
-      OSPF(AD de 110): usa o multicast address 224.0.0.5 para comunicação normal e 224.0.0.6 para dar update a um router designado
-      IS-IS(AD de 115):
-      RIP(AD de 120): Não usa VLSM(se R1-172.16.0.0/24 fizer conecção com o R2-192.168.0.0/26, a mask que vai dar assign é /16 porque RIP é classfull, não usando VLSM) | Broadcast
-      EIGRP Exterior(AD de 170):
-      BGP Interior(AD de 200):
-
-Processo que o router usa para receber um frame:
-   Ao receber o frame, descapsula o MAC(enderesso fisico), procura pelo IP na tabela de roteamento, Encapsula outravez tendo em conta o protocolo(OSPF, BGP, IGRP...) que a interface/porta usa
-
-Load Balance: Method of distributing network traffic equally across a pool of resources that support an application | Se todas as rotas são iguais(ex: 3 rotas de OSPF), distribui igualmente
-														     | Mas se forem todas RIP, escolhe a melhor entre elas(ex: escolhe 120/10000 em vez de 120/999999)
-
-- FQDN(Fully Qualified domain name): A domain name that specifies its exact location in the tree hierarchy of the DNS.
-                                     It specifies all domain levels, including the top-level domain and the root zone
-  				      
-Registo tipo A: (A) Type records are used to resolve a hostname which corresponds to an IPv4 address, while (AAAA) records are used to resolve a domain name which corresponds to an IPv6 address
-Registo tipo CNAME: A type of DNS record that maps an alias name to a true or canonical domain name. Dá um nome(ex: www) a um ficheiro que tem o site incluido(ex: central.pt). Junta os dois no final
-																						  (www.central.pt)
-Registo tipo NS(Name Server -> DNS): Identifica um servidor de DNS(?) | An identifier within a DNS zone that tells it which Name Servers (which are your DNS servers) to use as the authorities for that zone.
-Registo tipo MX(Mail Exchange): MX record is a special type of DNS record that serves for the sole purpose of email communication
-SMTP(Simple mail transport protocol): The service that controls how your emails move across networks
- 
-
-Nat-Gateway: You can use a NAT gateway so that instances in a private subnet can connect to services outside your VPC but external services cannot initiate a connection with those instances.
-Static NAT: Mapeamento de um IP para um IP (a maquina tem um ip dentro da rede, mas fora da rede tem um diferente. Sempre que um packet passar )
-Dynamic NAT: Envolve um determinado numero de IPs publicos para um determinado numero de IPs privados. 
-             Quando alguma maquina(IP privado) acede á internet, Dynamic NAT atribui um ip publico a essa maquina
-PAT: Para alem de traduzir o network address(TCP/IP 3ªcamada ou OSI), vai traduzir a porta se for preciso. 
-     (quando duas maquinas numa rede acedem ao mesmo port, muda o port da segunda maquina
-      exemplo: Maquina1 acede á porta 5000, maquina dois tambem, muda a porta da maquina2
-      para 5001 para poder aceder ao server que usa essa port ao mesmo tempo).
-
-Root bridge:
-  BID(Bridge ID):
------------------------------
-Major-N etwork: /8, /16, /24
-Super-Network: /<8, /<16, /<24 | Super rede é sempre uma sumarização
-Sub-Net: />8, />16, />24
-Conecção entre routers diferentes: Connected or not, Static Route(Administrator), Dynamic Protocol
-
- ----------------------------------------------- CMD e Wireshark Commands ---------------------------------------
-
- Alterar a pass do windows (powershell):
-    - $Secure_String_Pwd = ConvertTo-SecureString "Passw0rd" -AsPlainText -Force
-    - Set-LocalUser administrator -Password $Secure_String_Pwd
-
- Wireshark:
-    - Filtrar:
-        - udp.port == (port | ex:53) (port de destino(ex: De www.azores.com é 53)) <- 53 é o DNS, então não sei porque a porta é essa. Talvez porque metemos um nome(www.azores.com) e recebemos um IP 
- 	- tcp.port == (ex: 433)
-	- ip.addr == (ip) (usar ip.addr para verificar se os ficheiros de firezila estão encriptados)
-        - icmp -> usado para identificar pings de outras redes/maquinas (ex: os pings do exercicio 15 do professor)
-	
-
-    - ssh -i labuser.pem ubuntu@(linux ip) | ex: ssh -i labsuser.pem ubuntu@54.165.131.15 (tenho que estar no diretorio(pasta) onde a labsuser.pem está) 
-    - chmod 400 (file name) (muda as permissions?)
-
-
-
-------------------------------------------------- IPS e Binário --------------------------------------
-
- | 128 | 64 | 32 | 16 | 8 | 4 | 2 | 1 |
- |  0  |  0 |  0 |  0 | 0 | 0 | 0 | 0 | -> 0 == 0 bits
- |  1  |  1 |  1 |  0 | 0 | 0 | 0 | 0 | -> 224 == 3 bits
- |  1  |  1 |  1 |  1 | 0 | 0 | 0 | 0 | -> 240 == 4 bits
- |  1  |  1 |  1 |  1 | 1 | 1 | 0 | 0 | -> 252 == 6 bits
- |  1  |  1 |  0 |  0 | 0 | 0 | 0 | 0 | -> 192 == 2 bits
-
-  
- !255 -> 1 byte -> 8 bits 
- !Ver exemplo da tabela acima para clarificação:
- /16 255.255.0.0 (16 bits -> 255 == 8 bits)
- /19 255.255.224.0 (19 bits -> 224 == 3 bits)
- /20 255.255.240.0 (20 bits -> 240 == 4 bits) 
- /6  252.0.0.0 (6 bits -> 252 == 6 bits)
- /26 255.255.255.192 (2bits -> 192 == 2bits)
- !Masks determinam qual é o tamanho da rede e quantas maquinas essa rede pode ter
-
- Identificação da rede e maquina: 
- Original: 192.168.5.8
- Rede: 192.168.5.0 (0 para a rede inteira)
- Maquina(pc): 192.168.5.8 (IP inteiro para identificar a maquina)
-
- /8 -> 24 bits para identificar uma maquina
- /16 -> 16 bits para identificar uma maquina
- /30 -> 2 bits para identificar uma maquina
- ...
-
- ---------------------------------------
- Verificar se os IPs são da mesma rede:
-
- Aqui, verifica-se que os dois primeiros IPs são da mesma rede, no entanto, o terceiro é de outra rede, pois os 2 bits são '11', e não '10'
- 192.168.5.140/26    140 = (10)001100 y
- 192.168.5.160/26    160 = (10)100000 y
- 192.168.5.193/26    193 = (11)000001 n
-
- Para clarificação final. Se a mask fosse /28, então, nós teriamos 28 bits ativos e 4 bits inativos para poder identificar se os IPs são da mesma rede,
- então desta vez teremos que verificar se os ultimos 4 bits(dos 28 bits inativos) são iguais:
- 11000000 10101000 00000101 (1000) | 1100 
-
- -------------------------------------
- Classes de IPs:
- A 0     | /8 ==  255.0.0.0 (8 bits 'ligados')
- B 10    | /16 == 255.255.0.0 (16 bits 'ligados') 
- C 110   | /24 == 255.255.255.0 (24 bits 'ligados')
- D 1110  | Nunca vou encontrar esta classe n shit | Nunca pode ser um remetente, só pode ser um destinatário
- E 1111  | Exclusivo de uns manés
-
- --------------------------------------
- Determinar a classe de um IP:
- Calcular o primeiro Byte(8 bits) de um IP(converter para binário)
- Exemplo: 172.16.0.1
- 	  172- 10101100 -> começa com 10, logo é classe B
-
- Exemplo2: 192.168.0.1
-	   192- 11000000 -> começa com 110, logo é classe C
-
----------------------------------------
-Calcular o numero de Maquinas que uma rede pode ter:
- 32(numero total possível) - N(numero da mask ex: /8, /29, /30...)
- 2^x(total da conta anteriror) - 2(primeiro e ultimo (000 e 111))
-
------------------------------------------------- Volumes ---------------------------------------------------------------------------------------
-
-Simple volume -> volume normal, pode-se acossiar automaticamente a uma letra (ex:'C') ou um folder criado por mim proprio
-Spanned volume -> adicionar 2 ou mais volumes e junta-os num só
-Mirrored volume -> menos desempenho,(escreve em dois lugares(mirroring))
-Raid5 -> With a RAID 5 array using three or more drives, data and parity are striped across all the drives. Data is processed on two drives while the third drive holds the parity information.
-
-Tutorial para conectar-se a uma maquina aws por windows:
-https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/connecting_to_windows_instance.html
-
-AWS minha guide (Instancias, VPC, Volumes, (adicionar xampp), partilha de pastas...)
-https://docs.google.com/document/d/1EMsQvCH4CX_hS7qlD2RiD_tbtx1wGp8W/edit
+Connect to the serial port of an aws instance:
+aws ec2-instance-connect send-serial-console-ssh-public-key \
+    --instance-id i-0caea2bf6687d5bd1 \
+    --serial-port 0 \
+    --ssh-public-key file://DanMed2219.pub \
+    --region us-east-1 --profile vocareum
 
 ------------------------------------------- Teste de DNS, Sites(IIS), FTP, User Management, VPC, Routing and Remote Access -----------------------------------------------
 
