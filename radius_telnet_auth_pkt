@@ -1,0 +1,27 @@
+pkt file ->
+main reference -> https://ipcisco.com/lesson/cisco-radius-server-configuration-on-packet-tracer/
+optional reference -> https://medium.com/@elnurbda/configuring-ssh-telnet-and-tacacs-in-packet-tracer-2e1ebf6f1301
+
+router - 192.168.0.1
+radius server - 192.168.0.254
+wireless router - 192.168.0.252
+dns-server - 192.168.0.254(radius is the dns as well)
+switch - 192.168.0.253(vlan 1)
+
+1) create the topology -> Main router(192.168.0.1) / Wireless router connected to the main router / Radius server connected to the main router / switch connecting them all / 
+
+2) configure the radius server to accept the network devices && create users(they will be used to login to the telnet/ssh session
+
+3) configure the device you want to access(router in this case) to allow tellnet/ssh to it self as well as using login local i think
+  3.1) line vty 0 4 
+       loging local
+       transport input telnet/ssh
+       login authentication default (optional i think, not sure)
+       acccount exec default (optional i think, not sure)
+       aaa auth
+       exit
+       aaa new-model
+       radius-server host 192.168.0.254(the AAA server ip) key Passw0rd(probably the same as the one set in the radius server)
+       exit
+       aaa authentication login default group radius local
+       DO WR PLS DONT FORGET DUMBASS
