@@ -67,6 +67,7 @@ LUX-INSIDE: 172.31.112.102
        - if the gateway is not the one we want, use this command:
             - sudo route del default gw 172.31.112.1(wrong gateway)
             - sudo route add default gw 172.31.112.100(gateway we want)
+   https://gist.github.com/jdmedeiros/0b6208d6e0a7cf35d31f5749be47d8a2 <- the 80-ec2.network file is the same as netplan, if the other settings didn't work, its because they are ignored and only 80-ec2.network will make changes to the routing options of the client 
 
 
 !FILES E COMANDOS IMPORTANTES
