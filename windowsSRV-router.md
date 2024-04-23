@@ -31,4 +31,14 @@
 
 7)dns server on the win srv(forwards any domain he doesnt know to the ip we specify, generaly 8.8.8.8 or 1.1.1.1):
   install dns server on the windows server
-  tools -> dns -> propreties -> edit -> 8.8.8.8 -> save
+  tools -> dns -> EC2AMAZ-2... propreties -> forwarders -> edit -> 8.8.8.8 -> save
+  voila, dns is working now
+
+8) custom dns redirection
+  go to DNS -> Forward lookup Zones -> new zone -> zone name: enta.pt
+  new A or AAAA record -> www -> 172.31.144.101
+
+9) web certificates no DMZ
+    tools -> iis -> filter - server certificates -> double click -> create certificate request -> random giberish -> sempre pra frente -> especificar um diretorio que quizeres
+  on the web browser -> http://172.31.144.100/certsrv
+     
