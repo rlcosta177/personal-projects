@@ -11,6 +11,7 @@ reference.1) https://www.youtube.com/watch?v=Q4I2lKHboDw&list=WL&index=3
     - Server Manager
     - Power Shell
     - CMD
+    - Local Policy
 
 1 Instalar Active Directory Domain Services
 	- after installing the AD, click on the flag -> 'Promote this server to a domain controller'
