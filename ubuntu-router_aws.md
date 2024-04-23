@@ -31,15 +31,15 @@ LUX-INSIDE: 172.31.112.101
       </details>
 
 4) no server(adicionar um dns forwarder para 8.8.8.8 para redirecionar requests que nao sabe para la):
-    no srv instalar bind9, bind9-utils bind9-dnsutils, bind9-doc
+    no srv instalar bind9, bind9-utils bind9-dnsutils bind9-doc
     no srv cd /etc/bind -> nano named.conf.options: https://pastebin.com/W4ibnbVW
     sudo systemctl restart bind9
 
 5) nos clientes(DNS & ROUTES):
-    ir aos clientes(fazer isto em todos os clientes que tiveres) cd /etc/netplan/ -> nano 50-cloud-init.yaml -> https://pastebin.com/2NTHPumB OR (better)https://pastebin.com/wh3PKFrV
+    ir aos clientes(fazer isto em todos os clientes que tiveres) cd /etc/netplan/ -> nano 50-cloud-init.yaml -> https://pastebin.com/wh3PKFrV
     sudo netplan try dry | netplan try | netplan apply-> ENTER
     usar a referencia a baixo, o 'nameservers' tem que estar na mesma linha que dhcp4-overrides
-   sudo systemctl restart systemd-networkd
+    sudo systemctl restart systemd-networkd
 
     <details>
       <summary>reference for the netplan</summary>
