@@ -12,7 +12,7 @@ LUX-INSIDE: 172.31.112.101
     nano /etc/sysctl.conf -> uncomment: net.ipv4.ip_forward=1
     iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE (routes any incoming traffic(from clients) to the internet, through if ens5)
     netfilter-persistent save
-    sysctl -p
+    sysctl -p <- applies the changes 
     systemctl restart iptables
 
     <details>
