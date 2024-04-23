@@ -9,9 +9,11 @@ LUX-INSIDE: 172.31.112.101
 2) no server(enable forwarding so that the server can act as a router):
     sudo apt update && sudo apt upgrade -y
     sudo apt install netfilter-persistent iptables-persistent
+    nano /etc/sysctl.conf -> uncomment: net.ipv4.ip_forward=1
     iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE (routes any incoming traffic(from clients) to the internet, through if ens5)
     netfilter-persistent save
-    nano /etc/sysctl.conf -> uncomment: net.ipv4.ip_forward=1
+    sysctl -p
+    systemctl restart iptables
 
     <details>
       <summary>reference for prerouting, input, forward, output, postrouting: https://www.digitalocean.com/community/tutorials/a-deep-dive-into-iptables-and-netfilter-architecture</summary>
