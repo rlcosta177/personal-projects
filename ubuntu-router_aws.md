@@ -34,7 +34,7 @@ LUX-INSIDE: 172.31.112.101
     sudo systemctl restart bind9
 
 5) nos clientes(DNS & ROUTES):
-    ir aos clientes(fazer isto em todos os clientes que tiveres) cd /etc/netplan/ -> nano 50-cloud-init.yaml -> https://pastebin.com/2NTHPumB
+    ir aos clientes(fazer isto em todos os clientes que tiveres) cd /etc/netplan/ -> nano 50-cloud-init.yaml -> https://pastebin.com/2NTHPumB OR (better)https://pastebin.com/wh3PKFrV
     sudo netplan try dry | netplan try | netplan apply-> ENTER
     usar a referencia a baixo, o 'nameservers' tem que estar na mesma linha que dhcp4-overrides
    sudo systemctl restart systemd-networkd
@@ -66,7 +66,7 @@ LUX-INSIDE: 172.31.112.101
     no servidor, usar sysctl -p depois de alterar /etc/sysctl.conf
     no servidor iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE <- necessary if u want a client attached to an interface of the server to access the internet
     netfilter-persistent save OR reload <- dps de fazer alguma alteracao de iptables
-    route -n to see the routing table, useful if having problems accessing the internet with the client
+    route -n OR ip route to see the routing table, useful if having problems accessing the internet with the client
 
 no cliente(aws amazon linux) 
 https://gist.github.com/jdmedeiros/0b6208d6e0a7cf35d31f5749be47d8a2
