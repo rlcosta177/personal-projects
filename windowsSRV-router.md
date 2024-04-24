@@ -47,7 +47,7 @@
         net start certsvc
 
     3.ISS DMZ
-        Server Certificates -> Create Certificate Request -> store it -> open it -> copy the contents -> go to 172.31.144.100/certsrv -> request a certificate -> advanced -> colas na text area de cima -> attributes: sans:dns=172.31.144.100
+        Server Certificates -> Create Certificate Request -> store it -> open it -> copy the contents -> go to 172.31.144.100/certsrv -> request a certificate -> advanced -> colas na text area de cima -> attributes: san:dns=www.siterino.pt
 
      4.no winsrv:
         adicionar um A or AAAA para o www.siterino.pt
