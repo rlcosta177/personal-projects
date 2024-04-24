@@ -39,6 +39,29 @@
   new A or AAAA record -> www -> 172.31.144.101
 
 9) web certificates no DMZ
-    tools -> iis -> filter - server certificates -> double click -> create certificate request -> random giberish -> sempre pra frente -> especificar um diretorio que quizeres
-  on the web browser -> http://172.31.144.100/certsrv
-     
+    1.tools -> iis -> filter - server certificates -> double click -> create certificate request -> random giberish -> sempre pra frente -> especificar um diretorio que quizeres
+
+    2.no windows server:
+        certutil -setreg policy\EditFlags +EDITF_ATTRIBUTESUBJECTALTNAME2
+        net stop certsvc
+        net start certsvc
+
+    3.ISS DMZ
+        Server Certificates -> Create Certificate Request -> store it -> open it -> copy the contents -> go to 172.31.144.100/certsrv -> request a certificate -> advanced -> colas na text area de cima -> attributes: sans:dns=172.31.144.100
+
+     4.no winsrv:
+        adicionar um A or AAAA para o www.siterino.pt
+        tools -> certificate authority -> pending -> issue the certificate
+
+    5.no DMZ:
+        172.31.144.100/certsrv -> view the status of a pending csr -> ir ao mais recente -> download certificate(nao e necessario a segunda opcao)
+        ir aos downloads e instalar o certificado na local machine -> path: web hosting -> finish
+  
+
+
+
+
+
+
+
+  
