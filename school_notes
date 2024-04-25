@@ -3,10 +3,6 @@ aws: rodrigolimacosta@enta.pt
 wifi pass: ENTAWiFi
 adm pass: &9va@ENTA
 
-
-https://www.isc2.org/certifications/cc
-the house of the flying daggers -> movie
-
 ================= Library ==================
 
 Knowlagable --------------
@@ -37,14 +33,7 @@ FAZER A RECUPERAÇÃO DE SWITCH CONFIG(remover o secret se esquecer-me and shit)
 https://www.youtube.com/watch?v=PCpnRqKCWCQ 
 do aws certificate solutions architect or practitioner
 
-- Docker - flask github do prof[PRIO]
-- Kubernetes - https://github.com/jdmedeiros/k8s/tree/original_v126_update[PRIO]
 - kistmet&&aricrack-ng -> wifihacking
-- Terraform [Have some basic knowlage]
-- Wazuh [Have some basic knowlage]
-- New Relic
-- Assembly [PRIO]
-- Metasploit
 - PagerDuty -> emails stuff?
 - Mess around with bluetooth devices
 - uptimerobot -> monitors website uptime for free
@@ -55,16 +44,7 @@ do aws certificate solutions architect or practitioner
 usb wifi adapter-> buy
 GFI LanGuard -> scan public ips
 irssi -> test some chats
-socat
-port forwarding linux terminal(using ssh) - https://www.tecmint.com/create-ssh-tunneling-port-forwarding-in-linux/
 busybox
-
-toggle track org para dar track das tasks que faço no dia para n me lixar no trabalho
-nessus
-netcat
-awk linux command
-grep linux command
-
 
 !Grafana -> Usado para fazer baseline. Usar prometheus com grafana(não sei o que faz tbh lmao)
 Circleci -> CI/CD thingy
@@ -72,11 +52,9 @@ Circleci -> CI/CD thingy
 REMnux
 Jenkins (ci?)
 travis ci
-gitlab ci
 
 splunk
 datadog
-leetcode
 Ansible -> Automação de instalação de programas e sudo apt updates n shit
 Puppet -> same as ansible I believe
 https://hash-file.online/ <- hashing checksum website
@@ -85,12 +63,6 @@ stepstone.com -> Procurar trabalho/Estágio
 totaljobs.com -> Procurar trabalho/Estágio
 Goteleport -> 
 teleport
-nvd vulnerability
-default password lists(routers n shit)
-assinar documento digital -> https://www.autenticacao.gov.pt/cmd-assinatura
-como verificar uma assinatura digital
-chave digital na riac
-https://www.manageengine.com/products/netflow/nbar-monitor.html
 
 
 Connect to the serial port of an aws instance:
