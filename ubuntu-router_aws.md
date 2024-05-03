@@ -38,6 +38,10 @@ WIN-INSIDE NIC:
     - sysctl -p <- applies the changes 
     - systemctl restart iptables
 
+
+
+
+
     <details>
       <summary>reference for prerouting, input, forward, output, postrouting</summary>
         https://pastebin.com/SxhJmhrm
