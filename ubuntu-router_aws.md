@@ -16,7 +16,8 @@ WIN-INSIDE: 172.31.112.101
 
 ---
 
-1) in AWS -> click the server -> actions -> networking -> change source/destination check -> check the box 'stop' | enables routing on that instance(crucial)
+1) Enable routing on AWS(on a single instance):
+    - in AWS -> click the server -> actions -> networking -> change source/destination check -> check the box 'stop'
 
 ---
 
