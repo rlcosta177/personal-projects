@@ -123,12 +123,78 @@ WEST WIN-CLIENT NIC:
     - cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf .
     - cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf .
     - cd /etc/
-    - cp -R /usr/share/easy-rsa . 
-    - cd /etc/easy-rsa
+    - cp -R /usr/share/easy-rsa/ . 
+    - cd /etc/easy-rsa/
     - cp vars.example vars
     - nano vars
+    - descomentar e alterar para org: #set_var EASYRSA_DN     "org"
     - descomentar a cena de US, California, e alterar as cenas
-    - descomentar uma linha a cima e meter org em vez de o que tinha entre parenteses
-    - ./easyrsa e seguir a guide de comandos la(e.g ./easy-rsa init-pki
+
+1)
+====================== Certificate Authority ====================
+
+./easyrsa init-pki
+Your newly created PKI dir is:* /etc/easy-rsa/pki
+Using Easy-RSA configuration:* /etc/easy-rsa/vars
+
+./easyrsa build-ca
+Using Easy-RSA 'vars' configuration:* /etc/easy-rsa/vars
+enter passphrase(1234)
+CA creation complete. Your new CA certificate is at:* /etc/easy-rsa/pki/ca.crt
+
+2)
+======================= VPN Server(lust-srv-east) =========================
+./easyrsa init-pki  | (only run if this is not the CA)
+./easyrsa gen-req eastsrv	 nopass
+Private-Key and Public-Certificate-Request files created.
+Your files are:
+* req: /etc/easy-rsa/pki/reqs/eastsrv.req
+* key: /etc/easy-rsa/pki/private/eastsrv.key
 
 
+3)
+======================= VPN Client(lust-srv-west) =========================
+./easyrsa init-pki  | (only run if this is not the CA)
+Your newly created PKI dir is:* /etc/easy-rsa/pki
+Using Easy-RSA configuration:* /etc/easy-rsa/vars
+
+./easyrsa gen-req westsrv	 nopass
+Private-Key and Public-Certificate-Request files created.
+Your files are:
+* req: /etc/easy-rsa/pki/reqs/westsrv.req
+* key: /etc/easy-rsa/pki/private/westsrv.key
+
+
+4)
+copy westsrv's request files(westsrv.req & westsrv.key) to eastsrv(the CA) in a new folder e.g /root/westsrv-certs
+copy eastsrv's request files(westsrv.req & westsrv.key) to a new folder e.g /root/eastsrv-certs
+
+
+5) importing the requests(stored in: /etc/easy-rsa/pki/reqs)
+
+cd /etc/easy-rsa/
+./easyrsa import-req /root/eastsrv-certs/eastsrv.req eastREQ
+./easyrsa import-req /root/westsrv-certs/westsrv.req westREQ
+
+
+6) sign as client and server(westsrv is client | eastsrv is server)
+
+./easyrsa sign-req client westREQ (como o westREQ e eastREQ ja estao no pki/reqs, o easyrsa vai procurar la pelo westREQ e eastREQ)
+   - Certificate created at:* /etc/easy-rsa/pki/issued/westREQ.crt
+
+./easyrsa sign-req server eastREQ
+   - Certificate created at:* /etc/easy-rsa/pki/issued/eastREQ.crt
+
+
+7) generate the diffie helman pem in the server, then copy it to the client
+   ./easyrsa gen-dh
+   DH parameters of size 2048 created at:* /etc/easy-rsa/pki/dh.pem
+
+
+8) send the westREQ.crt and ca.crt to the westsrv(the westREQ.crt was generated from the .req in step 6)
+   in the westsrv(chmod 644 ca.crt && chmod 644 westREQ.crt): 
+      scp -i east-key.pem ubuntu@34.236.68.208:/dev/shm/ca.crt .
+      scp -i east-key.pem ubuntu@34.236.68.208:/dev/shm/westREQ.crt .
+      scp -i east-key.pem ubuntu@34.236.68.208:/dev/shm/dh.pem .
+      I sent the files to /root/certs
+         FILES NEEDED IN 'certs': ca.crt, westREQ.crt, westsrv.key, dh.pem
