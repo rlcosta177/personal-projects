@@ -61,7 +61,7 @@ LUX-INSIDE: 172.31.112.101
    - https://gist.github.com/jdmedeiros/0b6208d6e0a7cf35d31f5749be47d8a2 <- the 80-ec2.network file is the same as netplan, if the other settings didn't work, its because they are ignored and only 80-ec2.network will make changes to the routing options of the client 
 
 
-999)FILES E COMANDOS IMPORTANTES
+FILES E COMANDOS IMPORTANTES:
     - no cliente, linux amazon  /etc/sysconfig/network-scripts/ (ifcfg-eth0 && route-eth0)
     - no cliente, ubuntu /etc/netplan/50-cloud-init.yaml
     - no servidor, ubuntu&linux amazon /etc/sysctl.conf (descomentar net.ipv4.ip_forward=1)
@@ -70,8 +70,7 @@ LUX-INSIDE: 172.31.112.101
     - netfilter-persistent save OR reload <- dps de fazer alguma alteracao de iptables
     - route -n OR ip route to see the routing table, useful if having problems accessing the internet with the client
 
-no cliente(aws amazon linux) 
-https://gist.github.com/jdmedeiros/0b6208d6e0a7cf35d31f5749be47d8a2
+7.5)no cliente(aws amazon linux): https://gist.github.com/jdmedeiros/0b6208d6e0a7cf35d31f5749be47d8a2
 
 8) no server(criar as nat policies): https://pastebin.com/MWLpsXu8
 
