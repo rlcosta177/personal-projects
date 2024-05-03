@@ -75,7 +75,7 @@ https://gist.github.com/jdmedeiros/0b6208d6e0a7cf35d31f5749be47d8a2
 
 8) no server(criar as nat policies): https://pastebin.com/MWLpsXu8
 
---------------- opvenvpn
+=============================== Integrate OpenVPN ==================================
 
 1) allow the public ip of each vpn server in the security groups of the other one
 
