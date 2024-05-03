@@ -31,14 +31,15 @@ WIN-INSIDE: 172.31.112.101
     - systemctl restart iptables
 
     <details>
-      <summary>reference for prerouting, input, forward, output, postrouting: https://www.digitalocean.com/community/tutorials/a-deep-dive-into-iptables-and-netfilter-architecture</summary>
+      <summary>reference for prerouting, input, forward, output, postrouting</summary>
         https://pastebin.com/SxhJmhrm
+        https://www.digitalocean.com/community/tutorials/a-deep-dive-into-iptables-and-netfilter-architecture
     </details>
 
 
     <details>
       <summary>reference for the NAT and FILTER tables(jdaniel email)</summary>
-      practical examples(substituir os tracos('-'), esses nao funcionam):
+        practical examples(substituir os tracos('-'), esses nao funcionam):
         https://pastebin.com/7D90FwF5
 
       specific examples(substituir os tracos('-'), esses nao funcionam):
@@ -47,23 +48,19 @@ WIN-INSIDE: 172.31.112.101
 
 ---
 
-4) no server(adicionar um dns forwarder para 8.8.8.8 para redirecionar requests que nao sabe para la):
-    - no srv instalar bind9, bind9-utils bind9-dnsutils bind9-doc
-    - no srv cd /etc/bind -> nano named.conf.options: https://pastebin.com/W4ibnbVW
+4) no server(adicionar um dns forwarder para 1.1.1.1 para redirecionar unknown destination requests para la):
+    - sudo apt install bind9, bind9-utils bind9-dnsutils bind9-doc
+    - sudo nano /etc/bind/named.conf.options  (ref: https://pastebin.com/W4ibnbVW)
     - sudo systemctl restart bind9
 
 ---
 
 5) nos clientes(DNS & ROUTES):
-    - ir aos clientes(fazer isto em todos os clientes que tiveres) cd /etc/netplan/ -> nano 50-cloud-init.yaml -> https://pastebin.com/wh3PKFrV
-    - sudo netplan try dry | netplan try | netplan apply-> ENTER
-    - usar a referencia a baixo, o 'nameservers' tem que estar na mesma linha que dhcp4-overrides
+    - sudo nano /etc/netplan/50-cloud-init.yaml  (ref: https://pastebin.com/wh3PKFrV) | (full ref: https://pastebin.com/uxBEM3mg) |  'nameservers' tem que estar na mesma linha que dhcp4-overrides
+    - sudo netplan try dry (try config without making changes)
+    - netplan try
+    - netplan apply
     - sudo systemctl restart systemd-networkd
-
-    <details>
-      <summary>reference for the netplan</summary>
-      https://pastebin.com/uxBEM3mg
-    </details>
 
 ---
 
