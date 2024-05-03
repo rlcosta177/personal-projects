@@ -38,7 +38,7 @@ WEST WIN-INSIDE NIC:
 
 3) in the server(enabling forwarding so that the server can act as a router):
     - sudo apt update && sudo apt upgrade -y
-    - sudo apt install netfilter-persistent iptables-persistent
+    - sudo apt install netfilter-persistent iptables-persistent -y
     - nano /etc/sysctl.conf -> uncomment: net.ipv4.ip_forward=1
     - iptables -t nat -A POSTROUTING -o ens5 -j MASQUERADE (routes any incoming traffic(from clients) to the internet, through if ens5)
     - netfilter-persistent save
