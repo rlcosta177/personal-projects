@@ -6,21 +6,21 @@ Topology:
     us-west-2 -> [1 server(router), 1 dmz(webserver), 1 client]
 
 
-SERVER: 
+SERVER NICs: 
     
     172.31.0.100, 172.31.96.100, 172.31.112.100(all /20)
 
-DMZ:
+DMZ NIC:
     
     172.31.96.101
 
-LUX-INSIDE:
+LUX-INSIDE NIC:
     
     172.31.112.101
 
-WIN-INSIDE:
+WIN-INSIDE NIC:
     
-    172.31.112.101
+    172.31.112.102
 
 ---
 
