@@ -94,9 +94,11 @@ WIN-INSIDE: 172.31.112.101
 
 
 
-=============================== Integrate OpenVPN ==================================
+## OpenVPN Integration
 
 1) allow the public ip of each vpn server in the security groups of the other one
+
+---
 
 2) nos dois servers:
     - sudo apt install openvpn easy-rsa -y
