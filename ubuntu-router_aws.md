@@ -63,7 +63,7 @@ WIN-INSIDE: 172.31.112.101
 ---
 
 6) enable rdp on windows(ON THE WIN-INSIDE):
-    - Para poder dar rdp da maquina fisica para o win-inside, tenho que dar rdp a partir do lux-inside(172.31.112.101) para o win-inside(172.31.112.101) e colocar o ip, mask, gateway e dns no win-inside
+    - Para poder dar rdp da maquina fisica para o win-inside, tenho que dar rdp a partir do lux-inside(172.31.112.101) para o win-inside(172.31.112.102) e alterar o ip, mask, gateway e dns no win-inside
           IP              MASK          GATEWAY          DNS
     (172.31.112.101, 255.255.240.0, 172.31.112.100, 172.31.112.100)
 
@@ -74,19 +74,17 @@ WIN-INSIDE: 172.31.112.101
        - if the gateway is not the one we want, use this command:
             - sudo route del default gw 172.31.112.1(wrong gateway)
             - sudo route add default gw 172.31.112.100(gateway we want)
-   - https://gist.github.com/jdmedeiros/0b6208d6e0a7cf35d31f5749be47d8a2 <- the 80-ec2.network file is the same as netplan, if the other settings didn't work, its because they are ignored and only 80-ec2.network will make changes to the routing options of the client
-
----
-
-7.5)no cliente(aws amazon linux): https://gist.github.com/jdmedeiros/0b6208d6e0a7cf35d31f5749be47d8a2
+       - https://gist.github.com/jdmedeiros/0b6208d6e0a7cf35d31f5749be47d8a2 <- the 80-ec2.network file is the same as netplan, if the other settings didn't work, its because they are ignored and only 80-ec2.network will make changes to the routing options of the client
 
 ---
 
 8) no server(criar as nat policies): https://pastebin.com/MWLpsXu8
 
-9) FILES E COMANDOS IMPORTANTES:
+---
+
+9) IMPORTANT FILES & COMANDS:
     - tcpdump -i <interface> [src/dst host/port <ip/port>] | very useful to troubleshoot connectivity issues
-    - no cliente, linux amazon  /etc/sysconfig/network-scripts/ (ifcfg-eth0 && route-eth0)
+    - no cliente, linux amazon  /etc/sysconfig/network-scripts/ (ifcfg-eth0 && route-eth0) | outdated i believe, changes here won't take effect depending on the version
     - no cliente, ubuntu /etc/netplan/50-cloud-init.yaml
     - no servidor, ubuntu&linux amazon /etc/sysctl.conf (descomentar net.ipv4.ip_forward=1)
     - no servidor, usar sysctl -p depois de alterar /etc/sysctl.conf
