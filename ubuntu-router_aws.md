@@ -10,9 +10,13 @@ LUX-INSIDE: 172.31.112.101
 
 WIN-INSIDE: 172.31.112.101
 
+---
+
 1) in AWS -> click the server -> actions -> networking -> change source/destination check -> check the box 'stop' | enables routing on that instance(crucial)
 
-2) in the server(enabling forwarding so that the server can act as a router):
+---
+
+3) in the server(enabling forwarding so that the server can act as a router):
     - sudo apt update && sudo apt upgrade -y
     - sudo apt install netfilter-persistent iptables-persistent
     - nano /etc/sysctl.conf -> uncomment: net.ipv4.ip_forward=1
@@ -36,10 +40,14 @@ WIN-INSIDE: 172.31.112.101
          https://pastebin.com/dLYVkAaS
       </details>
 
+---
+
 4) no server(adicionar um dns forwarder para 8.8.8.8 para redirecionar requests que nao sabe para la):
     - no srv instalar bind9, bind9-utils bind9-dnsutils bind9-doc
     - no srv cd /etc/bind -> nano named.conf.options: https://pastebin.com/W4ibnbVW
     - sudo systemctl restart bind9
+
+---
 
 5) nos clientes(DNS & ROUTES):
     - ir aos clientes(fazer isto em todos os clientes que tiveres) cd /etc/netplan/ -> nano 50-cloud-init.yaml -> https://pastebin.com/wh3PKFrV
@@ -52,12 +60,14 @@ WIN-INSIDE: 172.31.112.101
       https://pastebin.com/uxBEM3mg
     </details>
 
+---
+
 6) enable rdp on windows(ON THE WIN-INSIDE):
     - Para poder dar rdp da maquina fisica para o win-inside, tenho que dar rdp a partir do lux-inside(172.31.112.101) para o win-inside(172.31.112.101) e colocar o ip, mask, gateway e dns no win-inside
           IP              MASK          GATEWAY          DNS
     (172.31.112.101, 255.255.240.0, 172.31.112.100, 172.31.112.100)
 
-
+---
 
 7) if connectivity to the internet isn't working on the client(amazon linux only i think):
        - use route -n to see where the traffic goes through
@@ -66,8 +76,15 @@ WIN-INSIDE: 172.31.112.101
             - sudo route add default gw 172.31.112.100(gateway we want)
    - https://gist.github.com/jdmedeiros/0b6208d6e0a7cf35d31f5749be47d8a2 <- the 80-ec2.network file is the same as netplan, if the other settings didn't work, its because they are ignored and only 80-ec2.network will make changes to the routing options of the client 
 
+---
 
-FILES E COMANDOS IMPORTANTES:
+7.5)no cliente(aws amazon linux): https://gist.github.com/jdmedeiros/0b6208d6e0a7cf35d31f5749be47d8a2
+
+---
+
+8) no server(criar as nat policies): https://pastebin.com/MWLpsXu8
+
+9) FILES E COMANDOS IMPORTANTES:
     - no cliente, linux amazon  /etc/sysconfig/network-scripts/ (ifcfg-eth0 && route-eth0)
     - no cliente, ubuntu /etc/netplan/50-cloud-init.yaml
     - no servidor, ubuntu&linux amazon /etc/sysctl.conf (descomentar net.ipv4.ip_forward=1)
@@ -76,9 +93,7 @@ FILES E COMANDOS IMPORTANTES:
     - netfilter-persistent save OR reload <- dps de fazer alguma alteracao de iptables
     - route -n OR ip route to see the routing table, useful if having problems accessing the internet with the client
 
-7.5)no cliente(aws amazon linux): https://gist.github.com/jdmedeiros/0b6208d6e0a7cf35d31f5749be47d8a2
 
-8) no server(criar as nat policies): https://pastebin.com/MWLpsXu8
 
 =============================== Integrate OpenVPN ==================================
 
