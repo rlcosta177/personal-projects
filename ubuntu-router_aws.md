@@ -1,9 +1,8 @@
 # Routing with linux + aws + openvpn(site-to-site & remote access)
 
-Topology
+Topology:
 
     - us-east-1 -> [1 server(router), 1 dmz(webserver), 1 client]
-
     - us-west-2 -> [1 server(router), 1 dmz(webserver), 1 client]
 
 
