@@ -2,8 +2,8 @@
 
 Topology:
 
-    us-east-1 -> [1 server(router), 1 dmz(webserver), 1 client]
-    us-west-2 -> [1 server(router), 1 dmz(webserver), 1 client]
+    us-east-1 -> [1 server(router), 1 dmz(webserver: lux-dmz)]
+    us-west-2 -> [1 server(router), 2 clients(lux-inside & win-inside)]
 
 
 SERVER NICs: 
