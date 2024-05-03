@@ -68,13 +68,13 @@ WIN-INSIDE: 172.31.112.101
     (172.31.112.101, 255.255.240.0, 172.31.112.100, 172.31.112.100)
 
 ---
-
-7) if connectivity to the internet isn't working on the client(amazon linux only i think):
+  
+7)  if connectivity to the internet isn't working on the client(amazon linux only i think):
        - use route -n to see where the traffic goes through
        - if the gateway is not the one we want, use this command:
             - sudo route del default gw 172.31.112.1(wrong gateway)
             - sudo route add default gw 172.31.112.100(gateway we want)
-   - https://gist.github.com/jdmedeiros/0b6208d6e0a7cf35d31f5749be47d8a2 <- the 80-ec2.network file is the same as netplan, if the other settings didn't work, its because they are ignored and only 80-ec2.network will make changes to the routing options of the client 
+   - https://gist.github.com/jdmedeiros/0b6208d6e0a7cf35d31f5749be47d8a2 <- the 80-ec2.network file is the same as netplan, if the other settings didn't work, its because they are ignored and only 80-ec2.network will make changes to the routing options of the client
 
 ---
 
