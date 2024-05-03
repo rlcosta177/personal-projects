@@ -38,12 +38,9 @@ WIN-INSIDE NIC:
     - sysctl -p <- applies the changes 
     - systemctl restart iptables
 
-
-
-
-
     <details>
       <summary>reference for prerouting, input, forward, output, postrouting</summary>
+        
         https://pastebin.com/SxhJmhrm
         https://www.digitalocean.com/community/tutorials/a-deep-dive-into-iptables-and-netfilter-architecture
     </details>
@@ -51,11 +48,10 @@ WIN-INSIDE NIC:
 
     <details>
       <summary>reference for the NAT and FILTER tables(jdaniel email)</summary>
-        practical examples(substituir os tracos('-'), esses nao funcionam):
-        https://pastebin.com/7D90FwF5
-
-      specific examples(substituir os tracos('-'), esses nao funcionam):
-         https://pastebin.com/dLYVkAaS
+        
+        (substituir os tracos('-'), esses nao funcionam)
+        practical examples: https://pastebin.com/7D90FwF5
+        specific examples: https://pastebin.com/dLYVkAaS
       </details>
 
 ---
