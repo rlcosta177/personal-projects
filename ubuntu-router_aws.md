@@ -64,7 +64,7 @@ WEST WIN-CLIENT NIC:
 ---
 
 4) no server(adicionar um dns forwarder para 1.1.1.1 para redirecionar unknown destination requests para la):
-    - sudo apt install bind9, bind9-utils bind9-dnsutils bind9-doc
+    - sudo apt install bind9 bind9-utils bind9-dnsutils bind9-doc
     - sudo nano /etc/bind/named.conf.options  (ref: https://pastebin.com/W4ibnbVW)
     - sudo systemctl restart bind9
 
