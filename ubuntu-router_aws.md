@@ -1,19 +1,18 @@
-TOPOLOGIA: 1 Server(serve de router), 1 Dmz(serve de website host(80&443)), 2 Clientes(para testar o rdp de maquina fisica para os clientes(routing done on the SERVER))
+# Routing with linux + aws + openvpn(site-to-site & remote access)
 
-SERVER: 172.31.0.100 | NICS: 172.31.0.100, 172.31.96.100, 172.31.112.100(all /20)
+Topology: 1 server(router), 1 dmz(webserver), 2 clients
+
+SERVER: 172.31.0.100, 172.31.96.100, 172.31.112.100(all /20)
 
 DMZ: 172.31.96.101
 
-WIN-INSIDE: 172.31.112.101
-
 LUX-INSIDE: 172.31.112.101
 
+WIN-INSIDE: 172.31.112.101
 
+1) in AWS -> click the server -> actions -> networking -> change source/destination check -> check the box 'stop' | enables routing on that instance(crucial)
 
-
-1) na aws -> click the server -> actions -> networking -> Change source/destination check -> check the box 'stop'
-
-2) no server(enable forwarding so that the server can act as a router):
+2) in the server(enabling forwarding so that the server can act as a router):
     - sudo apt update && sudo apt upgrade -y
     - sudo apt install netfilter-persistent iptables-persistent
     - nano /etc/sysctl.conf -> uncomment: net.ipv4.ip_forward=1
