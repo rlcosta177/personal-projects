@@ -20,7 +20,7 @@ WIN-INSIDE: 172.31.112.101
     - sudo apt update && sudo apt upgrade -y
     - sudo apt install netfilter-persistent iptables-persistent
     - nano /etc/sysctl.conf -> uncomment: net.ipv4.ip_forward=1
-    - iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE (routes any incoming traffic(from clients) to the internet, through if ens5)
+    - iptables -t nat -A POSTROUTING -o ens5 -j MASQUERADE (routes any incoming traffic(from clients) to the internet, through if ens5)
     - netfilter-persistent save
     - sysctl -p <- applies the changes 
     - systemctl restart iptables
@@ -85,6 +85,7 @@ WIN-INSIDE: 172.31.112.101
 8) no server(criar as nat policies): https://pastebin.com/MWLpsXu8
 
 9) FILES E COMANDOS IMPORTANTES:
+    - tcpdump -i <interface> [src/dst host/port <ip/port>] | very useful to troubleshoot connectivity issues
     - no cliente, linux amazon  /etc/sysconfig/network-scripts/ (ifcfg-eth0 && route-eth0)
     - no cliente, ubuntu /etc/netplan/50-cloud-init.yaml
     - no servidor, ubuntu&linux amazon /etc/sysctl.conf (descomentar net.ipv4.ip_forward=1)
