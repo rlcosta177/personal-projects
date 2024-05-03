@@ -2,8 +2,8 @@
 
 Topology:
 
-    us-east-1 -> [1 server(router: lux-server-east), 1 dmz(webserver: lux-dmz-east)]                | 172.31.96.0/20   | lux-srv is the site-to-site server(local)
-    us-west-2 -> [1 server(router: lux-server-west), 2 clients(lux-inside-west & win-inside-west)]  | 172.31.112.0/20  | lux-srv is the site-to-site client(remote)
+    us-east-1 -> [1 server(router: lux-server-east), 1 dmz(webserver: lux-dmz-east)]          | 172.31.96.0/20   | lux-srv is the site-to-site server(local)
+    us-west-2 -> [1 server(router: lux-server-west), 2 clients(lux-cli-west & win-cli-west)]  | 172.31.112.0/20  | lux-srv is the site-to-site client(remote)
 
 
 ---
@@ -11,7 +11,7 @@ EAST SERVER NICs:
     
     172.31.0.100, 172.31.96.100(all /20)
 
-EAST DMZ NIC:
+EAST DMZ/CLIENT NIC:
     
     172.31.96.101
 
@@ -21,11 +21,11 @@ WEST SERVER NICs:
 
     172.31.0.100, 172.31.112.100(all /20)
 
-WEST LUX-INSIDE NIC:
+WEST LUX-CLIENT NIC:
     
     172.31.112.101
 
-WEST WIN-INSIDE NIC:
+WEST WIN-CLIENT NIC:
     
     172.31.112.102
 
