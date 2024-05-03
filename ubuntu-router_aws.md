@@ -7,13 +7,13 @@ LUX-INSIDE: 172.31.112.101
 1) na aws -> click the server -> actions -> networking -> Change source/destination check -> check the box 'stop'
 
 2) no server(enable forwarding so that the server can act as a router):
-    sudo apt update && sudo apt upgrade -y
-    sudo apt install netfilter-persistent iptables-persistent
-    nano /etc/sysctl.conf -> uncomment: net.ipv4.ip_forward=1
-    iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE (routes any incoming traffic(from clients) to the internet, through if ens5)
-    netfilter-persistent save
-    sysctl -p <- applies the changes 
-    systemctl restart iptables
+    - sudo apt update && sudo apt upgrade -y
+    - sudo apt install netfilter-persistent iptables-persistent
+    - nano /etc/sysctl.conf -> uncomment: net.ipv4.ip_forward=1
+    - iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE (routes any incoming traffic(from clients) to the internet, through if ens5)
+    - netfilter-persistent save
+    - sysctl -p <- applies the changes 
+    - systemctl restart iptables
 
     <details>
       <summary>reference for prerouting, input, forward, output, postrouting: https://www.digitalocean.com/community/tutorials/a-deep-dive-into-iptables-and-netfilter-architecture</summary>
@@ -31,15 +31,15 @@ LUX-INSIDE: 172.31.112.101
       </details>
 
 4) no server(adicionar um dns forwarder para 8.8.8.8 para redirecionar requests que nao sabe para la):
-    no srv instalar bind9, bind9-utils bind9-dnsutils bind9-doc
-    no srv cd /etc/bind -> nano named.conf.options: https://pastebin.com/W4ibnbVW
-    sudo systemctl restart bind9
+    - no srv instalar bind9, bind9-utils bind9-dnsutils bind9-doc
+    - no srv cd /etc/bind -> nano named.conf.options: https://pastebin.com/W4ibnbVW
+    - sudo systemctl restart bind9
 
 5) nos clientes(DNS & ROUTES):
-    ir aos clientes(fazer isto em todos os clientes que tiveres) cd /etc/netplan/ -> nano 50-cloud-init.yaml -> https://pastebin.com/wh3PKFrV
-    sudo netplan try dry | netplan try | netplan apply-> ENTER
-    usar a referencia a baixo, o 'nameservers' tem que estar na mesma linha que dhcp4-overrides
-    sudo systemctl restart systemd-networkd
+    - ir aos clientes(fazer isto em todos os clientes que tiveres) cd /etc/netplan/ -> nano 50-cloud-init.yaml -> https://pastebin.com/wh3PKFrV
+    - sudo netplan try dry | netplan try | netplan apply-> ENTER
+    - usar a referencia a baixo, o 'nameservers' tem que estar na mesma linha que dhcp4-overrides
+    - sudo systemctl restart systemd-networkd
 
     <details>
       <summary>reference for the netplan</summary>
@@ -47,7 +47,7 @@ LUX-INSIDE: 172.31.112.101
     </details>
 
 6) enable rdp on windows(ON THE WIN-INSIDE):
-    Para poder dar rdp da maquina fisica para o win-inside, tenho que dar rdp a partir do lux-inside(172.31.112.101) para o win-inside(172.31.112.101) e colocar o ip, mask, gateway e dns no win-inside
+    - Para poder dar rdp da maquina fisica para o win-inside, tenho que dar rdp a partir do lux-inside(172.31.112.101) para o win-inside(172.31.112.101) e colocar o ip, mask, gateway e dns no win-inside
           IP              MASK          GATEWAY          DNS
     (172.31.112.101, 255.255.240.0, 172.31.112.100, 172.31.112.100)
 
@@ -58,17 +58,17 @@ LUX-INSIDE: 172.31.112.101
        - if the gateway is not the one we want, use this command:
             - sudo route del default gw 172.31.112.1(wrong gateway)
             - sudo route add default gw 172.31.112.100(gateway we want)
-   https://gist.github.com/jdmedeiros/0b6208d6e0a7cf35d31f5749be47d8a2 <- the 80-ec2.network file is the same as netplan, if the other settings didn't work, its because they are ignored and only 80-ec2.network will make changes to the routing options of the client 
+   - https://gist.github.com/jdmedeiros/0b6208d6e0a7cf35d31f5749be47d8a2 <- the 80-ec2.network file is the same as netplan, if the other settings didn't work, its because they are ignored and only 80-ec2.network will make changes to the routing options of the client 
 
 
 !FILES E COMANDOS IMPORTANTES
-    no cliente, linux amazon  /etc/sysconfig/network-scripts/ (ifcfg-eth0 && route-eth0)
-    no cliente, ubuntu /etc/netplan/50-cloud-init.yaml
-    no servidor, ubuntu&linux amazon /etc/sysctl.conf (descomentar net.ipv4.ip_forward=1)
-    no servidor, usar sysctl -p depois de alterar /etc/sysctl.conf
-    no servidor iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE <- necessary if u want a client attached to an interface of the server to access the internet
-    netfilter-persistent save OR reload <- dps de fazer alguma alteracao de iptables
-    route -n OR ip route to see the routing table, useful if having problems accessing the internet with the client
+    - no cliente, linux amazon  /etc/sysconfig/network-scripts/ (ifcfg-eth0 && route-eth0)
+    - no cliente, ubuntu /etc/netplan/50-cloud-init.yaml
+    - no servidor, ubuntu&linux amazon /etc/sysctl.conf (descomentar net.ipv4.ip_forward=1)
+    - no servidor, usar sysctl -p depois de alterar /etc/sysctl.conf
+    - no servidor iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE <- necessary if u want a client attached to an interface of the server to access the internet
+    - netfilter-persistent save OR reload <- dps de fazer alguma alteracao de iptables
+    - route -n OR ip route to see the routing table, useful if having problems accessing the internet with the client
 
 no cliente(aws amazon linux) 
 https://gist.github.com/jdmedeiros/0b6208d6e0a7cf35d31f5749be47d8a2
@@ -80,17 +80,17 @@ https://gist.github.com/jdmedeiros/0b6208d6e0a7cf35d31f5749be47d8a2
 1) allow the public ip of each vpn server in the security groups of the other one
 
 2) nos dois servers:
-    sudo apt install openvpn easy-rsa -y
-    cd /etc/openvpn/
-    cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf .
-    cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf .
-    cd /etc/
-    cp -R /usr/share/easy-rsa . 
-    cd /etc/easy-rsa
-    cp vars.example vars
-    nano vars
-    descomentar a cena de US, California, e alterar as cenas
-    descomentar uma linha a cima e meter org em vez de o que tinha entre parenteses
-    ./easyrsa e seguir a guide de comandos la(e.g ./easy-rsa init-pki
+    - sudo apt install openvpn easy-rsa -y
+    - cd /etc/openvpn/
+    - cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf .
+    - cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf .
+    - cd /etc/
+    - cp -R /usr/share/easy-rsa . 
+    - cd /etc/easy-rsa
+    - cp vars.example vars
+    - nano vars
+    - descomentar a cena de US, California, e alterar as cenas
+    - descomentar uma linha a cima e meter org em vez de o que tinha entre parenteses
+    - ./easyrsa e seguir a guide de comandos la(e.g ./easy-rsa init-pki
 
 
