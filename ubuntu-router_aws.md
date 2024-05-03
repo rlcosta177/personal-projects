@@ -1,18 +1,10 @@
 TOPOLOGIA: 1 Server(serve de router), 1 Dmz(serve de website host(80&443)), 2 Clientes(para testar o rdp de maquina fisica para os clientes(routing done on the SERVER))
 
-
-
 SERVER: 172.31.0.100 | NICS: 172.31.0.100, 172.31.96.100, 172.31.112.100(all /20)
-
-
 
 DMZ: 172.31.96.101
 
-
-
 WIN-INSIDE: 172.31.112.101
-
-
 
 LUX-INSIDE: 172.31.112.101
 
