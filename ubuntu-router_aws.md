@@ -2,8 +2,8 @@
 
 Topology:
 
-    us-east-1 -> [1 server(router: lux-server-east), 1 dmz(webserver: lux-dmz-east)]                     | 172.31.96.0/20
-    us-west-2 -> [1 server(router: lux-server-west), 2 clients(lux-inside-west & win-inside-west)]  | 172.31.112.0/20
+    us-east-1 -> [1 server(router: lux-server-east), 1 dmz(webserver: lux-dmz-east)]                | 172.31.96.0/20   | lux-srv is the site-to-site server(local)
+    us-west-2 -> [1 server(router: lux-server-west), 2 clients(lux-inside-west & win-inside-west)]  | 172.31.112.0/20  | lux-srv is the site-to-site client(remote)
 
 
 ---
