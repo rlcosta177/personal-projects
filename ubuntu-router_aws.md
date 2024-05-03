@@ -6,13 +6,20 @@ Topology:
     us-west-2 -> [1 server(router: lux-server-west), 2 clients(lux-inside-west & win-inside-west)]  | 172.31.112.0/20
 
 
-SERVER NICs: 
+---
+EAST SERVER NICs: 
     
-    172.31.0.100, 172.31.96.100, 172.31.112.100(all /20)
+    172.31.0.100, 172.31.96.100(all /20)
 
 DMZ NIC:
     
     172.31.96.101
+
+---
+
+WEST SERVER NICs:
+
+    172.31.0.100, 172.31.112.100(all /20)
 
 LUX-INSIDE NIC:
     
