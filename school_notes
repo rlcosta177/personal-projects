@@ -15,19 +15,21 @@ Knowlagable --------------
     AWS(EC2, VPC) - 8/10 
     Active Directory - 4/10
     Wazuh - 5/10
-    Postman - 8/10
+    Postman - 6/10
+    Pagerduty - 7/10
+    Uptimerobot - 9/10
+    NewRelic - 6/10
 
 To Learn -----------------
 
     OpenVPN
     Docker
-    Git
+    Git(cli)
     LetsEncrypt
     Ansible
     Assembly
     Nessus
     Kubernetes
-    New Relic
     LLM
 
 
@@ -42,7 +44,6 @@ https://dl1.motakhasessho.ir/E-book/CEH/ <- CEH labs
 - kistmet&&aricrack-ng -> wifihacking
 - PagerDuty -> emails stuff?
 - Mess around with bluetooth devices
-- uptimerobot -> monitors website uptime for free
 - snort -> network analyzer
 - manageengine
 - datadog
@@ -60,7 +61,6 @@ Jenkins (ci?)
 travis ci
 
 splunk
-datadog
 https://hash-file.online/ <- hashing checksum website
 indeed.com -> Procurar trabalho/Estágio
 stepstone.de -> Procurar trabalho/Estágio
