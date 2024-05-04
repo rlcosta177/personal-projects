@@ -120,6 +120,8 @@ Topology:
     VPN Client Lux West(client endpoint)
     Clients: lux-cli-east & lux-cli-west 
 
+---
+
 1) allow the public ip of each vpn server in the security groups of the other one
 
 ---
@@ -137,19 +139,20 @@ Topology:
     - descomentar e alterar para org: #set_var EASYRSA_DN     "org"
     - descomentar a cena de US, California, e alterar as cenas
   
-3) no Certificate Authority
+3) no Certificate Authority(lux-srv-east):
+    - ./easyrsa init-pki
+    - Your newly created PKI dir is:* /etc/easy-rsa/pki
+    - Using Easy-RSA configuration:* /etc/easy-rsa/vars
+      ``
+    - ./easyrsa build-ca
+      ``
+    - Using Easy-RSA 'vars' configuration:* /etc/easy-rsa/vars
+    - enter passphrase: 1234
+    - CA creation complete. Your new CA certificate is at:* /etc/easy-rsa/pki/ca.crt
 
-1)
-====================== Certificate Authority ====================
 
-./easyrsa init-pki
-Your newly created PKI dir is:* /etc/easy-rsa/pki
-Using Easy-RSA configuration:* /etc/easy-rsa/vars
 
-./easyrsa build-ca
-Using Easy-RSA 'vars' configuration:* /etc/easy-rsa/vars
-enter passphrase(1234)
-CA creation complete. Your new CA certificate is at:* /etc/easy-rsa/pki/ca.crt
+
 
 2)
 ======================= VPN Server(lust-srv-east) =========================
