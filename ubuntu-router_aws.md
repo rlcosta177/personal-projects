@@ -113,6 +113,13 @@ WEST WIN-CLIENT NIC:
 
 ## OpenVPN Integration
 
+Topology:
+
+    Certificate Authority: Lux East(lux-east will operate as the vpn server, but will seperately be the CA as well, so you can think of the CA as being a different machine that will sign the requests of lux-east and lux-west servers)
+    VPN Server: Lux East(main vpn endpoint)
+    VPN Client Lux West(client endpoint)
+    Clients: lux-cli-east & lux-cli-west 
+
 1) allow the public ip of each vpn server in the security groups of the other one
 
 ---
@@ -129,6 +136,8 @@ WEST WIN-CLIENT NIC:
     - nano vars
     - descomentar e alterar para org: #set_var EASYRSA_DN     "org"
     - descomentar a cena de US, California, e alterar as cenas
+  
+3) no Certificate Authority
 
 1)
 ====================== Certificate Authority ====================
