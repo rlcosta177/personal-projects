@@ -123,6 +123,7 @@ Topology:
 References:
 
     certificate stuff: https://community.openvpn.net/openvpn/wiki/EasyRSA3-OpenVPN-Howto
+    client&server.conf templates: https://github.com/OpenVPN/openvpn/tree/master/sample/sample-config-files
     
 ---
 
