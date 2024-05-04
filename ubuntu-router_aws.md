@@ -188,7 +188,11 @@ References:
     - ./easyrsa gen-dh
     - DH parameters of size 2048 created at:* /etc/easy-rsa/pki/dh.pem
   
-10) no CA: send the westREQ.crt and relevant files to the westsrv(the westREQ.crt was generated from the .req in step 5)
+10) no lux-srv-east: generate the ta.key
+     - openvpn --genkey secret ta.key
+     - copy the ta.key to the VPN Client so that both the vpnserver and vpnclient have the same ta.key to use in their configs
+  
+12) no CA: send the westREQ.crt and relevant files to the westsrv(the westREQ.crt was generated from the .req in step 5)
      - in the westsrv(chmod 644 ca.crt && chmod 644 westREQ.crt): 
      - scp -i east-key.pem ubuntu@34.236.68.208:/dev/shm/ca.crt .
      - scp -i east-key.pem ubuntu@34.236.68.208:/dev/shm/westREQ.crt .
@@ -196,5 +200,6 @@ References:
      - I sent the files to /root/certs
      - FILES NEEDED IN 'certs': ca.crt, westREQ.crt, westsrv.key, dh.pem
    
-11) Configure the server.conf and client.conf files
-     - ref: 
+13) Configure the server.conf and client.conf files
+     - client ref: https://pastebin.com/ysJcvrPZ
+     - server ref: https://pastebin.com/RT8LzcH5
