@@ -34,9 +34,8 @@ WEST WIN-CLIENT NIC:
 1) Enable routing on AWS(on a single instance):
     - in AWS -> click the server -> actions -> networking -> change source/destination check -> check the box 'stop'
 
----
 
-3) in the server(enabling forwarding so that the server can act as a router):
+2) in the server(enabling forwarding so that the server can act as a router):
     - sudo apt update && sudo apt upgrade -y
     - sudo apt install netfilter-persistent iptables-persistent -y
     - nano /etc/sysctl.conf -> uncomment: net.ipv4.ip_forward=1
@@ -61,45 +60,33 @@ WEST WIN-CLIENT NIC:
         specific examples: https://pastebin.com/dLYVkAaS
       </details>
 
----
-
-4) no server(adicionar um dns forwarder para 1.1.1.1 para redirecionar unknown destination requests para la):
+3) no server(adicionar um dns forwarder para 1.1.1.1 para redirecionar unknown destination requests para la):
     - sudo apt install bind9 bind9-utils bind9-dnsutils bind9-doc
     - sudo nano /etc/bind/named.conf.options  (ref: https://pastebin.com/W4ibnbVW)
     - sudo systemctl restart bind9
 
----
-
-5) nos clientes(DNS & ROUTES):
+4) nos clientes(DNS & ROUTES):
     - sudo nano /etc/netplan/50-cloud-init.yaml  (ref: https://pastebin.com/wh3PKFrV) | (full ref: https://pastebin.com/uxBEM3mg) |  'nameservers' tem que estar na mesma linha que dhcp4-overrides
     - sudo netplan try dry (try config without making changes)
     - netplan try
     - netplan apply
     - sudo systemctl restart systemd-networkd
 
----
-
-6) enable rdp on windows(ON THE WIN-INSIDE):
+5) enable rdp on windows(ON THE WIN-INSIDE):
     - Para poder dar rdp da maquina fisica para o win-inside, tenho que dar rdp a partir do lux-inside(172.31.112.101) para o win-inside(172.31.112.102) e alterar o ip, mask, gateway e dns no win-inside
           IP              MASK          GATEWAY          DNS
     (172.31.112.101, 255.255.240.0, 172.31.112.100, 172.31.112.100)
-
----
   
-7)  if connectivity to the internet isn't working on the client(amazon linux only i think):
+6)  if connectivity to the internet isn't working on the client(amazon linux only i think):
        - use route -n to see where the traffic goes through
        - if the gateway is not the one we want, use this command:
             - sudo route del default gw 172.31.112.1(wrong gateway)
             - sudo route add default gw 172.31.112.100(gateway we want)
        - https://gist.github.com/jdmedeiros/0b6208d6e0a7cf35d31f5749be47d8a2 <- the 80-ec2.network file is the same as netplan, if the other settings didn't work, its because they are ignored and only 80-ec2.network will make changes to the routing options of the client
 
----
+7) no server(criar as nat policies): https://pastebin.com/MWLpsXu8
 
-8) no server(criar as nat policies): https://pastebin.com/MWLpsXu8
-
----
-
-9) IMPORTANT FILES & COMANDS:
+8) IMPORTANT FILES & COMANDS:
     - tcpdump -i <interface> [src/dst host/port <ip/port>] | very useful to troubleshoot connectivity issues
     - no cliente, linux amazon  /etc/sysconfig/network-scripts/ (ifcfg-eth0 && route-eth0) | outdated i believe, changes here won't take effect depending on the version
     - no cliente, ubuntu /etc/netplan/50-cloud-init.yaml
@@ -108,7 +95,6 @@ WEST WIN-CLIENT NIC:
     - no servidor iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE <- necessary if u want a client attached to an interface of the server to access the internet
     - netfilter-persistent save OR reload <- dps de fazer alguma alteracao de iptables
     - route -n OR ip route to see the routing table, useful if having problems accessing the internet with the client
-
 
 
 ## OpenVPN Integration
