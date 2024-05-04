@@ -120,6 +120,10 @@ Topology:
     VPN Client Lux West(client endpoint)
     Clients: lux-cli-east & lux-cli-west 
 
+References:
+
+    certificate stuff: https://community.openvpn.net/openvpn/wiki/EasyRSA3-OpenVPN-Howto
+    
 ---
 
 1) allow the public ip of each vpn server in the security groups of the other one
@@ -139,74 +143,57 @@ Topology:
     - descomentar e alterar para org: #set_var EASYRSA_DN     "org"
     - descomentar a cena de US, California, e alterar as cenas
   
-3) no Certificate Authority(lux-srv-east):
-    - ./easyrsa init-pki
+3) no Certificate Authority(lux-srv-east) | vars is used as a base to create the pki and ca:
+    - ./easyrsa init-pki -> Your newly created PKI dir is:* /etc/easy-rsa/pki
+    - ./easyrsa build-ca -> enter passphrase: 1234 -> CA creation complete. Your new CA certificate is at:* /etc/easy-rsa/pki/ca.crt
+  
+4) no VPN Server(lux-srv-east):
+    - ./easyrsa init-pki  | (allways run this to create the pki infrastructure if you havent already)
+    - ./easyrsa gen-req eastsrv	 nopass | (creating a request to be later sent to the CA to be signed)
+    - Private-Key and Public-Certificate-Request files created.
+    - Your files are:
+    - * req: /etc/easy-rsa/pki/reqs/eastsrv.req
+    - * key: /etc/easy-rsa/pki/private/eastsrv.key
+     
+5) no VPN Client(lux-srv-west):
+    - ./easyrsa init-pki  | (you have to run this because you only used it on the VPN Server)
     - Your newly created PKI dir is:* /etc/easy-rsa/pki
     - Using Easy-RSA configuration:* /etc/easy-rsa/vars
-      ``
-    - ./easyrsa build-ca
-      ``
-    - Using Easy-RSA 'vars' configuration:* /etc/easy-rsa/vars
-    - enter passphrase: 1234
-    - CA creation complete. Your new CA certificate is at:* /etc/easy-rsa/pki/ca.crt
 
+    - ./easyrsa gen-req westsrv	 nopass | (creating a request to be later sent to the CA to be signed)
+    - Private-Key and Public-Certificate-Request files created.
+    - Your files are:
+    - * req: /etc/easy-rsa/pki/reqs/westsrv.req
+    - * key: /etc/easy-rsa/pki/private/westsrv.key
+     
+6) copying the requests to the VPN Server(lux-srv-east) | USE SCP
+    - copy westsrv's request files(westsrv.req & westsrv.key) to eastsrv(the CA) in a new folder e.g /root/westsrv-certs
+    - copy eastsrv's request files(westsrv.req & westsrv.key) to a new folder e.g /root/eastsrv-certs
+    - if you're having permission issues: chmod 644 file AND/OR cp /path/to/file/ /dev/shm/   (/dev/shm/ is accessible by anyone)
+  
+7) no CA: importing the requests(they are stored in: /etc/easy-rsa/pki/reqs)
+    - cd /etc/easy-rsa/
+    - ./easyrsa import-req /root/eastsrv-certs/eastsrv.req eastREQ
+    - ./easyrsa import-req /root/westsrv-certs/westsrv.req westREQ
+  
+8) no CA: sign as client and server(westsrv is client | eastsrv is server)
+    - ./easyrsa sign-req client westREQ (como o westREQ e eastREQ ja estao no pki/reqs, o easyrsa vai procurar la pelo westREQ e eastREQ)
+    - Certificate created at:* /etc/easy-rsa/pki/issued/westREQ.crt
 
-
-
-
-2)
-======================= VPN Server(lust-srv-east) =========================
-./easyrsa init-pki  | (only run if this is not the CA)
-./easyrsa gen-req eastsrv	 nopass
-Private-Key and Public-Certificate-Request files created.
-Your files are:
-* req: /etc/easy-rsa/pki/reqs/eastsrv.req
-* key: /etc/easy-rsa/pki/private/eastsrv.key
-
-
-3)
-======================= VPN Client(lust-srv-west) =========================
-./easyrsa init-pki  | (only run if this is not the CA)
-Your newly created PKI dir is:* /etc/easy-rsa/pki
-Using Easy-RSA configuration:* /etc/easy-rsa/vars
-
-./easyrsa gen-req westsrv	 nopass
-Private-Key and Public-Certificate-Request files created.
-Your files are:
-* req: /etc/easy-rsa/pki/reqs/westsrv.req
-* key: /etc/easy-rsa/pki/private/westsrv.key
-
-
-4)
-copy westsrv's request files(westsrv.req & westsrv.key) to eastsrv(the CA) in a new folder e.g /root/westsrv-certs
-copy eastsrv's request files(westsrv.req & westsrv.key) to a new folder e.g /root/eastsrv-certs
-
-
-5) importing the requests(stored in: /etc/easy-rsa/pki/reqs)
-
-cd /etc/easy-rsa/
-./easyrsa import-req /root/eastsrv-certs/eastsrv.req eastREQ
-./easyrsa import-req /root/westsrv-certs/westsrv.req westREQ
-
-
-6) sign as client and server(westsrv is client | eastsrv is server)
-
-./easyrsa sign-req client westREQ (como o westREQ e eastREQ ja estao no pki/reqs, o easyrsa vai procurar la pelo westREQ e eastREQ)
-   - Certificate created at:* /etc/easy-rsa/pki/issued/westREQ.crt
-
-./easyrsa sign-req server eastREQ
-   - Certificate created at:* /etc/easy-rsa/pki/issued/eastREQ.crt
-
-
-7) generate the diffie helman pem in the server, then copy it to the client
-   ./easyrsa gen-dh
-   DH parameters of size 2048 created at:* /etc/easy-rsa/pki/dh.pem
-
-
-8) send the westREQ.crt and ca.crt to the westsrv(the westREQ.crt was generated from the .req in step 6)
-   in the westsrv(chmod 644 ca.crt && chmod 644 westREQ.crt): 
-      scp -i east-key.pem ubuntu@34.236.68.208:/dev/shm/ca.crt .
-      scp -i east-key.pem ubuntu@34.236.68.208:/dev/shm/westREQ.crt .
-      scp -i east-key.pem ubuntu@34.236.68.208:/dev/shm/dh.pem .
-      I sent the files to /root/certs
-         FILES NEEDED IN 'certs': ca.crt, westREQ.crt, westsrv.key, dh.pem
+    - ./easyrsa sign-req server eastREQ
+    - Certificate created at:* /etc/easy-rsa/pki/issued/eastREQ.crt
+  
+9) no CA: generate the diffie helman pem in the server, then copy it to the client
+    - ./easyrsa gen-dh
+    - DH parameters of size 2048 created at:* /etc/easy-rsa/pki/dh.pem
+  
+10) no CA: send the westREQ.crt and relevant files to the westsrv(the westREQ.crt was generated from the .req in step 5)
+     - in the westsrv(chmod 644 ca.crt && chmod 644 westREQ.crt): 
+     - scp -i east-key.pem ubuntu@34.236.68.208:/dev/shm/ca.crt .
+     - scp -i east-key.pem ubuntu@34.236.68.208:/dev/shm/westREQ.crt .
+     - scp -i east-key.pem ubuntu@34.236.68.208:/dev/shm/dh.pem .
+     - I sent the files to /root/certs
+     - FILES NEEDED IN 'certs': ca.crt, westREQ.crt, westsrv.key, dh.pem
+   
+11) Configure the server.conf and client.conf files
+     - ref: 
