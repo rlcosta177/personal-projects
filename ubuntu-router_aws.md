@@ -200,6 +200,6 @@ References:
      - I sent the files to /root/certs
      - FILES NEEDED IN 'certs': ca.crt, westREQ.crt, westsrv.key, dh.pem
    
-13) Configure the server.conf and client.conf files
+13) Configure the server.conf and client.conf files(incomplete, stuff starts but the clients don't get the tunnels(they can ping the tunnel endpoints though))
      - client ref: https://pastebin.com/ysJcvrPZ
      - server ref: https://pastebin.com/RT8LzcH5
