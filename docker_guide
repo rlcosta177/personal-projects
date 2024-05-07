@@ -1,5 +1,0 @@
-================== Important Commands ==================
-
-  docker ps -> displays a list of all the running docker containers on the machine
-
-  docker build [-t ]-> builds a docker image based on the Dockerfile in the project
