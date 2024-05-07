@@ -94,7 +94,7 @@ WEST WIN-CLIENT NIC:
        - https://gist.github.com/jdmedeiros/0b6208d6e0a7cf35d31f5749be47d8a2 <- the 80-ec2.network file is the same as netplan, if the other settings didn't work, its because they are ignored and only 80-ec2.network will make changes to the routing options of the client
 
 9) IMPORTANT FILES & COMANDS:
-    - tcpdump -i <interface> [src/dst host/port <ip/port>] | very useful to troubleshoot connectivity issues
+    - tcpdump -i interface [src/dst host/port ip/port] | very useful to troubleshoot connectivity issues
     - in the client, linux amazon  /etc/sysconfig/network-scripts/ (ifcfg-eth0 && route-eth0) | outdated i believe, changes here won't take effect depending on the version
     - in the client, ubuntu /etc/netplan/50-cloud-init.yaml
     - in the server, ubuntu&linux amazon /etc/sysctl.conf (uncomment 'net.ipv4.ip_forward=1')
@@ -212,7 +212,7 @@ References:
         - 'local' should be either 0.0.0.0 or its private IP(the public IP isn't recognized as the machine's IP)
         - 'ifconfig' is used to give IPs to the tunnel's endpoints(never use the assigned IPs anywhere else)
         - 'server' and 'client-to-client' are used in a remote access vpn, don't mess with it
-        - push "route <ip> <mask>" is used to advertise our networks to the other VPN Server(do it in the VPN Server and VPN Client)
+        - push "route IP MASK" is used to advertise our networks to the other VPN Server(do it in the VPN Server and VPN Client)
         - 'tls-server' is used to specify that this is the server
       
      - client.conf notes:
