@@ -13,3 +13,5 @@
 4) Other possible problems & fixes:
     - Ownership and Permissions -> ls -l /media/user/68948A62948A331C
     - Filesystem Errors -> use fsck to check for errors(unmount the partition first to prevent data corruption)
+  
+5) If none of that works.. just format it, w/e
