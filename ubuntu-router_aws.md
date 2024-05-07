@@ -96,8 +96,14 @@ WEST WIN-CLIENT NIC:
     - netfilter-persistent save OR reload <- dps de fazer alguma alteracao de iptables
     - route -n OR ip route to see the routing table, useful if having problems accessing the internet with the client
 
+---
 
-## OpenVPN Integration
+## OpenVPN Integration -> Site-to-Site
+
+Important!:
+
+    In Site-to-Site VPNs, the clients aren't aware of the vpn, so they shouldn't be able to see the tunnel with 'ifconfig' and 'ip a'
+    They should however, be able to ping the machines on the other side of the VPN as well as the Tunnel IPs(in this case: 192.168.1.100/101)
 
 Topology:
 
@@ -114,8 +120,6 @@ References:
 ---
 
 1) allow the public ip of each vpn server in the security groups of the other one
-
----
 
 2) nos dois servers:
     - sudo apt install openvpn easy-rsa -y
@@ -171,8 +175,8 @@ References:
     - Certificate created at:* /etc/easy-rsa/pki/issued/eastREQ.crt
   
 9) no CA: generate the diffie helman pem in the server, then copy it to the client
-    - ./easyrsa gen-dh
-    - DH parameters of size 2048 created at:* /etc/easy-rsa/pki/dh.pem
+    - openssl dhparam -out dh2048.pem 2048
+    - the file is created at the current folder you are at
   
 10) no lux-srv-east: generate the ta.key
      - openvpn --genkey secret ta.key
@@ -186,6 +190,24 @@ References:
      - I sent the files to /root/certs
      - FILES NEEDED IN 'certs': ca.crt, westREQ.crt, westsrv.key, dh.pem
    
-13) Configure the server.conf and client.conf files(incomplete, stuff starts but the clients don't get the tunnels(they can ping the tunnel endpoints though))
+13) Configure the server.conf and client.conf files:
      - client ref: https://pastebin.com/ysJcvrPZ
      - server ref: https://pastebin.com/RT8LzcH5
+   
+     - server.conf notes:
+        - 'local' should be either 0.0.0.0 or its private IP(the public IP isn't recognized as the machine's IP)
+        - 'ifconfig' is used to give IPs to the tunnel's endpoints(never use the assigned IPs anywhere else)
+        - 'server' and 'client-to-client' are used in a remote access vpn, don't mess with it
+        - push "route <ip> <mask>" is used to advertise our networks to the other VPN Server(do it in the VPN Server and VPN Client)
+        - 'tls-server' is used to specify that this is the server, duhh
+      
+     - client.conf notes:
+        - 'local' 0.0.0.0 or machine's private ip(same stuff)
+        - 'tls-client' to specify that this is the client
+        
+   
+14) Test client connectivity:
+     - on east client: ping 172.31.112.101
+     - on west client: ping 172.31.96.101
+
+     - if there is a TLS handshake error, the dh2048.pem(diffiehellman) or ta.key could be wrong. Never copy the contents of the certs and keys, allways use SCP to transfer the files from one machine to another, otherwise you'll probably get some errors such as this.
