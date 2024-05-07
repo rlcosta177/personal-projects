@@ -2,8 +2,8 @@
 
 Topology:
 
-    us-east-1 -> [1 server(router: lux-server-east), 1 dmz(webserver: lux-dmz-east)]          | 172.31.96.0/20   | lux-srv is the site-to-site server(local)
-    us-west-2 -> [1 server(router: lux-server-west), 2 clients(lux-cli-west & win-cli-west)]  | 172.31.112.0/20  | lux-srv is the site-to-site client(remote)
+    us-east-1 -> [1 server(lux-server-east), 1 client(lux-cli-east)]  | 172.31.96.0/20   | lux-srv is the site-to-site server(local)
+    us-west-2 -> [1 server(lux-server-west), 1 client(lux-cli-west)]  | 172.31.112.0/20  | lux-srv is the site-to-site client(remote)
 
 
 ---
@@ -28,6 +28,10 @@ WEST LUX-CLIENT NIC:
 WEST WIN-CLIENT NIC:
     
     172.31.112.102
+
+---
+
+## Routing only
 
 ---
 
@@ -60,12 +64,12 @@ WEST WIN-CLIENT NIC:
         specific examples: https://pastebin.com/dLYVkAaS
       </details>
 
-3) no server(adicionar um dns forwarder para 1.1.1.1 para redirecionar unknown destination requests para la):
+3) in the server(add a dns forwarder to 1.1.1.1 to redirect unknown requests the local dns doesn't know to that IP):
     - sudo apt install bind9 bind9-utils bind9-dnsutils bind9-doc
     - sudo nano /etc/bind/named.conf.options  (ref: https://pastebin.com/W4ibnbVW)
     - sudo systemctl restart bind9
 
-4) nos clientes(DNS & ROUTES):
+4) in the clients(DNS & ROUTES):
     - sudo nano /etc/netplan/50-cloud-init.yaml  (ref: https://pastebin.com/wh3PKFrV) | (full ref: https://pastebin.com/uxBEM3mg) |  'nameservers' tem que estar na mesma linha que dhcp4-overrides
     - sudo netplan try dry (try config without making changes)
     - netplan try
@@ -84,16 +88,18 @@ WEST WIN-CLIENT NIC:
             - sudo route add default gw 172.31.112.100(gateway we want)
        - https://gist.github.com/jdmedeiros/0b6208d6e0a7cf35d31f5749be47d8a2 <- the 80-ec2.network file is the same as netplan, if the other settings didn't work, its because they are ignored and only 80-ec2.network will make changes to the routing options of the client
 
-7) no server(criar as nat policies): https://pastebin.com/MWLpsXu8
+7) in the server(create the nat policies):
+    - only do this if you want to do port forwarding(redirect requests to another ip based on the port)
+    - https://pastebin.com/MWLpsXu8
 
-8) IMPORTANT FILES & COMANDS:
+9) IMPORTANT FILES & COMANDS:
     - tcpdump -i <interface> [src/dst host/port <ip/port>] | very useful to troubleshoot connectivity issues
-    - no cliente, linux amazon  /etc/sysconfig/network-scripts/ (ifcfg-eth0 && route-eth0) | outdated i believe, changes here won't take effect depending on the version
-    - no cliente, ubuntu /etc/netplan/50-cloud-init.yaml
-    - no servidor, ubuntu&linux amazon /etc/sysctl.conf (descomentar net.ipv4.ip_forward=1)
-    - no servidor, usar sysctl -p depois de alterar /etc/sysctl.conf
-    - no servidor iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE <- necessary if u want a client attached to an interface of the server to access the internet
-    - netfilter-persistent save OR reload <- dps de fazer alguma alteracao de iptables
+    - in the client, linux amazon  /etc/sysconfig/network-scripts/ (ifcfg-eth0 && route-eth0) | outdated i believe, changes here won't take effect depending on the version
+    - in the client, ubuntu /etc/netplan/50-cloud-init.yaml
+    - in the server, ubuntu&linux amazon /etc/sysctl.conf (uncomment 'net.ipv4.ip_forward=1')
+    - in the server, run 'sysctl -p' after changing /etc/sysctl.conf
+    - in the server iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE <- necessary if u want a client attached to an interface of the server to access the internet
+    - netfilter-persistent save OR reload <- after doing any iptables change(save if in the cli | reload if in the rules.v4 file)
     - route -n OR ip route to see the routing table, useful if having problems accessing the internet with the client
 
 ---
@@ -104,6 +110,9 @@ Important!:
 
     In Site-to-Site VPNs, the clients aren't aware of the vpn, so they shouldn't be able to see the tunnel with 'ifconfig' and 'ip a'
     They should however, be able to ping the machines on the other side of the VPN as well as the Tunnel IPs(in this case: 192.168.1.100/101)
+    Change the server&client.conf files according to your network topology:
+        172.31.96.0/24 for east network
+        172.31.112.0/20 for west network
 
 Topology:
 
@@ -219,7 +228,7 @@ References:
 
 ---
 
-## OpenVPN Integration -> Site-to-Site
+## OpenVPN Integration -> Remote Acces(haven't done yet)
 
 Important!:
 
