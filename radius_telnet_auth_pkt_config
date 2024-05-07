@@ -24,4 +24,4 @@ switch - 192.168.0.253(vlan 1)
        radius-server host 192.168.0.254(the AAA server ip) key Passw0rd(probably the same as the one set in the radius server)
        exit
        aaa authentication login default group radius local
-       DO WR PLS DONT FORGET DUMBASS
+       DO WR pls
