@@ -39,7 +39,7 @@
   - new A or AAAA record -> www -> 172.31.144.101
 
 9) web certificates no DMZ
-   - tools -> iis -> filter - server certificates -> double click -> create certificate request -> random giberish -> sempre pra frente -> especificar um diretorio que quizeres
+   - tools -> iis -> filter - server certificates -> double click -> create certificate request -> random giberish -> sempre pra frente -> especificar um diretorio que quiseres
 
    - no windows server:
        - certutil -setreg policy\EditFlags +EDITF_ATTRIBUTESUBJECTALTNAME2
