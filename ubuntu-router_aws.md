@@ -77,21 +77,22 @@ WEST WIN-CLIENT NIC:
     - netplan apply
     - sudo systemctl restart systemd-networkd
 
-5) enable rdp on windows(ON THE WIN-INSIDE):
+5) enable rdp on win-inside(not in the topology, ignore):
+   ---
     - Para poder dar rdp da maquina fisica para o win-inside, tenho que dar rdp a partir do lux-inside(172.31.112.101) para o win-inside(172.31.112.102) e alterar o ip, mask, gateway e dns no win-inside
           IP              MASK          GATEWAY          DNS
     (172.31.112.101, 255.255.240.0, 172.31.112.100, 172.31.112.100)
-  
-6)  if connectivity to the internet isn't working on the client(amazon linux only i think):
+
+7) in the server(create the nat policies):
+    - only do this if you want to do port forwarding(redirect requests to another ip based on the port)
+    - https://pastebin.com/MWLpsXu8
+
+8)  if connectivity to the internet isn't working on the client(amazon linux only i think):
        - use route -n to see where the traffic goes through
        - if the gateway is not the one we want, use this command:
             - sudo route del default gw 172.31.112.1(wrong gateway)
             - sudo route add default gw 172.31.112.100(gateway we want)
        - https://gist.github.com/jdmedeiros/0b6208d6e0a7cf35d31f5749be47d8a2 <- the 80-ec2.network file is the same as netplan, if the other settings didn't work, its because they are ignored and only 80-ec2.network will make changes to the routing options of the client
-
-7) in the server(create the nat policies):
-    - only do this if you want to do port forwarding(redirect requests to another ip based on the port)
-    - https://pastebin.com/MWLpsXu8
 
 9) IMPORTANT FILES & COMANDS:
     - tcpdump -i <interface> [src/dst host/port <ip/port>] | very useful to troubleshoot connectivity issues
