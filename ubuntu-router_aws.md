@@ -78,7 +78,6 @@ WEST WIN-CLIENT NIC:
     - sudo systemctl restart systemd-networkd
 
 5) enable rdp on win-inside(not in the topology, ignore):
-   ---
     - Para poder dar rdp da maquina fisica para o win-inside, tenho que dar rdp a partir do lux-inside(172.31.112.101) para o win-inside(172.31.112.102) e alterar o ip, mask, gateway e dns no win-inside
           IP              MASK          GATEWAY          DNS
     (172.31.112.101, 255.255.240.0, 172.31.112.100, 172.31.112.100)
