@@ -32,7 +32,7 @@ WEST WIN-CLIENT NIC:
 
 ---
 
-## Routing only
+## Setting up Routing
 
 ---
 
@@ -105,7 +105,7 @@ WEST WIN-CLIENT NIC:
 
 ---
 
-## OpenVPN Integration -> Site-to-Site
+## OpenVPN Integration | Site-to-Site
 
 Important!:
 
@@ -133,36 +133,36 @@ References:
 1) allow the public ip of each vpn server in the security groups of the other one
 
 2) on both servers:
-    - sudo apt install openvpn easy-rsa -y
-    - cd /etc/openvpn/
-    - cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf .
-    - cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf .
-    - cd /etc/
-    - cp -R /usr/share/easy-rsa/ . 
-    - cd /etc/easy-rsa/
-    - cp vars.example vars
-    - nano vars
+    - `sudo apt install openvpn easy-rsa -y`
+    - `cd /etc/openvpn/`
+    - `cp /usr/share/doc/openvpn/examples/sample-config-files/client.conf .`
+    - `cp /usr/share/doc/openvpn/examples/sample-config-files/server.conf .`
+    - `cd /etc/`
+    - `cp -R /usr/share/easy-rsa/ . `
+    - `cd /etc/easy-rsa/`
+    - `cp vars.example vars`
+    - `nano vars`
     - descomentar e alterar para org: #set_var EASYRSA_DN     "org"
     - descomentar a cena de US, California, e alterar as cenas
   
 3) in the Certificate Authority(lux-srv-east) | vars is used as a base to create the pki and ca:
-    - ./easyrsa init-pki -> Your newly created PKI dir is:* /etc/easy-rsa/pki
-    - ./easyrsa build-ca -> enter passphrase: 1234 -> CA creation complete. Your new CA certificate is at:* /etc/easy-rsa/pki/ca.crt
+    - `./easyrsa init-pki` -> Your newly created PKI dir is:* /etc/easy-rsa/pki
+    - `./easyrsa build-ca` -> enter passphrase: 1234 -> CA creation complete. Your new CA certificate is at:* /etc/easy-rsa/pki/ca.crt
   
 4) in the VPN Server(lux-srv-east):
-    - ./easyrsa init-pki  | (allways run this to create the pki infrastructure if you havent already)
-    - ./easyrsa gen-req eastsrv	 nopass | (creating a request to be later sent to the CA to be signed)
+    - `./easyrsa init-pki`  | (allways run this to create the pki infrastructure if you havent already)
+    - `./easyrsa gen-req eastsrv	 nopass` | (creating a request to be later sent to the CA to be signed)
     - Private-Key and Public-Certificate-Request files created.
     - Your files are:
     - * req: /etc/easy-rsa/pki/reqs/eastsrv.req
     - * key: /etc/easy-rsa/pki/private/eastsrv.key
      
 5) in the VPN Client(lux-srv-west):
-    - ./easyrsa init-pki
+    - `./easyrsa init-pki`
     - Your newly created PKI dir is:* /etc/easy-rsa/pki
     - Using Easy-RSA configuration:* /etc/easy-rsa/vars
 
-    - ./easyrsa gen-req westsrv	 nopass | (creating a request to be later sent to the CA to be signed)
+    - `./easyrsa gen-req westsrv	 nopass` | (creating a request to be later sent to the CA to be signed)
     - Private-Key and Public-Certificate-Request files created.
     - Your files are:
     - * req: /etc/easy-rsa/pki/reqs/westsrv.req
@@ -174,34 +174,34 @@ References:
     - if you're having permission issues: chmod 644 file OR cp /path/to/file/ /dev/shm/   (/dev/shm/ is accessible by anyone)
 
 7) in the CA(lux-srv-east): importing the requests(they will be stored in: /etc/easy-rsa/pki/reqs)
-    - cd /etc/easy-rsa/
-    - ./easyrsa import-req /root/eastsrv-certs/eastsrv.req eastREQ
-    - ./easyrsa import-req /root/westsrv-certs/westsrv.req westREQ
+    - `cd /etc/easy-rsa/`
+    - `./easyrsa import-req /root/eastsrv-certs/eastsrv.req eastREQ`
+    - `./easyrsa import-req /root/westsrv-certs/westsrv.req westREQ`
   
 8) in the CA(lux-srv-east): sign as client and server(westsrv is client | eastsrv is server)
-    - ./easyrsa sign-req client westREQ (because westREQ e eastREQ are aleady in 'pki/reqs', easyrsa will search there for westREQ and eastREQ)
+    - `./easyrsa sign-req client westREQ` (because westREQ e eastREQ are aleady in 'pki/reqs', easyrsa will search there for westREQ and eastREQ)
     - Certificate created at:* /etc/easy-rsa/pki/issued/westREQ.crt
 
-    - ./easyrsa sign-req server eastREQ
+    - `./easyrsa sign-req server eastREQ`
     - Certificate created at:* /etc/easy-rsa/pki/issued/eastREQ.crt
   
 9) in the CA: generate the diffie helman pem in the server, then copy it to the client
-    - openssl dhparam -out dh2048.pem 2048
+    - `openssl dhparam -out dh2048.pem 2048`
     - the file is created at the current folder you are at
     - dh2048.pem should be the same in both servers
   
 10) in the lux-srv-east: generate the ta.key
-     - openvpn --genkey secret ta.key
+     - `openvpn --genkey secret ta.key`
      - ta.key should be the same in both servers
    
 11) Copy all the certs and keys to /dev/shm/ to make them easier to transfer
   
 12) in the CA: send the westREQ.crt and relevant files to the westsrv(the westREQ.crt was generated from the .req file in step 5)
      - in the lux-west-srv:
-     - scp -i east-key.pem ubuntu@34.236.68.208:/dev/shm/ca.crt .
-     - scp -i east-key.pem ubuntu@34.236.68.208:/dev/shm/westREQ.crt .
-     - scp -i east-key.pem ubuntu@34.236.68.208:/dev/shm/dh2048.pem .
-     - scp -i east-key.pem ubuntu@34.236.68.208:/dev/shm/ta.key .
+     - `scp -i east-key.pem ubuntu@34.236.68.208:/dev/shm/ca.crt .`
+     - `scp -i east-key.pem ubuntu@34.236.68.208:/dev/shm/westREQ.crt .`
+     - `scp -i east-key.pem ubuntu@34.236.68.208:/dev/shm/dh2048.pem .`
+     - `scp -i east-key.pem ubuntu@34.236.68.208:/dev/shm/ta.key .`
      - I sent the files to a new folder '/root/certs'
      - FILES NEEDED IN 'certs': ca.crt, westREQ.crt, westsrv.key, dh.pem, ta.key
    
@@ -222,15 +222,15 @@ References:
         
    
 15) Test client connectivity:
-     - on east client: ping 172.31.112.101
-     - on west client: ping 172.31.96.101
+     - on east client: `ping 172.31.112.101`
+     - on west client: `ping 172.31.96.101`
 
      - if there is a TLS handshake error, the dh2048.pem(diffiehellman) or ta.key could be wrong. Never copy the contents of the certs and keys, allways use SCP to transfer the files from one machine to another, otherwise you'll probably get some errors such as this.
 
 
 ---
 
-## OpenVPN Integration -> Remote Acces(haven't done yet)
+## OpenVPN Integration | Remote Acces(haven't done yet)
 
 Important!:
 
