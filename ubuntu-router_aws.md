@@ -111,9 +111,10 @@ Important!:
 
     In Site-to-Site VPNs, the clients aren't aware of the vpn, so they shouldn't be able to see the tunnel with 'ifconfig' and 'ip a'
     They should however, be able to ping the machines on the other side of the VPN as well as the Tunnel IPs(in this case: 192.168.1.100/101)
-    Change the server&client.conf files according to your network topology:
+    Change the server&client.conf files according to your network topology(below are the networks i created):
         172.31.96.0/24 for east network
         172.31.112.0/20 for west network
+    Allways save the path of the generated certs and keys in a file so that you can remember
 
 Topology:
 
