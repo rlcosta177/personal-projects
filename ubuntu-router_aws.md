@@ -41,13 +41,13 @@ WEST WIN-CLIENT NIC:
 
 
 2) in the server(enabling forwarding so that the server can act as a router):
-    - sudo apt update && sudo apt upgrade -y
-    - sudo apt install netfilter-persistent iptables-persistent -y
-    - nano /etc/sysctl.conf -> uncomment: net.ipv4.ip_forward=1
-    - iptables -t nat -A POSTROUTING -o ens5 -j MASQUERADE (routes any incoming traffic(from clients) to the internet, through if ens5)
-    - netfilter-persistent save
-    - sysctl -p <- applies the changes 
-    - systemctl restart iptables
+    - `sudo apt update && sudo apt upgrade -y`
+    - `sudo apt install netfilter-persistent iptables-persistent -y`
+    - `nano /etc/sysctl.conf` -> uncomment: net.ipv4.ip_forward=1
+    - `iptables -t nat -A POSTROUTING -o ens5 -j MASQUERADE` (routes any incoming traffic(from clients) to the internet, through if ens5)
+    - `netfilter-persistent save`
+    - `sysctl -p <- applies the changes` 
+    - `systemctl restart iptables`
 
     <details>
       <summary>reference for prerouting, input, forward, output, postrouting</summary>
@@ -66,42 +66,40 @@ WEST WIN-CLIENT NIC:
       </details>
 
 3) in the server(add a dns forwarder to 1.1.1.1 to redirect unknown requests the local dns doesn't know to that IP):
-    - sudo apt install bind9 bind9-utils bind9-dnsutils bind9-doc
-    - sudo nano /etc/bind/named.conf.options  (ref: https://pastebin.com/W4ibnbVW)
-    - sudo systemctl restart bind9
+    - `sudo apt install bind9 bind9-utils bind9-dnsutils bind9-doc`
+    - `sudo nano /etc/bind/named.conf.options`  (ref: https://pastebin.com/W4ibnbVW)
+    - `sudo systemctl restart bind9`
 
 4) in the clients(DNS & ROUTES):
-    - sudo nano /etc/netplan/50-cloud-init.yaml  (ref: https://pastebin.com/wh3PKFrV) | (full ref: https://pastebin.com/uxBEM3mg) |  'nameservers' tem que estar na mesma linha que dhcp4-overrides
-    - sudo netplan try dry (try config without making changes)
-    - netplan try
-    - netplan apply
-    - sudo systemctl restart systemd-networkd
+    - `sudo nano /etc/netplan/50-cloud-init.yaml`  (ref: https://pastebin.com/wh3PKFrV) | (full ref: https://pastebin.com/uxBEM3mg) |  'nameservers' tem que estar na mesma linha que dhcp4-overrides
+    - `sudo netplan try dry` (try config without making changes)
+    - `netplan try`
+    - `netplan apply`
+    - `sudo systemctl restart systemd-networkd`
 
-5) enable rdp on win-inside(not in the topology, ignore):
+5) enable rdp on win-inside:
     - Para poder dar rdp da maquina fisica para o win-inside, tenho que dar rdp a partir do lux-inside(172.31.112.101) para o win-inside(172.31.112.102) e alterar o ip, mask, gateway e dns no win-inside
-          IP              MASK          GATEWAY          DNS
-    (172.31.112.101, 255.255.240.0, 172.31.112.100, 172.31.112.100)
 
 7) in the server(create the nat policies):
     - only do this if you want to do port forwarding(redirect requests to another ip based on the port)
     - https://pastebin.com/MWLpsXu8
 
 8)  if connectivity to the internet isn't working on the client(amazon linux only i think):
-       - use route -n to see where the traffic goes through
+       - use `route -n` to see where the traffic goes through
        - if the gateway is not the one we want, use this command:
-            - sudo route del default gw 172.31.112.1(wrong gateway)
-            - sudo route add default gw 172.31.112.100(gateway we want)
+            - `sudo route del default gw 172.31.112.1`(wrong gateway)
+            - `sudo route add default gw 172.31.112.100`(gateway we want)
        - https://gist.github.com/jdmedeiros/0b6208d6e0a7cf35d31f5749be47d8a2 <- the 80-ec2.network file is the same as netplan, if the other settings didn't work, its because they are ignored and only 80-ec2.network will make changes to the routing options of the client
 
 9) IMPORTANT FILES & COMANDS:
-    - tcpdump -i interface [src/dst host/port ip/port] | very useful to troubleshoot connectivity issues
+    - `tcpdump -i interface [src/dst host/port ip/port]` | very useful to troubleshoot connectivity issues
     - in the client, linux amazon  /etc/sysconfig/network-scripts/ (ifcfg-eth0 && route-eth0) | outdated i believe, changes here won't take effect depending on the version
     - in the client, ubuntu /etc/netplan/50-cloud-init.yaml
     - in the server, ubuntu&linux amazon /etc/sysctl.conf (uncomment 'net.ipv4.ip_forward=1')
-    - in the server, run 'sysctl -p' after changing /etc/sysctl.conf
-    - in the server iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE <- necessary if u want a client attached to an interface of the server to access the internet
-    - netfilter-persistent save OR reload <- after doing any iptables change(save if in the cli | reload if in the rules.v4 file)
-    - route -n OR ip route to see the routing table, useful if having problems accessing the internet with the client
+    - in the server, run `sysctl -p` after changing /etc/sysctl.conf
+    - in the server `iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE` <- necessary if u want a client attached to an interface of the server to access the internet
+    - `netfilter-persistent save` OR reload <- after doing any iptables change(save if in the cli | reload if in the rules.v4 file)
+    - `route -n` OR `ip route` to see the routing table, useful if having problems accessing the internet with the client
 
 ---
 
@@ -142,8 +140,8 @@ References:
     - `cd /etc/easy-rsa/`
     - `cp vars.example vars`
     - `nano vars`
-    - descomentar e alterar para org: #set_var EASYRSA_DN     "org"
-    - descomentar a cena de US, California, e alterar as cenas
+    - #set_var EASYRSA_DN     "org" (uncomment and change it to 'org')
+    - uncomment the US, California, etc.. and change it to your liking (unnecessary, but doesnt hurt to do)
   
 3) in the Certificate Authority(lux-srv-east) | vars is used as a base to create the pki and ca:
     - `./easyrsa init-pki` -> Your newly created PKI dir is:* /etc/easy-rsa/pki
