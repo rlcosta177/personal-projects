@@ -196,10 +196,10 @@ References:
   
 12) in the CA: send the westREQ.crt and relevant files to the westsrv(the westREQ.crt was generated from the .req file in step 5)
      - in the lux-west-srv:
-     - `scp -i east-key.pem ubuntu@34.236.68.208:/dev/shm/ca.crt .`
-     - `scp -i east-key.pem ubuntu@34.236.68.208:/dev/shm/westREQ.crt .`
-     - `scp -i east-key.pem ubuntu@34.236.68.208:/dev/shm/dh2048.pem .`
-     - `scp -i east-key.pem ubuntu@34.236.68.208:/dev/shm/ta.key .`
+     - `scp -i east-key.pem ubuntu@<CA_IP(lux-east-srv)>:/dev/shm/ca.crt .`
+     - `scp -i east-key.pem ubuntu@<CA_IP(lux-east-srv)>:/dev/shm/westREQ.crt .`
+     - `scp -i east-key.pem ubuntu@<CA_IP(lux-east-srv)>:/dev/shm/dh2048.pem .`
+     - `scp -i east-key.pem ubuntu@<CA_IP(lux-east-srv)>:/dev/shm/ta.key .`
      - I sent the files to a new folder '/root/certs'
      - FILES NEEDED IN 'certs': ca.crt, westREQ.crt, westsrv.key, dh.pem, ta.key
    
