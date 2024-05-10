@@ -223,7 +223,7 @@ References:
      - on east client: `ping 172.31.112.101`
      - on west client: `ping 172.31.96.101`
 
-     - if there is a TLS handshake error, the dh2048.pem(diffiehellman) or ta.key could be wrong. Never copy the contents of the certs and keys, allways use SCP to transfer the files from one machine to another, otherwise you'll probably get some errors such as this.
+     - if there is a TLS handshake error, the ta.key(handshake key) could be wrong. Never copy the contents of the certs and keys, allways use SCP to transfer the files from one machine to another, otherwise you'll probably get some errors such as this.
 
 
 ---
