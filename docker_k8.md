@@ -49,3 +49,8 @@ Nginx:
   - openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ssl/nginx.key -out ssl/nginx.crt
   - docker run -d -p 443:443 --name my-https-container my-https-site
   - docker build -t my-https-site .
+
+
+
+flask project:
+  - https://docs.docker.com/compose/gettingstarted/#step-1-set-up
