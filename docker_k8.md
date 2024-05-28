@@ -9,7 +9,7 @@ Nginx:
   - mkdir website
   - nano website/index.html (put something in the index.html)
   - nano nginx.conf
-    ``
+    
       worker_processes 1;
 
       events {
@@ -31,10 +31,9 @@ Nginx:
       }
   }
 
-``
   - nano Dockerfile
     
-      ``
+      
     
       FROM nginx:latest
 
@@ -45,7 +44,7 @@ Nginx:
 
       EXPOSE 443
     
-      ``
+      
 
   - openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ssl/nginx.key -out ssl/nginx.crt
   - docker run -d -p 443:443 --name my-https-container my-https-site
