@@ -54,3 +54,17 @@ Nginx:
 
 flask project:
   - https://docs.docker.com/compose/gettingstarted/#step-1-set-up
+
+
+
+remove all:
+  - docker system df -v
+  - docker system prune -a
+  - docker image prune
+  - docker container prune
+  - docker volume prune
+  - docker system df -v
+
+
+publish docker container to docker hub:
+  - https://www.geeksforgeeks.org/docker-publishing-images-to-docker-hub/
