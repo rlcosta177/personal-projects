@@ -1,4 +1,4 @@
-# general guide for AD #
+# Active Directory Notes #
 
 ## references ----------------------------------------------------------------------
 
@@ -15,7 +15,7 @@ reference.1) https://www.youtube.com/watch?v=Q4I2lKHboDw&list=WL&index=3
 
 1 Instalar Active Directory Domain Services
 	- after installing the AD, click on the flag -> 'Promote this server to a domain controller'
-	- create a forest, not having created a domain beforehand(this creates a domain as well, and its easier and faster than the jackdaniels way :DD)
+	- create a forest, not having created a domain beforehand
 
 2.1 Promote Server to Domain Controller:
 	Add new forest -> ciber.com -> Pass: Passw0rd -> next em tudo e Install. O Win Server vai fechar, abre algum tempo depois.
@@ -137,6 +137,3 @@ usei: 172.31.121.101 | 255.255.255.0 | 172.31.16.100 | 172.31.121.100
     Reverse Loopup Zone:
      - Criar uma nova zona -> next sempre -> Introduzir o IP privado até ao 3ºbyte(no Network ID, ex: 172.31.47)
      - Ao criar um novo PTR: Introduzir o Private IP address e encontrar a pasta root do site(criada no disco C:/) escolhendo o ficheiro do tipo (A) | Isto é também usado para criar stmp(mail system)
-
-
- !!!(Se não foi feito antes no ponto 10)Aceder remotamente ao Windows11-A a partir da maquina original (IP ex: 172.31.96.101) PARA PERMITIR ACESSO A NOVOS USERS
