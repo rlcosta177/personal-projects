@@ -95,6 +95,6 @@ docker image prune
 docker container prune
 docker volume prune
 docker system df -v
-
+```
 
 ## Docker Swarm re-up cycle 
