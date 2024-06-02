@@ -1,3 +1,5 @@
+# General Notes for Docker, DockerSwarm and Kubernetes(k8 latter on)
+
 ## Installation
 
 - [Docker Engine Installation on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
@@ -6,7 +8,7 @@
 
 - [Managing Docker as a Non-Root User](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user)
 
-## Nginx
+## Nginx with self signed Certificates
 
 1. Create a directory for the website:
 
@@ -65,19 +67,19 @@
 5. Generate SSL certificates:
 
     ```bash
-    openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ssl/nginx.key -out ssl/nginx.crt
+    openssl req -x509 -nodes -newkey rsa:2048 -keyout ssl/nginx.key -out ssl/nginx.crt
     ```
 
 6. Build the Docker image:
 
     ```bash
-    docker build -t my-https-site .
+    docker build -t nginx-webiste .
     ```
 
 7. Run the Docker container:
 
     ```bash
-    docker run -d -p 443:443 --name my-https-container my-https-site
+    docker run -d -p 443:5000 --name nginx-webiste-container nginx-webiste
     ```
 
 ## Flask Project
@@ -93,3 +95,6 @@ docker image prune
 docker container prune
 docker volume prune
 docker system df -v
+
+
+## Docker Swarm re-up cycle 
