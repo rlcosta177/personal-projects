@@ -97,10 +97,6 @@ docker volume prune
 docker system df -v
 ```
 
-## Docker Swarm re-up cycle 
-
-
-
 ## Docker publish to docker hub
 
 - https://www.geeksforgeeks.org/docker-publishing-images-to-docker-hub/
