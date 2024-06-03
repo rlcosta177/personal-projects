@@ -101,6 +101,11 @@ docker system df -v
 
 - https://www.geeksforgeeks.org/docker-publishing-images-to-docker-hub/
 
+## Add nodes to dockerswarm
+
+- https://docs.docker.com/engine/swarm/swarm-tutorial/create-swarm/
+- 
+
 ## Build docker service(swarm)
 
 ```bash
