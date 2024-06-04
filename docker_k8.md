@@ -121,3 +121,8 @@ docker build -t username/repo-name .
 docker push username/repo-name
 docker service update --image username/repo-name service-name
 ```
+
+
+## Useful commands
+
+- sudo python3 -m pip install -r requirements.txt
