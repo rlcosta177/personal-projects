@@ -1,19 +1,26 @@
+```bash
 sudo yum update && sudo yum upgrade -y
 sudo yum group install 'Development Tools' -y
+```
 
+## 0-install-kubernetes-tools FIX 
+```bash
 sudo bash -c 'echo "export PATH=$PATH:/usr/local/go/bin:/home/ec2-user/go/bin" >> /etc/profile'
 source /etc/profile
+go install github.com/cloudflare/cfssl/cmd/cfssl@latest
+go install github.com/cloudflare/cfssl/cmd/cfssljson@latest
+```
 
-create .aws/credentials && .aws/config
+## Create .aws/credentials && .aws/config
 
-config file
+###config file
 ```bash
 [default]
 region = us-east-1
 output = json
 ```
 
-credentials file
+###credentials file
 ```bash
 [default]
 aws_access_key_id=
