@@ -126,3 +126,13 @@ docker service update --image username/repo-name service-name
 ## Useful commands
 
 - sudo python3 -m pip install -r requirements.txt
+
+
+## Push existing repository
+
+```bash
+Push an existing repository:
+git remote add origin git@github.com:jdmedeiros/amzn2-soc2.git
+git branch -M main
+git push -u origin main
+```
