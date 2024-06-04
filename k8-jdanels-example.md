@@ -1,3 +1,4 @@
+## Update instance and install the development tools
 ```bash
 sudo yum update && sudo yum upgrade -y
 sudo yum group install 'Development Tools' -y
