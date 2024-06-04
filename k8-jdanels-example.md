@@ -13,14 +13,14 @@ go install github.com/cloudflare/cfssl/cmd/cfssljson@latest
 
 ## Create .aws/credentials && .aws/config
 
--config file
+- config file
 ```bash
 [default]
 region = us-east-1
 output = json
 ```
 
--credentials file
+- credentials file
 ```bash
 [default]
 aws_access_key_id=
