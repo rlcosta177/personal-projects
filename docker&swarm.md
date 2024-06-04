@@ -1,12 +1,35 @@
-# General Notes for Docker, DockerSwarm and Kubernetes(k8 latter on)
+# General Notes for Docker and DockerSwarm
 
 ## Installation
 
 - [Docker Engine Installation on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
 
+```bash
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+
+
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
 ### Run Docker as Non-Root User
 
 - [Managing Docker as a Non-Root User](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user)
+
+```bash
+sudo groupadd docker
+sudo usermod -aG docker $USER (run this as non-root)
+newgrp docker
+```
 
 ## Nginx with self signed Certificates
 
@@ -63,20 +86,31 @@
 
     EXPOSE 443
     ```
+    example:
+            project-directory/
+        ├── Dockerfile
+        ├── index.html
+        ├── nginx.conf
+        └── folder/
+            └── ssl/
+                ├── cert.pem
+                └── key.pem
 
-5. Generate SSL certificates:
+           COPY folder/ssl /etc/nginx/ssl
+
+6. Generate SSL certificates:
 
     ```bash
     openssl req -x509 -nodes -newkey rsa:2048 -keyout ssl/nginx.key -out ssl/nginx.crt
     ```
 
-6. Build the Docker image:
+7. Build the Docker image:
 
     ```bash
     docker build -t nginx-webiste .
     ```
 
-7. Run the Docker container:
+8. Run the Docker container:
 
     ```bash
     docker run -d -p 443:5000 --name nginx-webiste-container nginx-webiste
