@@ -85,8 +85,9 @@ newgrp docker
     COPY ssl /etc/nginx/ssl
 
     EXPOSE 443
-    ```
-    example:
+   ```
+   ```bash
+     example:
             project-directory/
         ├── Dockerfile
         ├── index.html
@@ -96,8 +97,9 @@ newgrp docker
                 ├── cert.pem
                 └── key.pem
 
-           COPY folder/ssl /etc/nginx/ssl
-
+   COPY folder/ssl /etc/nginx/ssl
+   ```
+   
 6. Generate SSL certificates:
 
     ```bash
