@@ -40,48 +40,51 @@ aws_secret_access_key=
 aws_session_token=
 ```
 
+## Important kubectl commands(kubernetes)
+```bash
 sudo nano /etc/profile -> add :/usr/local/bin
 source 10, 7, 5, 4, 1
 kubectl get all
 kubectl get deployments.apps 
 kubectl delete(deployment & service/flask-nodeport(na tabela))
 
-    kubectl create: Used to create resources like pods, deployments, services, and more.
+kubectl create: Used to create resources like pods, deployments, services, and more.
 
-    Example: kubectl create deployment my-deployment --image=my-image
+Example: kubectl create deployment my-deployment --image=my-image
 
-    kubectl apply: Applies a configuration to a resource or set of resources by filename, stdin, or URL.
+kubectl apply: Applies a configuration to a resource or set of resources by filename, stdin, or URL.
 
-    Example: kubectl apply -f my-manifest.yaml
+Example: kubectl apply -f my-manifest.yaml
 
-    kubectl get: Retrieves one or more resources. This is one of the most commonly used commands.
+kubectl get: Retrieves one or more resources. This is one of the most commonly used commands.
 
-    Example: kubectl get pods
+Example: kubectl get pods
 
-    kubectl describe: Provides detailed information about a specific resource or group of resources.
+kubectl describe: Provides detailed information about a specific resource or group of resources.
 
-    Example: kubectl describe pod my-pod
+Example: kubectl describe pod my-pod
 
-    kubectl delete: Deletes one or more resources.
+kubectl delete: Deletes one or more resources.
 
-    Example: kubectl delete pod my-pod
+Example: kubectl delete pod my-pod
 
-    kubectl logs: Retrieves the logs of a container in a pod.
+kubectl logs: Retrieves the logs of a container in a pod.
 
-    Example: kubectl logs my-pod
+Example: kubectl logs my-pod
 
-    kubectl exec: Executes a command in a container within a pod.
+kubectl exec: Executes a command in a container within a pod.
 
-    Example: kubectl exec -it my-pod -- /bin/bash
+Example: kubectl exec -it my-pod -- /bin/bash
 
-    kubectl scale: Changes the number of replicas of a deployment, replication controller, or replica set.
+kubectl scale: Changes the number of replicas of a deployment, replication controller, or replica set.
 
-    Example: kubectl scale deployment/my-deployment --replicas=3
+Example: kubectl scale deployment/my-deployment --replicas=3
 
-    kubectl rollout: Manages the rollout of updates to a deployment or rollout history.
+kubectl rollout: Manages the rollout of updates to a deployment or rollout history.
 
-    Example: kubectl rollout status deployment/my-deployment
+Example: kubectl rollout status deployment/my-deployment
 
-    kubectl port-forward: Forwards one or more local ports to a pod.
+kubectl port-forward: Forwards one or more local ports to a pod.
 
-    Example: kubectl port-forward my-pod 8080:80
+Example: kubectl port-forward my-pod 8080:80
+```
