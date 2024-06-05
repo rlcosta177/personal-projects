@@ -12,8 +12,7 @@ git checkout original_v126_update
 git pull
 ```
 3. aws cli install
-
-   - https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+- https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 
 4. comment out the aws stuff in 0-install-kubernetes-tools | Only necessary if you've done step 3 beforehand
 ```bash
@@ -23,10 +22,13 @@ unzip awscliv2.zip
 sudo ./aws/install
 ```
 
+5. last minute details
+- sudo nano /etc/profile -> add :/usr/local/bin (adds a shortcut to any package in /usr/local/bin | ex: instead of doing '/usr/local/bin/go', you can now just use 'go')
+- source 10, 7, 5, 4, 1 (environment variables being set in these files, just run them as source so that the variables are set or something, i dont know much about it)
+
 ## Important kubectl commands(kubernetes)
 ```bash
-sudo nano /etc/profile -> add :/usr/local/bin
-source 10, 7, 5, 4, 1
+
 kubectl get all
 kubectl get deployments.apps 
 kubectl delete(deployment & service/flask-nodeport(na tabela))
