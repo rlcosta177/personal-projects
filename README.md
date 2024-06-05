@@ -1,1 +1,1 @@
-Here I doccument the projects I work on. 
+projects i've worked/am working on
