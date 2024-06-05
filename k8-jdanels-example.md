@@ -14,6 +14,7 @@ git pull
 3. aws cli install
 - https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 
+
 4. comment out the aws stuff in 0-install-kubernetes-tools | Only necessary if you've done step 3 beforehand
 ```bash
 sudo yum remove awscli
