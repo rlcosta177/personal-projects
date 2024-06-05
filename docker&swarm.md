@@ -87,7 +87,7 @@ newgrp docker
     EXPOSE 443
    ```
    ```bash
-     example:
+     example structure:
             project-directory/
         ├── Dockerfile
         ├── index.html
