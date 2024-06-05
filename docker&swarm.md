@@ -147,7 +147,7 @@ docker system df -v
 ```bash
 docker build -t username/repo-name .
 docker push username/repo-name
-docker service create --name <name-you-want> --replicas <x> -p x:x username/repo-name
+docker service create --name name-you-want --replicas x -p x:x username/repo-name
 ```
 
 ## Rebuild docker service(swarm)
