@@ -163,12 +163,24 @@ docker service update --image username/repo-name service-name
 
 - sudo python3 -m pip install -r requirements.txt
 
+## Creating and pushing a new repository
+
+```bash
+git config --global user.email you@example.com
+git config --global user.name your-name
+git init -b main
+git add .
+git commit -m "Initial commit"
+curl -H "Authorization: token your-github-token(development-tools..)" https://api.github.com/user/repos -d '{"name":"name-you-want"}'
+git remote add origin https://github.com/USERNAME/REPO_NAME.git
+git push -u origin main
+```
 
 ## Push existing repository
 
 ```bash
 Push an existing repository:
-git remote add origin git@github.com:jdmedeiros/amzn2-soc2.git
+git remote add origin https://github.com/USERNAME/REPO_NAME.git
 git branch -M main
 git push -u origin main
 ```
