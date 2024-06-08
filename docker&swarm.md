@@ -140,7 +140,6 @@ docker system df -v
 ## Add nodes to dockerswarm
 
 - https://docs.docker.com/engine/swarm/swarm-tutorial/create-swarm/
-- 
 
 ## Build docker service(swarm)
 
@@ -159,7 +158,7 @@ docker service update --image username/repo-name service-name
 ```
 
 
-## Useful commands
+## global instalation for requirements in any Dockerfile(?)
 
 - sudo python3 -m pip install -r requirements.txt
 
@@ -172,15 +171,30 @@ git init -b main
 git add .
 git commit -m "Initial commit"
 curl -H "Authorization: token your-github-token(development-tools..)" https://api.github.com/user/repos -d '{"name":"name-you-want"}'
-git remote add origin https://github.com/USERNAME/REPO_NAME.git
+git remote add origin <repo-url>
 git push -u origin main
 ```
 
 ## Push existing repository
 
 ```bash
-Push an existing repository:
-git remote add origin https://github.com/USERNAME/REPO_NAME.git
+git remote add origin <repo-url>
 git branch -M main
 git push -u origin main
+```
+
+## Create new branch and checkout to it
+
+```bash
+git branch <branch-name>
+git checkout <branch-name>
+```
+
+## Merge from branch into main/master
+
+```bash
+git checkout main
+git pull origin main
+git merge <branch-name>
+git push origin main
 ```
