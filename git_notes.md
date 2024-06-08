@@ -1,11 +1,11 @@
 ## Creating and pushing a new repository
 
 ```bash
-git config --global user.email you@example.com
+git config --global user.email your@email.com
 git config --global user.name your-name
 git init -b main
 git add .
-git commit -m "Initial commit"
+git commit -m "commit-message"
 curl -H "Authorization: token your-github-token(development-tools..)" https://api.github.com/user/repos -d '{"name":"name-you-want"}'
 git remote add origin <repo-url>
 git push -u origin main
