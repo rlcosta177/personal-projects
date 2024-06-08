@@ -198,3 +198,13 @@ git pull origin main
 git merge <branch-name>
 git push origin main
 ```
+
+## Changes were made to the repo and you cant commit
+
+```bash
+git add .
+git stash
+git pull --rebase
+git stash pop
+git push
+```
