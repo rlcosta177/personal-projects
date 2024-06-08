@@ -208,3 +208,11 @@ git pull --rebase
 git stash pop
 git push
 ```
+
+## Pull from main into the development branch
+
+```bash
+git checkout <branch-name>
+git fetch origin
+git merge origin/main
+```
