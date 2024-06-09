@@ -1,3 +1,6 @@
+ref: https://github.com/jdmedeiros/k8s.git
+branch: original_v126_update
+
 ## Update instance and install the development tools
 ```bash
 sudo yum update -y
