@@ -66,8 +66,14 @@ Step 3: Use puttygen to convert pem to ppk
 Step 4: Connect to remote Linux server
 ```
 
+## X11 connection from linux(haven't tested)
+
 `sudo apt install ssh xauth xorg` <- on linux only
 `ssh -X -i <your-key> username@your_pc_ip_address`
+
+`sudo apt-get install xorg`
+`sudo apt-get install openbox`
+https://askubuntu.com/questions/213678/how-to-install-x11-xorg
 
 ---
 
