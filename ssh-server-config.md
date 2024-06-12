@@ -50,17 +50,19 @@ X11DisplayOffset 10
 X11UseLocalhost yes   # Or X11UseLocalhost no, depending on your setup
 ```
 
-on the server -> export DISPLAY=:0
+on the server -> `export DISPLAY=:0`
 
 `service ssh reload`
 `sudo systemctl restart ssh`
 
 
 On windows:
+```bash
 Step 1: Install a XServer in Windows : Example XMing Server (listens on localhost:0.0)
 Step 2: In putty enable X11 forwarding
 Step 3: Use puttygen to convert pem to ppk
 Step 4: Connect to remote Linux server
+```
 
 `sudo apt install ssh xauth xorg` <- on linux only
 `ssh -X -i <your-key> username@your_pc_ip_address`
