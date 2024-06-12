@@ -11,7 +11,7 @@ sudo ufw allow ssh
 sudo ufw enable
 ```
 
-enable port forwarding in your router(22 -> 22 | or xxxx -> 22 is safer)
+- enable port forwarding in your router(22 -> 22 | or xxxx -> 22 is safer)
 
 ```bash
 ssh <username>@<IP-ADDRESS>
