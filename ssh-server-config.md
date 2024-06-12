@@ -18,6 +18,7 @@ ssh <username>@<IP-ADDRESS>
 
 ssh -p <custom-port> <username>@<public-ip-or-ddns-domain>
 ```
+---
 
 ## Add key authentication
 
@@ -40,6 +41,7 @@ sudo systemctl restart ssh
 
 `ssh -i ~/.ssh/id_rsa <username>@<IP-ADDRESS>`
 
+---
 
 ## Access with X11 from Windows
 
@@ -67,7 +69,7 @@ Step 4: Connect to remote Linux server
 `sudo apt install ssh xauth xorg` <- on linux only
 `ssh -X -i <your-key> username@your_pc_ip_address`
 
-
+---
 
 home server key
 ```bash
