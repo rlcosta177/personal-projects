@@ -12,6 +12,8 @@ sudo fdisk -l
 lsblk
 ```
 
+Lets assume disk1 and disk2 are their names.
+
 ## Step 2: Create a New MBR Partition Table on Both Disks
 
 Replace <disk1> and <disk2> with your actual disk identifiers (e.g., sdb, sdc).
