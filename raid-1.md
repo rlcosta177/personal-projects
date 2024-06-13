@@ -10,6 +10,7 @@ Open a terminal and list the available disks using one of the following commands
 sudo fdisk -l
 # or
 lsblk
+```
 
 ## Step 2: Create a New MBR Partition Table on Both Disks
 
