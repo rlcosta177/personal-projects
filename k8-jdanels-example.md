@@ -37,7 +37,8 @@ kubectl get all
 kubectl get deployments.apps 
 kubectl delete(deployment & service/flask-nodeport(na tabela))
 kubectl get pods -o=jsonpath="{range .items[*]}{.status.podIP}{','}{end}"
-kubectl delete all --all --all-namespaces
+kubectl delete all --all --all-namespaces (dps tens que correr o ./13-... do professor)
+k rollout restart deployment coredns -n kubesystem
 
 kubectl create: Used to create resources like pods, deployments, services, and more.
 Example: kubectl create deployment my-deployment --image=my-image
