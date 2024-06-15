@@ -33,16 +33,16 @@ sudo fdisk /dev/<disk1>
 
 Follow these instructions:
 
-  1. Type n to create a new partition.
-  2. Type p to select a primary partition.
-  3. Type 1 to create /dev/disk1n1.
-  4. Press Enter to choose the default first sector.
-  5. Press Enter to choose the default last sector. This partition will span across the entire drive.
-  6. Type p to print information about the newly created partition.
-  7. Type t to change the partition type.
-  8. Enter fd to set the partition type to Linux raid autodetect.
-  9. Type p again to check the partition type.
-  10.Type w to write the changes to the disk.
+  1. Type `n` to create a new partition.
+  2. Type `p` to select a primary partition.
+  3. Type `1` to create /dev/disk1n1.
+  4. Press `Enter` to choose the default first sector.
+  5. Press `Enter` to choose the default last sector. This partition will span across the entire drive.
+  6. Type `p` to print information about the newly created partition.
+  7. Type `t` to change the partition type.
+  8. Enter `fd` to set the partition type to Linux raid autodetect.
+  9. Type `p` again to check the partition type.
+  10.Type `w` to write the changes to the disk.
 
 Repeat these steps for <disk2>.
 
