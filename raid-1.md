@@ -35,7 +35,7 @@ Follow these instructions:
 
   1. Type n to create a new partition.
   2. Type p to select a primary partition.
-  3. Type 1 to create /dev/<disk1>1.
+  3. Type 1 to create /dev/disk1n1.
   4. Press Enter to choose the default first sector.
   5. Press Enter to choose the default last sector. This partition will span across the entire drive.
   6. Type p to print information about the newly created partition.
