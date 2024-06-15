@@ -16,7 +16,7 @@ Lets assume disk1 and disk2 are their names.
 
 ## Step 2: Create a New MBR Partition Table on Both Disks
 
-Replace <disk1> and <disk2> with your actual disk identifiers (e.g., sdb, sdc).
+Replace disk1 and disk2 with your actual disk identifiers (e.g., sdb, sdc).
 
 ```sh
 sudo parted /dev/<disk1> mklabel msdos
@@ -25,7 +25,7 @@ sudo parted /dev/<disk2> mklabel msdos
 
 ## Step 3: Create a New Partition on Each Disk
 
-Replace <disk1> with your actual disk identifier (e.g., sdb).
+Replace disk1 with your actual disk identifier (e.g., sdb).
 
 ```sh
 sudo fdisk /dev/<disk1>
@@ -44,7 +44,7 @@ Follow these instructions:
   9. Type `p` again to check the partition type.
   10.Type `w` to write the changes to the disk.
 
-Repeat these steps for <disk2>.
+Repeat these steps for disk2.
 
 
 ## Step 4: Install mdadm
@@ -64,7 +64,7 @@ sudo mdadm --examine /dev/<disk1> /dev/<disk2>
 
 ## Step 6: Create the RAID 1 Array
 
-Replace <disk1n1> and <disk2n1> with your actual partition identifiers (e.g., sdb1, sdc1).
+Replace disk1n1 and disk2n1 with your actual partition identifiers (e.g., sdb1, sdc1).
 
 ```sh
 sudo mdadm --create /dev/md0 --level=mirror --raid-devices=2 /dev/<disk1n1> /dev/<disk2n1>
