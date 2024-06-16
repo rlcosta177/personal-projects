@@ -52,3 +52,21 @@ git checkout <branch-name>
 git fetch origin
 git merge origin/main
 ```
+
+## Discard current changes and pull from main/any branch
+
+```bash
+# you have to checkout to the branch you want to pull from i think
+git checkout <main-or-branch>
+
+# Stash any changes that are currently staged
+git stash push -m "Temporary stash"
+
+# Discard changes in the working directory
+git reset --hard
+
+# Remove untracked files and directories
+git clean -fd
+
+git pull origin <main-or-branch>
+```
