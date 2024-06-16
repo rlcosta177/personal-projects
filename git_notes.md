@@ -56,10 +56,10 @@ git merge origin/main
 ## Discard current changes and pull from main/any branch
 
 ```bash
-# you have to checkout to the branch you want to pull from i think
+# Switch to the main branch
 git checkout <main-or-branch>
 
-# Stash any changes that are currently staged
+# Stash any changes that are currently staged (optional step)
 git stash push -m "Temporary stash"
 
 # Discard changes in the working directory
@@ -68,5 +68,7 @@ git reset --hard
 # Remove untracked files and directories
 git clean -fd
 
+# Pull the latest changes from the remote main branch
 git pull origin <main-or-branch>
 ```
+
