@@ -1,3 +1,5 @@
+## jackdaniels' on prem cluster setup guid(not really)
+
 - ref: https://github.com/jdmedeiros/k8s.git
 - branch: original_v126_update
 
@@ -14,11 +16,8 @@ cd k8s
 git checkout original_v126_update
 git pull
 ```
-3. aws cli install
-- https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
 
-
-4. comment out the aws stuff in 0-install-kubernetes-tools | Only necessary if you've done step 3 beforehand
+3.(OPTIONAL) comment out the aws stuff in 0-install-kubernetes-tools | Only necessary if you've done step 3 beforehand
 ```bash
 sudo yum remove awscli
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
@@ -26,15 +25,14 @@ unzip awscliv2.zip
 sudo ./aws/install
 ```
 
-5. last minute details
-- sudo nano /etc/profile -> add :/usr/local/bin (adds a shortcut to any package in /usr/local/bin | ex: instead of doing '/usr/local/bin/go', you can now just use 'go')
-- source 10, 7, 5, 4, 1 (environment variables being set in these files, just run them as source so that the variables are set or something, i dont know much about it)
+4. Troubleshooting
+- sudo nano /etc/profile -> add :/usr/local/bin
+  - (adds a shortcut to any package in /usr/local/bin | ex: instead of doing '/usr/local/bin/go', you can now just use 'go')
 
 ## Important kubectl commands(kubernetes)
-```bash
 
+```bash
 kubectl get all
-kubectl get deployments.apps 
 kubectl delete(deployment & service/flask-nodeport(na tabela))
 kubectl get pods -o=jsonpath="{range .items[*]}{.status.podIP}{','}{end}"
 kubectl delete all --all --all-namespaces (dps tens que correr o ./13-... do professor)
