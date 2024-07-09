@@ -1,4 +1,4 @@
-# BigData AWS
+![image](https://github.com/rlcosta177/personal-projects/assets/154469533/f3152ca0-742d-43ee-8562-69db0d7a58da)# BigData AWS
 USING:
 - AWS Glue('crawlers', 'database' and 'tables')
 - AWS Athena('querry editor')
@@ -29,12 +29,19 @@ USING:
 
 ---
 
-5. go to athena querry editor and select the database and you'll see the created tables. You won't be able to update and delete existing records because it uses Hive by default as of today
-   ![image](https://github.com/rlcosta177/personal-projects/assets/154469533/72b1cede-501d-47ef-9eba-a367e1be32de)
+5. go to athena querry editor, settings and add your s3 bucket to the athena querry(This bucket should be different from the bucket containing the csv files. Used solely for temp files)
+   ![image](https://github.com/rlcosta177/personal-projects/assets/154469533/94af2a7c-a7cf-4465-b946-9d6a25bfcf32)
+   ![image](https://github.com/rlcosta177/personal-projects/assets/154469533/e4b4ef4b-cee4-4900-a83f-a4a2288860d2)
 
 ---
 
-6. Migrating from hive to iceberg(create new database OR use the same database, create identical tables but with iceberg as default, copy data from the hive database to the new iceberg database)
+6. Select the database and you'll see the created tables. You won't be able to update and delete existing records because it uses Hive by default as of today
+   ![image](https://github.com/rlcosta177/personal-projects/assets/154469533/72b1cede-501d-47ef-9eba-a367e1be32de)
+
+
+---
+
+7. Migrating from hive to iceberg(create new database OR use the same database, create identical tables but with iceberg as default, copy data from the hive database to the new iceberg database)
       
       ### Creating an iceberg table
       ref: https://medium.com/@datacodingnet/getting-started-with-apache-iceberg-tables-using-aws-glue-custom-connector-eb657b925e66
@@ -74,7 +81,7 @@ USING:
 ---
 
 
-### Alternative to point 6:
+### Alternative to point 7:
 - create a new bucket OR create a new folder in the existing bucket and specify it in the code(ex: rlcosta-northwind/new-folder/Employees)
 - and create a new table specifying that bucket as storage and selecting the values and rows from another table(copies everything from the hive table to the new iceberg table)
   ```bash
