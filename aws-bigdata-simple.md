@@ -69,3 +69,16 @@ USING:
       SELECT categoryid, categoryname, description
       FROM northwind.categories;
       ```
+
+
+---
+
+
+### Alternative to point 6:
+- create a new bucket
+- and create a new table specifying that bucket as storage and selecting the values and rows from another table(copies everything from the hive table to the new iceberg table)
+  ```bash
+  CREATE TABLE northwindiceberg.employees
+  WITH(table_type = 'ICEBERG', format='parquet', location='s3://rlcosta-northwind-iceberg/Employees/', is_external=false) as
+  SELECT * FROM northwind.employees;
+  ```
