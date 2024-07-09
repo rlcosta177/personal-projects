@@ -12,14 +12,14 @@ USING:
 3. Create a database in aws glue
    ![image](https://github.com/rlcosta177/personal-projects/assets/154469533/8883f6a8-89a4-41fe-b6ef-72ed42a373ca)
 4. create a crawler associated with the s3 bucket(ex: s3://rlcosta-northwind/) and run it(dont remember details) | choose the IAM Role: 'LabRole' and select the database created before
-  <details>
+     <details>
  
-  ![image](https://github.com/rlcosta177/personal-projects/assets/154469533/ac13ea2d-c661-42e6-b2ec-ece267d58129)
-  ![image](https://github.com/rlcosta177/personal-projects/assets/154469533/6252bc7f-c8ab-4f50-84bd-88f75e82eaa6)
-  ![image](https://github.com/rlcosta177/personal-projects/assets/154469533/ae0dab1d-060f-4f76-9d8e-e6f4da41d313)
-  ![image](https://github.com/rlcosta177/personal-projects/assets/154469533/5a77ec04-0f7f-473f-9e2b-ac275cf5589b)
-  ![image](https://github.com/rlcosta177/personal-projects/assets/154469533/371f0fae-d20d-42f3-8407-6f91490623a7)
-  </details>
+     ![image](https://github.com/rlcosta177/personal-projects/assets/154469533/ac13ea2d-c661-42e6-b2ec-ece267d58129)
+     ![image](https://github.com/rlcosta177/personal-projects/assets/154469533/6252bc7f-c8ab-4f50-84bd-88f75e82eaa6)
+     ![image](https://github.com/rlcosta177/personal-projects/assets/154469533/ae0dab1d-060f-4f76-9d8e-e6f4da41d313)
+     ![image](https://github.com/rlcosta177/personal-projects/assets/154469533/5a77ec04-0f7f-473f-9e2b-ac275cf5589b)
+     ![image](https://github.com/rlcosta177/personal-projects/assets/154469533/371f0fae-d20d-42f3-8407-6f91490623a7)
+     </details>
 
 5. go to athena querry editor and select the database and you'll see the created tables. You won't be able to update and delete existing records because it uses Hive by default as of today
    ![image](https://github.com/rlcosta177/personal-projects/assets/154469533/72b1cede-501d-47ef-9eba-a367e1be32de)
