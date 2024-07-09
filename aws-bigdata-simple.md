@@ -6,7 +6,7 @@ USING:
 
 
 1. Export tables to .csv
-2. store them in an s3 bucket in separate folders
+2. store them in an s3 bucket in separate folders(each csv file goes inside its pair folder. ex: Categories.csv -> Categories folder)
    ![image](https://github.com/rlcosta177/personal-projects/assets/154469533/060a78bb-4b99-4669-8a03-10008106397f)
 3. Create a database in aws glue
 4. create a crawler associated with the s3 bucket(ex: s3://rlcosta-northwind/) and run it(dont remember details) | choose the IAM Role: 'LabRole' and select the database created before
