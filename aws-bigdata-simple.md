@@ -75,7 +75,7 @@ USING:
 
 
 ### Alternative to point 6:
-- create a new bucket
+- create a new bucket OR create a new folder in the existing bucket and specify it in the code(ex: rlcosta-northwind/new-folder/Employees)
 - and create a new table specifying that bucket as storage and selecting the values and rows from another table(copies everything from the hive table to the new iceberg table)
   ```bash
   CREATE TABLE northwindiceberg.employees
