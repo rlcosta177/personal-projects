@@ -62,7 +62,7 @@ USING:
       
       ---
       
-      ## transferring data from external table to the newly created iceberg table(table values must match)
+      ### transferring data from external table to the newly created iceberg table(table values must match)
       
       ```bash
       INSERT INTO northwindiceberg.categories
