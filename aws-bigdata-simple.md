@@ -21,11 +21,11 @@ CREATE DATABASE datacoding;
 ```
 
 ```bash
-CREATE TABLE datacoding.iceberg_table (
-  id int,
-  data string,
-  category string)
-LOCATION 's3://datacoding-iceberg-table/iceberg-folder' 
+CREATE TABLE northwind-iceberg.categories (
+  categoryid int,
+  categoryname string,
+  description string)
+LOCATION 's3://rlcosta-northwind' 
 TBLPROPERTIES (
   'table_type'='ICEBERG',
   'format'='parquet'
@@ -33,7 +33,7 @@ TBLPROPERTIES (
 ```
 
 ```bash
-INSERT INTO datacoding.iceberg_table VALUES (1,'a','c1');
+INSERT INTO northwind-iceberg.categories VALUES (1,'Marisco','Lagosta');
 ```
 
 ---
