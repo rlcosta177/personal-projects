@@ -1,4 +1,4 @@
-![image](https://github.com/rlcosta177/personal-projects/assets/154469533/f3152ca0-742d-43ee-8562-69db0d7a58da)# BigData AWS
+# BigData AWS
 USING:
 - AWS Glue('crawlers', 'database' and 'tables')
 - AWS Athena('querry editor')
@@ -30,6 +30,7 @@ USING:
 ---
 
 5. go to athena querry editor, settings and add your s3 bucket to the athena querry(This bucket should be different from the bucket containing the csv files. Used solely for temp files)
+   ![image](https://github.com/rlcosta177/personal-projects/assets/154469533/f3152ca0-742d-43ee-8562-69db0d7a58da)
    ![image](https://github.com/rlcosta177/personal-projects/assets/154469533/94af2a7c-a7cf-4465-b946-9d6a25bfcf32)
    ![image](https://github.com/rlcosta177/personal-projects/assets/154469533/e4b4ef4b-cee4-4900-a83f-a4a2288860d2)
 
