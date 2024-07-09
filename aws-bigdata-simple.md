@@ -4,6 +4,7 @@ USING:
 - AWS Athena('querry editor')
 - AWS S3 Buckets('buckets with .csv files of each table')
 
+---
 
 1. Export tables to .csv
 2. store them in an s3 bucket in separate folders(each csv file goes inside its pair folder. ex: Categories.csv -> Categories folder)
