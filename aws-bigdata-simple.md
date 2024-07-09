@@ -35,37 +35,37 @@ USING:
 ---
 
 6. Migrating from hive to iceberg(create new database OR use the same database, create identical tables but with iceberg as default, copy data from the hive database to the new iceberg database)
-
-## Creating an iceberg table
-ref: https://medium.com/@datacodingnet/getting-started-with-apache-iceberg-tables-using-aws-glue-custom-connector-eb657b925e66
-
-Code goes into athena querry editor
-```bash
-CREATE DATABASE datacoding;
-```
-
-```bash
-CREATE TABLE northwind-iceberg.categories (
-  categoryid int,
-  categoryname string,
-  description string)
-LOCATION 's3://rlcosta-northwind' 
-TBLPROPERTIES (
-  'table_type'='ICEBERG',
-  'format'='parquet'
-);
-```
-
-```bash
-INSERT INTO northwind-iceberg.categories VALUES (1,'Marisco','Lagosta');
-```
-
----
-
-## transferring data from external table to the newly created iceberg table(table values must match)
-
-```bash
-INSERT INTO northwindiceberg.categories
-SELECT categoryid, categoryname, description
-FROM northwind.categories;
-```
+      
+      ### Creating an iceberg table
+      ref: https://medium.com/@datacodingnet/getting-started-with-apache-iceberg-tables-using-aws-glue-custom-connector-eb657b925e66
+      
+      Code goes into athena querry editor
+      ```bash
+      CREATE DATABASE datacoding;
+      ```
+      
+      ```bash
+      CREATE TABLE northwind-iceberg.categories (
+        categoryid int,
+        categoryname string,
+        description string)
+      LOCATION 's3://rlcosta-northwind' 
+      TBLPROPERTIES (
+        'table_type'='ICEBERG',
+        'format'='parquet'
+      );
+      ```
+      
+      ```bash
+      INSERT INTO northwind-iceberg.categories VALUES (1,'Marisco','Lagosta');
+      ```
+      
+      ---
+      
+      ## transferring data from external table to the newly created iceberg table(table values must match)
+      
+      ```bash
+      INSERT INTO northwindiceberg.categories
+      SELECT categoryid, categoryname, description
+      FROM northwind.categories;
+      ```
