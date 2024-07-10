@@ -133,19 +133,19 @@
 
 ## Build docker service(swarm)
     
-        ```bash
-        docker build -t username/repo-name .
-        docker push username/repo-name
-        docker service create --name name-you-want --replicas x -p x:x username/repo-name
-        ```
+   ```bash
+   docker build -t username/repo-name .
+   docker push username/repo-name
+   docker service create --name name-you-want --replicas x -p x:x username/repo-name
+   ```
 
 ## Rebuild docker service(swarm)
     
-        ```bash
-        docker build -t username/repo-name .
-        docker push username/repo-name
-        docker service update --image username/repo-name service-name
-        ```
+  ```bash
+  docker build -t username/repo-name .
+  docker push username/repo-name
+  docker service update --image username/repo-name service-name
+  ```
 
 
 ## global instalation for requirements in any Dockerfile(?)
