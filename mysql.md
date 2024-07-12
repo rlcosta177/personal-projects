@@ -8,3 +8,10 @@
     #bind-address            = 127.0.0.1
     #mysqlx-bind-address     = 127.0.0.1
     ```
+
+### Instalation on RedHat based
+
+- sudo yum install mariadb105
+- safe install command from mysql
+- commnet the address lines as well
+- dont remember the rest
