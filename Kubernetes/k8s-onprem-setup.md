@@ -1,4 +1,4 @@
-## jackdaniels' on prem cluster setup guid(not really)
+## jackdaniels' on prem cluster setup
 
 - ref: https://github.com/jdmedeiros/k8s.git
 - branch: original_v126_update
