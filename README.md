@@ -1,1 +1,1 @@
-projects i've worked/am working on
+projects I have/am working on
