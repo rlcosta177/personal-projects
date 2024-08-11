@@ -74,3 +74,6 @@
    - configure the kubernetes cli to direct to your cluster
      - aws eks --region <your-region> update-kubeconfig --name my-eks-cluster
    - verify connection: kubectl get all
+   - if you are still encountering errors:
+     - try changing security group permissions
+     - verify that your aws credentials file has up-to-date keys/token
