@@ -77,3 +77,4 @@
    - if you are still encountering errors:
      - try changing security group permissions
      - verify that your aws credentials file has up-to-date keys/token
+   - sudo apt install build-essential
