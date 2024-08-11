@@ -1,3 +1,6 @@
+# Step by step on how to setup a cluster and connection via GUI
+### via cli here: https://aws.plainenglish.io/a-guide-on-how-to-connect-to-your-aws-eks-cluster-f915466ac4e8
+
 1. creating IAM rules to allow k8s(ref: https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html#create-service-role)
    - go to IAM
    - create a new service role specifying eks cluster (name will likely be: AmazonEKSClusterPolicy)
