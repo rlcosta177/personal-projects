@@ -71,3 +71,6 @@
      - MFA needs to be setup on the account to be able to use the command above
      - refer to this aws setup for the credentials and config files -> https://github.com/rlcosta177/personal-projects/blob/main/AWS/tf-aws-installation.md
    - install kubectl(done in ubuntu) ref: https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
+   - configure the kubernetes cli to direct to your cluster
+     - aws eks --region <your-region> update-kubeconfig --name my-eks-cluster
+   - verify connection: kubectl get all
