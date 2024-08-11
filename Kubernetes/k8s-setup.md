@@ -38,12 +38,16 @@
 
 3. Configure the cluster
    - create a new IAM role for EC2 that will be used in the node-group(next step)
+   - ![Screenshot_6](https://github.com/user-attachments/assets/614ec455-149d-434e-8df1-89a8bd369156)
      - attatch the following policies to the role:
        - AmazonEKSWorkerNodePolicy (Grants permissions required for worker nodes to connect to the EKS cluster)
        - AmazonEC2ContainerRegistryReadOnly (Allows nodes to pull container images from Amazon ECR)
        - AmazonEKS_CNI_Policy (Grants permissions to the Amazon VPC CNI plugin to manage networking)
        - AmazonS3ReadOnlyAccess (OPTIONALLY)
+       - ![Screenshot_8](https://github.com/user-attachments/assets/88b8e67a-af43-46c9-a0a0-577331007b51)
      - assign a name and description
      - create the role
    - create a node-group and specify how many workers you want(this step is needed since the cluster relies on the node-group to know how many workers to create)
-   - 
+   - ![Screenshot_9](https://github.com/user-attachments/assets/d467d0b7-792a-4e46-9f52-3a6a24071775)
+   - ![Screenshot_10](https://github.com/user-attachments/assets/1d3be86b-574e-45b4-9223-dd4c906de998)
+   - ![Screenshot_11](https://github.com/user-attachments/assets/133f440e-3224-4e67-9c16-b01a5f645edc)
