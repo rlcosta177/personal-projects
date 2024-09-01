@@ -20,14 +20,14 @@
   - enable telnet on the vty lines
     ```sh
     line vty 0 15
-    password your-password
+    password your-telnet-password
     login
     exit
     ```
 
   - privileged exec mode password(required)
     ```sh
-    enable secret YourEnablePassword
+    enable secret your-enable-password
     ```
 
   - wr or do wr to save the configurations
