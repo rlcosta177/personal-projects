@@ -1,132 +1,123 @@
 ### Partitioning
 
-I am going to use GPT partition table with EFI system type and the GRUB boot loader.
-This will change from system to system, so follow these steps to check your system's BIOS configuration and change them accordingly:
-  [https://pastebin.com/KYuj0gGD]
+I will use the GPT partition table with EFI system type and the GRUB boot loader. This can vary between systems, so follow these steps to check your system's BIOS configuration and adjust accordingly:
+[BIOS Configuration Guide](https://pastebin.com/KYuj0gGD)
 
-1. My system has an SSD(/dev/nvme0n1) and an HDD(/dev/sda)
+1. **System Disks**: 
+   - SSD: `/dev/nvme0n1`
+   - HDD: `/dev/sda`
 
-2. Partition Schema:
-   - SDD will contain the boot loader('/boot', 512M) and the root('/', the remaining size left by the /boot) partitions
-   - HDD will contain the home('/home') partition, which will be the size of the whole disk
+2. **Partition Schema**:
+   - **SSD**:
+     - Boot partition (`/boot`, 512M)
+     - Root partition (`/`, remaining size)
+   - **HDD**:
+     - Home partition (`/home`, entire disk size)
 
-3. Partitioning the SSD(nvme0n1):
-   - 'fdisk /dev/nvme0n1'
+3. **Partitioning the SSD (`/dev/nvme0n1`)**:
+   - Run: `fdisk /dev/nvme0n1`
    - Boot partition:
-     - 'g' to choose the GPT partitioning type
-     - 'p' to create a partition
-     - choose (1) for the Boot partition
-     - leave the first Sector as default(usually 2048)
-     - for the last Sector, choose +512M OR +1G. Depends on your system, but 512M should be enough on most cases
+     - Press `g` to select GPT
+     - Press `n` to create a new partition
+     - Select partition `(1)` for the Boot partition
+     - First sector: press enter (default is usually 2048)
+     - Last sector: enter `+512M` (or `+1G` depending on your needs)
    - Root partition:
-     - 'g' to choose the GPT partitioning type
-     - 'p' to create a partition
-     - choose (2) for the Root partition
-     - leave the first Sector as default
-     - choose the default value, which should be the rest of the disk's size
+     - Press `n` to create another partition
+     - Select partition `(2)` for the Root partition
+     - First sector: press enter (default)
+     - Last sector: press enter to use the remaining disk space
 
-4. Partitioning the HDD(sda)
-   - 'fdisk /dev/sda'
+4. **Partitioning the HDD (`/dev/sda`)**:
+   - Run: `fdisk /dev/sda`
    - Home partition:
-     - 'g' to choose the GPT partitioning type
-     - 'p' to create a partition
-     - choose (1) for the Home partition
-     - choose the default first sector
-     - choose the default last sector
-    
-5. Check the partitions:
-   - 'lsblk -f'
-   - 'fdisk -l'
+     - Press `g` to select GPT
+     - Press `n` to create a new partition
+     - Select partition `(1)` for the Home partition
+     - First sector: press enter (default)
+     - Last sector: press enter (default to use entire disk)
+
+5. **Verify Partitions**:
+   - Run: `lsblk -f`
+   - Run: `fdisk -l`
 
 ---
 
-### Format the partitions:
+### Formatting the Partitions
 
-1. Format the Boot partition(nvme0n1p1) as  FAT32
-   - 'mkfs.fat -F32 /dev/nvme0n1p1'
+1. **Format the Boot partition** (`/dev/nvme0n1p1`) as FAT32:
+   - Command: `mkfs.fat -F32 /dev/nvme0n1p1`
 
-2. Format the Root partition(nvme0n1p2) as ext4
-   - 'mkfs.ext4 /dev/nvme0n1p2'
-  
-3. Format the Home partition(sda1) as ext4
-   - 'mkfs.ext4 /dev/sda1'
-  
-4. Check the partitions:
-   - 'lsblk -f'
-   - 'fdisk -l'
-  
----
-  
-### Mount the partitions
+2. **Format the Root partition** (`/dev/nvme0n1p2`) as ext4:
+   - Command: `mkfs.ext4 /dev/nvme0n1p2`
 
-Arch linux's instalation requires us to mount the partitions in the /mnt directory.
-The /mnt will later on become the root partition, replacing the original root directory.
+3. **Format the Home partition** (`/dev/sda1`) as ext4:
+   - Command: `mkfs.ext4 /dev/sda1`
 
-1. Mount the root partition(/dev/nvme0n1p2)
-   - 'mount /dev/nvme0n1p2 /mnt'
-
-2. Mount the boot partition(/dev/nvme0n1p1)
-   - 'mount --mkdir /dev/nvme0n1p1 /mnt/boot'
-
-3. Mount the home partition(/dev/sda1)
-   - 'mount --mkdir /dev/sda1 /mnt/home'
+4. **Verify Partitions**:
+   - Run: `lsblk -f`
+   - Run: `fdisk -l`
 
 ---
 
-### Install the base system
+### Mount the Partitions
 
-This is where we replace the current root directory('/') with the /mnt directory(the one where we mounted the partitions above)
+In Arch Linux installation, we need to mount the partitions in the `/mnt` directory, which will later replace the root directory.
 
+1. **Mount the Root partition** (`/dev/nvme0n1p2`):
+   - Command: `mount /dev/nvme0n1p2 /mnt`
 
-1. Install essencial packages
-   - 'pacstrap -K /mnt base base-devel linux linux-firmware e2fsprogs dhcpcd networkmanager sof-firmware git man-db man-pages nano'
+2. **Mount the Boot partition** (`/dev/nvme0n1p1`):
+   - Command: `mount --mkdir /dev/nvme0n1p1 /mnt/boot`
 
-2. Generate the file system table && check if it is correct
-   - 'genfstab -U /mnt >> /mnt/etc/fstab'
-   - cat /mnt/etc/fstab
-  
-3. Chroot into the new system
-   - 'arch-chroot /mnt'
-  
-4. Set the time-zone
-   - 'ln -sf /usr/share/zoneinfo/Atlanta/Azores /etc/localtime'
-   - 'hwclock --systohc'
-   - 'hwclock --show'
-  
-5. Set locale
-   - nano /etc/locale.gen (Uncomment your preferred locale. e.g. 'en_US.UTF-8 UTF')
-   - save the file and run 'locale-gen'
-   - 'echo "LANG=en_US.UTF-8" > /etc/locale.conf'
-  
-6. Set hostname
-   - 'echo "myhostname" > /etc/hostname'
-   - e.g. 'echo ronaldoSUII > /etc/hostname'
-   - 'nano /etc/hosts':
-      ```bash
-      127.0.0.1   localhost
-      ::1         localhost
-      127.0.1.1   myhostname.localdomain myhostname
-      ```
+3. **Mount the Home partition** (`/dev/sda1`):
+   - Command: `mount --mkdir /dev/sda1 /mnt/home`
 
-7. Set root password
-   - passwd
+---
 
-8. Install the Boot Loader
-   - GRUB & EFI support: 'pacman -S grub efibootmgr'
-   - 'grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB'
-   - 'grub-mkconfig -o /boot/grub/grub.cfg'
-  
-9. Exit chroot and reboot
-    - 'exit'
-    - 'umount -R /mnt' (unmounting is necessary to avoid conflicts when restarting the system)
-    - 'shutdown' -> remove the usb stick -> boot the system back up
+### Installing the Base System
 
+Now we install the base system by replacing the current root (`/`) with the `/mnt` directory where the partitions are mounted.
 
+1. **Install essential packages**:
+   - Command: `pacstrap -K /mnt base base-devel linux linux-firmware e2fsprogs dhcpcd networkmanager sof-firmware git man-db man-pages nano`
 
+2. **Generate the file system table** and verify:
+   - Command: `genfstab -U /mnt >> /mnt/etc/fstab`
+   - Check: `cat /mnt/etc/fstab`
 
+3. **Chroot into the new system**:
+   - Command: `arch-chroot /mnt`
 
+4. **Set the time zone**:
+   - Command: `ln -sf /usr/share/zoneinfo/Region/City /etc/localtime` (e.g. `ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime`)
+   - Run: `hwclock --systohc`
+   - Verify: `hwclock --show`
 
+5. **Set locale**:
+   - Edit: `nano /etc/locale.gen` (Uncomment `en_US.UTF-8 UTF-8` or your preferred locale)
+   - Save and run: `locale-gen`
+   - Set language: `echo "LANG=en_US.UTF-8" > /etc/locale.conf`
 
+6. **Set hostname**:
+   - Set: `echo "myhostname" > /etc/hostname` (replace `myhostname` with your preferred name)
+   - Update `/etc/hosts`:
+     ```bash
+     127.0.0.1   localhost
+     ::1         localhost
+     127.0.1.1   myhostname.localdomain myhostname
+     ```
 
+7. **Set the root password**:
+   - Command: `passwd`
 
+8. **Install the Boot Loader**:
+   - Install GRUB and EFI support: `pacman -S grub efibootmgr`
+   - Install GRUB: `grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB`
+   - Generate GRUB config: `grub-mkconfig -o /boot/grub/grub.cfg`
 
+9. **Exit chroot and reboot**:
+   - Exit chroot: `exit`
+   - Unmount all partitions: `umount -R /mnt`
+   - Shutdown and remove the USB: `shutdown`
+   - Boot the system back up
