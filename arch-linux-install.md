@@ -2,6 +2,8 @@
 
 I haven't included the wifi connection commands, since i didnt need it at the time
 
+---
+
 ### Partitioning
 
 I will use the GPT partition table with EFI system type and the GRUB boot loader. This can vary between systems, so follow these steps to check your system's BIOS configuration and adjust accordingly:
