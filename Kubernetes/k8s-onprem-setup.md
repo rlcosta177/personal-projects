@@ -17,7 +17,7 @@ git checkout original_v126_update
 git pull
 ```
 
-3.(OPTIONAL) comment out the aws stuff in 0-install-kubernetes-tools | Only necessary if you've done step 3 beforehand
+3.(OPTIONAL) comment out the aws stuff in 0-install-kubernetes-tools(only necessary if you've done step 3 beforehand)
 ```bash
 sudo yum remove awscli
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
