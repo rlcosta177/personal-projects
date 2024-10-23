@@ -29,6 +29,8 @@ sudo ./aws/install
 - sudo nano /etc/profile -> add :/usr/local/bin
   - (adds a shortcut to any package in /usr/local/bin | ex: instead of doing '/usr/local/bin/go', you can now just use 'go')
 
+---
+
 ## Important kubectl commands(kubernetes)
 
 ```bash
