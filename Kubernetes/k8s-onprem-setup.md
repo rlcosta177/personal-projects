@@ -1,6 +1,6 @@
 ## jackdaniels' on prem cluster setup
 
-- ref: https://github.com/jdmedeiros/k8s.git
+- ref: https://github.com/jdmedeiros/k8s.git || https://github.com/rlcosta177/k8s-amazlinux2-jdaniels/tree/original_v126_update(forked)
 - branch: original_v126_update
 
 ## Update instance and install the development tools
